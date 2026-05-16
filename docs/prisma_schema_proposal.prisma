@@ -1,0 +1,208 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum PricingModel {
+  UNKNOWN
+  SUBSCRIPTION
+  USAGE_BASED
+  PER_MINUTE
+  HYBRID
+  CUSTOM_QUOTE
+}
+
+enum LeadStatus {
+  NEW
+  REVIEWED
+  CONTACTED
+  QUALIFIED
+  CLOSED
+  SPAM
+}
+
+model Vendor {
+  id                    String            @id @default(cuid())
+  slug                  String            @unique
+  name                  String
+  tagline               String?
+  websiteUrl            String?
+  affiliateUrl          String?
+  logoUrl               String?
+  summary               String?
+  bestFor               String?
+  editorVerdict         String?
+  pricingModel          PricingModel      @default(UNKNOWN)
+  pricingFromUsd        Int?
+  pricingNotes          String?
+  setupComplexity       Int?
+  verticalFitNotes      String?
+  supportNotes          String?
+  reportingNotes        String?
+  handoffNotes          String?
+  bookingNotes          String?
+  integrationsNotes     String?
+  hipaaFriendly         Boolean?
+  hasAppointmentBooking Boolean?
+  hasCrmIntegration     Boolean?
+  hasHumanHandoff       Boolean?
+  hasMultilingual       Boolean?
+  has24x7               Boolean?
+  isFeatured            Boolean           @default(false)
+  isPublished           Boolean           @default(false)
+  overallScore          Float?
+  scoreCallHandling     Float?
+  scoreIntegrations     Float?
+  scoreAutomation       Float?
+  scoreEaseOfSetup      Float?
+  scorePricingValue     Float?
+  scoreVerticalFit      Float?
+  scoreHandoff          Float?
+  scoreReporting        Float?
+  scoreSupport          Float?
+  createdAt             DateTime          @default(now())
+  updatedAt             DateTime          @updatedAt
+  vendorVerticals       VendorVertical[]
+  vendorFeatures        VendorFeature[]
+  comparisonEntries     ComparisonVendor[]
+}
+
+model Vertical {
+  id        String          @id @default(cuid())
+  slug      String          @unique
+  name      String
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  vendors   VendorVertical[]
+}
+
+model Feature {
+  id        String          @id @default(cuid())
+  slug      String          @unique
+  name      String
+  category  String?
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  vendors   VendorFeature[]
+}
+
+model VendorVertical {
+  vendorId   String
+  verticalId String
+  notes      String?
+  vendor     Vendor   @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+  vertical   Vertical @relation(fields: [verticalId], references: [id], onDelete: Cascade)
+
+  @@id([vendorId, verticalId])
+}
+
+model VendorFeature {
+  vendorId   String
+  featureId  String
+  valueText  String?
+  valueBool  Boolean?
+  notes      String?
+  vendor     Vendor   @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+  feature    Feature  @relation(fields: [featureId], references: [id], onDelete: Cascade)
+
+  @@id([vendorId, featureId])
+}
+
+model ComparisonPage {
+  id            String              @id @default(cuid())
+  slug          String              @unique
+  title         String
+  metaTitle     String?
+  metaDescription String?
+  intro         String?
+  verdict       String?
+  status        ContentStatus       @default(DRAFT)
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+  vendors       ComparisonVendor[]
+}
+
+model ComparisonVendor {
+  comparisonId String
+  vendorId     String
+  position     Int
+  role         String?
+  comparison   ComparisonPage @relation(fields: [comparisonId], references: [id], onDelete: Cascade)
+  vendor       Vendor         @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+
+  @@id([comparisonId, vendorId])
+}
+
+model Guide {
+  id              String        @id @default(cuid())
+  slug            String        @unique
+  title           String
+  metaTitle       String?
+  metaDescription String?
+  excerpt         String?
+  bodyMd          String
+  status          ContentStatus @default(DRAFT)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+}
+
+model LandingPage {
+  id              String        @id @default(cuid())
+  slug            String        @unique
+  title           String
+  metaTitle       String?
+  metaDescription String?
+  excerpt         String?
+  bodyMd          String
+  status          ContentStatus @default(DRAFT)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+}
+
+model FaqItem {
+  id          String   @id @default(cuid())
+  question    String
+  answer      String
+  pageType    String?
+  pageSlug    String?
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Lead {
+  id                   String     @id @default(cuid())
+  source               String?
+  status               LeadStatus @default(NEW)
+  name                 String
+  email                String
+  company              String?
+  phone                String?
+  industry             String?
+  monthlyCallVolume    String?
+  mainUseCase          String?
+  currentPhoneSetup    String?
+  mustHaveIntegrations String?
+  budgetRange          String?
+  timeline             String?
+  notes                String?
+  recommendedVendors   String?
+  createdAt            DateTime   @default(now())
+  updatedAt            DateTime   @updatedAt
+}
+
+model SiteSetting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
