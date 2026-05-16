@@ -1,0 +1,128 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-main
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    environment: production
+    env:
+      DATABASE_URL: ${{ secrets.NEON_DATABASE_URL }}
+      DIRECT_URL: ${{ secrets.NEON_DIRECT_URL }}
+      SITE_URL: ${{ secrets.SITE_URL }}
+      NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma client
+        run: pnpm prisma generate
+
+      - name: Build (standalone output)
+        run: pnpm build
+
+      - name: Migrate Neon (prisma migrate deploy)
+        run: pnpm prisma migrate deploy
+
+      - name: Assemble deploy bundle
+        run: |
+          set -euo pipefail
+          mkdir -p .deploy
+          # Next standalone packaging: public + .next/static must sit alongside server.js
+          cp -R .next/standalone/. .deploy/
+          mkdir -p .deploy/.next
+          cp -R .next/static .deploy/.next/static
+          if [ -d public ]; then
+            cp -R public .deploy/public
+          fi
+          # Ship the schema so the remote can run `prisma migrate deploy` on hand if needed
+          mkdir -p .deploy/prisma
+          cp prisma/schema.prisma .deploy/prisma/schema.prisma
+          # Sanity: ensure server.js is present
+          test -f .deploy/server.js
+
+      - name: Configure SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.HOSTINGER_SSH_KEY }}
+
+      - name: Trust Hostinger host key
+        env:
+          SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          SSH_PORT: ${{ secrets.HOSTINGER_SSH_PORT }}
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Preflight remote directory
+        env:
+          SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          SSH_USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          SSH_PORT: ${{ secrets.HOSTINGER_SSH_PORT }}
+          DEPLOY_PATH: ${{ secrets.HOSTINGER_DEPLOY_PATH }}
+        run: |
+          ssh -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" "mkdir -p $DEPLOY_PATH $DEPLOY_PATH/tmp"
+
+      - name: Rsync deploy bundle
+        env:
+          SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          SSH_USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          SSH_PORT: ${{ secrets.HOSTINGER_SSH_PORT }}
+          DEPLOY_PATH: ${{ secrets.HOSTINGER_DEPLOY_PATH }}
+        run: |
+          rsync -avz --delete \
+            --exclude 'tmp/' \
+            -e "ssh -p $SSH_PORT" \
+            .deploy/ \
+            "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/"
+
+      - name: Restart app (Passenger-style)
+        env:
+          SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          SSH_USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          SSH_PORT: ${{ secrets.HOSTINGER_SSH_PORT }}
+          DEPLOY_PATH: ${{ secrets.HOSTINGER_DEPLOY_PATH }}
+        run: |
+          ssh -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" \
+            "mkdir -p $DEPLOY_PATH/tmp && touch $DEPLOY_PATH/tmp/restart.txt"
+
+      - name: Smoke check production
+        run: |
+          set -euo pipefail
+          url="${SITE_URL%/}"
+          for path in / /vendors; do
+            echo "Checking $url$path"
+            # 30s wait for the app to come back up
+            for attempt in $(seq 1 15); do
+              code=$(curl -s -o /dev/null -w '%{http_code}' "$url$path" || true)
+              if [ "$code" = "200" ]; then
+                echo "  $path -> $code"
+                break
+              fi
+              echo "  attempt $attempt: $code, retrying in 2s…"
+              sleep 2
+            done
+            if [ "$code" != "200" ]; then
+              echo "::error::Smoke check failed for $path (last code: $code)"
+              exit 1
+            fi
+          done
