@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -c user.email=gradientdata@gmail.com -c user.name=Grady commit -m ' *)"
+    ]
+  }
+}

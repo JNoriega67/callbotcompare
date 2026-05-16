@@ -1,26 +1,131 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+/* ---------------------------------------------------------------- */
+/* CallBotCompare brand tokens                                       */
+/* Reference: docs/STYLE_TILE_BRAND_BOARD.md                         */
+/* ---------------------------------------------------------------- */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand palette */
+  --brand-cream: #f7f4ee;
+  --brand-slate: #1f3a5f;
+  --brand-teal: #2f7f79;
+  --brand-teal-hover: #28706b;
+  --brand-gold: #d9a441;
+  --brand-sage: #dce9e2;
+  --brand-charcoal: #1f2933;
+  --brand-muted: #5b6875;
+  --brand-border-soft: #d6dee6;
+  --brand-success: #2e8b57;
+  --brand-warning: #b7791f;
+  --brand-destructive: #b3261e;
+
+  /* Surfaces */
+  --background: var(--brand-cream);
+  --foreground: var(--brand-charcoal);
+  --surface: #ffffff;
+  --surface-alt: var(--brand-sage);
+  --muted: var(--brand-sage);
+  --muted-foreground: var(--brand-muted);
+  --border: var(--brand-border-soft);
+  --input: var(--surface);
+  --ring: color-mix(in srgb, var(--brand-teal) 60%, transparent);
+
+  /* Cards / popovers — used by shadcn primitives */
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface);
+  --popover-foreground: var(--foreground);
+
+  /* Interactive roles */
+  --primary: var(--brand-teal);
+  --primary-foreground: #ffffff;
+  --secondary: var(--brand-sage);
+  --secondary-foreground: var(--brand-slate);
+  --accent: var(--brand-gold);
+  --accent-foreground: var(--brand-charcoal);
+  --destructive: var(--brand-destructive);
+  --destructive-foreground: #ffffff;
 }
 
 @theme inline {
+  /* Map brand colors to Tailwind v4 design tokens.
+   * Each --color-XXX exposes a `bg-XXX`, `text-XXX`, `border-XXX`, etc. utility. */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-cream: var(--brand-cream);
+  --color-slate: var(--brand-slate);
+  --color-teal: var(--brand-teal);
+  --color-gold: var(--brand-gold);
+  --color-sage: var(--brand-sage);
+  --color-charcoal: var(--brand-charcoal);
+  --color-success: var(--brand-success);
+  --color-warning: var(--brand-warning);
+
+  /* Typography */
+  --font-heading: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-body);
+
+  /* Surfaces & shape */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;       /* button / input */
+  --radius-lg: 1rem;            /* card */
+  --radius-card: 1rem;          /* 16px — see docs/STYLE_TILE_BRAND_BOARD.md */
+  --radius-button: 0.625rem;
+  --radius-input: 0.625rem;
+  --radius-pill: 9999px;
+
+  --shadow-card: 0 8px 24px rgba(31, 58, 95, 0.06);
+  --shadow-card-hover: 0 12px 32px rgba(31, 58, 95, 0.1);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+  color: var(--brand-slate);
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--brand-sage);
+  color: var(--brand-slate);
 }
