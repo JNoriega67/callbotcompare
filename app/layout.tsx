@@ -3,6 +3,7 @@ import { Inter, Montserrat } from "next/font/google";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { Toaster } from "@/components/ui/sonner";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
 
 import "./globals.css";
@@ -42,6 +43,7 @@ export default function RootLayout({
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <Toaster position="top-right" richColors closeButton />
       </body>
     </html>
   );
