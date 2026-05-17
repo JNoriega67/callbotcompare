@@ -99,7 +99,7 @@ export default async function VendorsPage({ searchParams }: VendorsPageProps) {
                 <div className="mt-6 flex flex-wrap justify-center gap-3">
                   <a
                     href="/quiz"
-                    className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-ink px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-paper transition-colors hover:bg-signal"
+                    className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-signal-ink transition-colors hover:bg-signal-hover"
                   >
                     Take the quiz
                   </a>

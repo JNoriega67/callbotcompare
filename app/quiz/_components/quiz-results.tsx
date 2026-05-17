@@ -95,7 +95,7 @@ export function QuizResults({ vendors, recommendedSlugs }: QuizResultsProps) {
         <div className="mt-5">
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-ink px-4 py-2.5 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-paper transition-colors hover:bg-signal"
+            className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-4 py-2.5 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-signal-ink transition-colors hover:bg-signal-hover"
           >
             See setup packages →
           </Link>

@@ -9,6 +9,7 @@ import { CtaBanner } from "@/components/marketing/cta-banner";
 import { Disclosure } from "@/components/marketing/disclosure";
 import { EditorialMeta } from "@/components/marketing/editorial-meta";
 import { JsonLd } from "@/components/marketing/json-ld";
+import { StickyBottomCTA } from "@/components/marketing/sticky-bottom-cta";
 import { OutboundVendorCTA } from "@/components/vendors/outbound-vendor-cta";
 import { VendorBadgeRow } from "@/components/vendors/vendor-badge-row";
 import { Alternatives } from "@/app/vendors/[slug]/_components/alternatives";
@@ -319,8 +320,36 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
 
           {/* Persistent disclosure when monetized */}
           {isReferral ? <Disclosure variant="panel" vendorSlug={vendor.slug} /> : null}
+
+          {/* Spacer so sticky mobile bottom CTA doesn't cover content */}
+          <div aria-hidden className="h-20 md:hidden" />
         </Container>
       </Section>
+
+      {/* Mobile-only sticky CTA: outbound action when available, otherwise compare CTA */}
+      {hasOutbound ? (
+        <StickyBottomCTA
+          context={`${vendor.name} · ${vendor.tagline ? vendor.tagline.slice(0, 36) : "Vendor review"}`}
+          primary={{
+            href: vendor.affiliateUrl ?? vendor.websiteUrl ?? "#",
+            label: "Visit vendor",
+            target: "_blank",
+            rel: isReferral
+              ? "sponsored noopener noreferrer nofollow"
+              : "noopener noreferrer",
+          }}
+          secondary={{
+            href: `/compare?vendors=${vendor.slug}`,
+            label: "Compare",
+          }}
+        />
+      ) : (
+        <StickyBottomCTA
+          context={vendor.name}
+          primary={{ href: `/compare?vendors=${vendor.slug}`, label: "Compare" }}
+          secondary={{ href: "/quiz", label: "Quiz" }}
+        />
+      )}
 
       <JsonLd
         data={[

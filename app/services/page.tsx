@@ -59,7 +59,7 @@ export default function ServicesPage() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-ink px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-paper transition-colors hover:bg-signal"
+                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-signal-ink transition-colors hover:bg-signal-hover"
                 >
                   Talk to us about a project
                   <span aria-hidden>→</span>

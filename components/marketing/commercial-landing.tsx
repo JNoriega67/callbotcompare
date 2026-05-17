@@ -114,7 +114,7 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
               <div className="flex flex-wrap items-center gap-3">
                 <Link
                   href={directoryHref(config.filter)}
-                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-ink px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-paper transition-colors hover:bg-signal"
+                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-signal-ink transition-colors hover:bg-signal-hover"
                 >
                   Compare these vendors
                   <span aria-hidden>→</span>

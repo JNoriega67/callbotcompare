@@ -100,7 +100,7 @@ export function CtaBanner({ variant, tone = "deep", className }: CtaBannerProps)
               "inline-flex items-center gap-2 rounded-[var(--radius-button)] px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] transition-colors",
               isDark
                 ? "bg-signal text-signal-ink hover:bg-signal-hover"
-                : "bg-ink text-paper hover:bg-signal",
+                : "bg-signal text-signal-ink hover:bg-signal-hover",
             )}
           >
             {copy.cta}

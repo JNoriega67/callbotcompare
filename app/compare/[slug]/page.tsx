@@ -8,6 +8,7 @@ import { Breadcrumbs } from "@/components/marketing/breadcrumbs";
 import { CtaBanner } from "@/components/marketing/cta-banner";
 import { EditorialMeta } from "@/components/marketing/editorial-meta";
 import { JsonLd } from "@/components/marketing/json-ld";
+import { StickyBottomCTA } from "@/components/marketing/sticky-bottom-cta";
 import { ComparisonStackedCards } from "@/components/comparisons/comparison-stacked-cards";
 import { ComparisonTable } from "@/components/comparisons/comparison-table";
 import { RelatedBlock } from "@/app/compare/[slug]/_components/related-block";
@@ -191,7 +192,7 @@ export default async function ComparisonDetailPage({ params }: { params: Params 
           <div className="flex flex-wrap items-center gap-3 pt-2">
             <Link
               href="/quiz"
-              className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-ink px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-paper transition-colors hover:bg-signal"
+              className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-signal-ink transition-colors hover:bg-signal-hover"
             >
               Get matched in 5 questions
               <span aria-hidden>→</span>
@@ -305,6 +306,14 @@ export default async function ComparisonDetailPage({ params }: { params: Params 
           <CtaBanner variant="matched" tone="deep" />
         </Container>
       </Section>
+
+      {/* Mobile sticky CTA: take the quiz for instant match */}
+      <div aria-hidden className="h-16 md:hidden" />
+      <StickyBottomCTA
+        context={vendors.length === 2 ? `${vendors[0]?.name} vs ${vendors[1]?.name}` : "Comparison"}
+        primary={{ href: "/quiz", label: "Get matched" }}
+        secondary={{ href: "/contact", label: "Talk to us" }}
+      />
 
       <JsonLd
         data={[

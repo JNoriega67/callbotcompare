@@ -251,7 +251,7 @@ export function GuidePage({ guide }: GuidePageProps) {
                 </p>
                 <Link
                   href="/services"
-                  className="mt-4 inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-ink px-4 py-2 font-heading text-[11px] font-semibold uppercase tracking-[0.1em] text-paper transition-colors hover:bg-signal"
+                  className="mt-4 inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-4 py-2 font-heading text-[11px] font-semibold uppercase tracking-[0.1em] text-signal-ink transition-colors hover:bg-signal-hover"
                 >
                   See implementation services →
                 </Link>

@@ -36,6 +36,10 @@
   /* ----- Tiny warm accent (matches logo sparkle) ----- */
   --accent-warm:  #F4A434;
 
+  /* ----- Section-variation tones (from CLAUDE_FRONTEND_DESIGN_SYSTEM) ----- */
+  --pale-sage:           #DCE9E2;
+  --soft-highlight-blue: #E8F1F8;
+
   /* ----- States ----- */
   --success:      #1F7A4F;
   --warning:      #A8590F;
@@ -96,6 +100,8 @@
   --color-signal-soft: var(--signal-soft);
   --color-signal-ink: var(--signal-ink);
   --color-accent-warm: var(--accent-warm);
+  --color-pale-sage: var(--pale-sage);
+  --color-soft-highlight-blue: var(--soft-highlight-blue);
 
   --color-border: var(--border);
   --color-input: var(--input);
@@ -133,7 +139,7 @@
   --radius-sm:     0.25rem;
   --radius-md:     0.5rem;
   --radius-lg:     0.75rem;
-  --radius-card:   0.75rem;
+  --radius-card:   0.875rem;
   --radius-button: 0.5rem;
   --radius-input:  0.5rem;
   --radius-pill:   9999px;

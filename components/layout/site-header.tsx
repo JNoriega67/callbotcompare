@@ -62,7 +62,7 @@ export function SiteHeader() {
         <div className="hidden items-center gap-3 md:flex">
           <Link
             href="/contact"
-            className="rounded-[var(--radius-button)] bg-ink px-3.5 py-1.5 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-paper transition-colors hover:bg-signal"
+            className="rounded-[var(--radius-button)] bg-signal px-3.5 py-1.5 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-signal-ink transition-colors hover:bg-signal-hover"
           >
             Talk to us
           </Link>
