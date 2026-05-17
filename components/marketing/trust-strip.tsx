@@ -6,6 +6,10 @@ import Link from "next/link";
  * "this is a serious resource, here's why" in one glance.
  *
  * Keep the items short (≤30 chars). The component scales 2–4 items.
+ *
+ * Markup note: this used to be <dl>/<dt>/<dd>, but a11y tooling rejects
+ * <dt>/<dd> nested inside <a> (axe-core dlitem rule). We use a plain
+ * stat-tile <div> grid with semantic labels via aria-label on the link.
  */
 
 export type TrustStripItem = {
@@ -26,7 +30,7 @@ export function TrustStrip({ items, variant = "light", className }: TrustStripPr
   const isDark = variant === "dark";
 
   const labelClass = isDark
-    ? "text-paper/50"
+    ? "text-over-ink/85"
     : "text-muted-ink";
   const valueClass = isDark ? "text-paper" : "text-ink";
   const dividerClass = isDark ? "border-paper/15" : "border-rule";
@@ -35,7 +39,8 @@ export function TrustStrip({ items, variant = "light", className }: TrustStripPr
     : "hover:text-signal";
 
   return (
-    <dl
+    <div
+      role="list"
       className={
         "grid w-full divide-y md:divide-y-0 " +
         (items.length === 2
@@ -51,35 +56,32 @@ export function TrustStrip({ items, variant = "light", className }: TrustStripPr
       {items.map((item) => {
         const inner = (
           <>
-            <dt
+            <p
               className={
                 "font-heading text-[10px] font-semibold uppercase tracking-[0.18em] " + labelClass
               }
             >
               {item.label}
-            </dt>
-            <dd
+            </p>
+            <p
               className={
                 "mt-2 font-heading text-2xl font-bold leading-none tabular-nums md:text-3xl " +
                 valueClass
               }
             >
               {item.value}
-            </dd>
+            </p>
           </>
         );
         const wrapperClass = "px-2 py-5 md:px-6 md:py-6";
-        // dl spec: direct children must be dt/dd/div/script/template.
-        // Always wrap in <div> so the Link is one level deeper.
         return (
-          <div key={item.label}>
+          <div key={item.label} role="listitem">
             {item.href ? (
               <Link
                 href={item.href}
+                aria-label={`${item.label}: ${item.value}`}
                 className={
-                  wrapperClass +
-                  " group block transition-colors " +
-                  linkClass
+                  wrapperClass + " group block transition-colors " + linkClass
                 }
               >
                 {inner}
@@ -99,6 +101,6 @@ export function TrustStrip({ items, variant = "light", className }: TrustStripPr
           </div>
         );
       })}
-    </dl>
+    </div>
   );
 }
