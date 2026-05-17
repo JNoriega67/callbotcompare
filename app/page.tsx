@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { ConciergeCTA } from "@/app/_components/concierge-cta";
 import { FaqSection } from "@/app/_components/faq-section";
 import { FeatureTiles } from "@/app/_components/feature-tiles";
-import { FooterCTA } from "@/app/_components/footer-cta";
 import { Hero } from "@/app/_components/hero";
 import { HowWeEvaluate } from "@/app/_components/how-we-evaluate";
 import { MethodologyStrip } from "@/app/_components/methodology-strip";
@@ -32,10 +31,10 @@ export default function HomePage() {
       <UseCaseGrid />
       <FeatureTiles />
       <HowWeEvaluate />
-      <ConciergeCTA />
-      {/* Section 9 — Latest content — intentionally HIDDEN in MVP (no guides yet; fake-content rule). */}
       <FaqSection />
-      <FooterCTA />
+      {/* ConciergeCTA closes the page (replaces the prior redundant FooterCTA).
+       * Latest Content section intentionally hidden in MVP (no guides yet). */}
+      <ConciergeCTA />
       <JsonLd data={organizationJsonLd()} />
     </>
   );

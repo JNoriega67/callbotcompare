@@ -23,41 +23,36 @@ type VendorCardProps = {
 
 export function VendorCard({ vendor }: VendorCardProps) {
   return (
-    <article className="flex h-full flex-col gap-4 rounded-card border border-border bg-surface p-6 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)]">
+    <article className="group flex h-full flex-col gap-4 border-t-2 border-ink bg-surface p-5 transition-colors hover:bg-paper-deep">
       <header className="flex items-start justify-between gap-3">
-        <div>
-          <h3 className="font-heading text-lg font-semibold text-slate">
-            <Link href={`/vendors/${vendor.slug}`} className="hover:text-teal">
+        <div className="min-w-0">
+          <h3 className="font-display text-2xl leading-tight">
+            <Link href={`/vendors/${vendor.slug}`} className="text-ink hover:text-signal">
               {vendor.name}
             </Link>
           </h3>
           {vendor.tagline ? (
-            <p className="mt-1 text-sm text-muted">{vendor.tagline}</p>
+            <p className="mt-1 text-sm text-ink-soft">{vendor.tagline}</p>
           ) : null}
         </div>
         <div className="shrink-0 text-right">
-          <div className="font-heading text-xl font-bold text-slate">
+          <p className="font-display text-3xl font-medium leading-none">
             {formatScore(vendor.overallScore)}
-          </div>
-          <div className="text-[10px] font-semibold uppercase tracking-wider text-muted">
-            Score
-          </div>
+          </p>
+          <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-muted-ink">Score</p>
         </div>
       </header>
       {vendor.summary ? (
-        <p className="text-sm text-charcoal/85">{vendor.summary}</p>
+        <p className="text-sm leading-relaxed text-ink-soft">{vendor.summary}</p>
       ) : null}
       <VendorBadgeRow vendor={vendor} />
-      <footer className="mt-auto flex items-center justify-between gap-3 pt-2">
-        <div className="text-sm">
-          <span className="text-muted">Pricing</span>{" "}
-          <span className="font-medium text-charcoal">
-            {formatPricing(vendor.pricingFromUsd, vendor.pricingModel)}
-          </span>
-        </div>
+      <footer className="mt-auto flex items-center justify-between gap-3 border-t border-rule pt-3 text-xs uppercase tracking-[0.14em]">
+        <span className="text-muted-ink">
+          {formatPricing(vendor.pricingFromUsd, vendor.pricingModel)}
+        </span>
         <Link
           href={`/vendors/${vendor.slug}`}
-          className="rounded-[var(--radius-button)] border border-slate/20 px-3 py-1.5 text-xs font-semibold text-slate transition-colors hover:border-teal hover:text-teal"
+          className="font-semibold text-ink underline-offset-4 hover:text-signal hover:underline"
         >
           View details →
         </Link>

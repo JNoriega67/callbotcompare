@@ -1,5 +1,3 @@
-import { Badge } from "@/components/ui/badge";
-
 type Capability = {
   enabled: boolean | null;
   label: string;
@@ -14,7 +12,6 @@ type VendorBadgeRowProps = {
     has24x7: boolean | null;
     hipaaFriendly: boolean | null;
   };
-  /** Max badges to render. Defaults to 3 (per docs/COMPONENT_UI_SPEC.md). */
   limit?: number;
 };
 
@@ -31,16 +28,12 @@ export function VendorBadgeRow({ vendor, limit = 3 }: VendorBadgeRowProps) {
   if (!enabled.length) return null;
 
   return (
-    <div className="flex flex-wrap gap-1.5">
+    <ul className="flex flex-wrap gap-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-soft">
       {enabled.map((c) => (
-        <Badge
-          key={c.label}
-          variant="secondary"
-          className="rounded-full border-transparent bg-sage text-xs font-medium text-slate"
-        >
+        <li key={c.label} className="border border-rule-strong px-2 py-1">
           {c.label}
-        </Badge>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

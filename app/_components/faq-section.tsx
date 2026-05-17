@@ -7,16 +7,20 @@ import { faqJsonLd } from "@/lib/seo";
 
 export function FaqSection() {
   return (
-    <Section tone="cream">
-      <Container className="grid gap-10 md:grid-cols-[1fr_1.4fr] md:items-start">
-        <div>
-          <h2 className="font-heading text-3xl font-bold text-slate">Common questions</h2>
-          <p className="mt-2 text-charcoal/80">
-            More on how AI receptionist software fits a small or mid-sized business.
-          </p>
-        </div>
-        <div className="rounded-card border border-border bg-surface p-2 md:p-4">
-          <FaqAccordion items={HOMEPAGE_FAQS} />
+    <Section tone="paper">
+      <Container>
+        <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-signal">
+              FAQ
+            </p>
+            <h2 className="mt-3 font-display text-3xl leading-[1.1] md:text-4xl">
+              Common questions.
+            </h2>
+          </div>
+          <div className="border-t border-rule-strong">
+            <FaqAccordion items={HOMEPAGE_FAQS} />
+          </div>
         </div>
       </Container>
       <JsonLd data={faqJsonLd(HOMEPAGE_FAQS)} />

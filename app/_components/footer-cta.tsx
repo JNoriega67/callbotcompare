@@ -5,21 +5,22 @@ import { Section } from "@/components/layout/section";
 
 export function FooterCTA() {
   return (
-    <Section tone="sage" className="py-12 md:py-16">
-      <Container className="flex flex-col items-center gap-5 text-center">
-        <h2 className="font-heading text-3xl font-bold text-slate">
-          Compare AI receptionist tools with a clearer process
+    <Section tone="paper" className="border-t border-rule-strong py-16 md:py-20">
+      <Container className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
+        <h2 className="font-display text-3xl leading-[1.1] md:text-4xl">
+          Compare AI receptionist tools{" "}
+          <span className="italic text-ink-soft">with a clearer process.</span>
         </h2>
-        <div className="flex flex-wrap justify-center gap-3">
+        <div className="flex flex-wrap gap-3">
           <Link
             href="/compare"
-            className="rounded-[var(--radius-button)] bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[color:var(--brand-teal-hover)]"
+            className="rounded-[var(--radius-button)] bg-ink px-5 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-paper transition-colors hover:bg-signal"
           >
             Compare tools
           </Link>
           <Link
             href="/quiz"
-            className="rounded-[var(--radius-button)] border border-slate/30 bg-surface px-5 py-3 text-sm font-semibold text-slate transition-colors hover:border-slate/50"
+            className="rounded-[var(--radius-button)] border border-ink px-5 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-ink hover:text-paper"
           >
             Take the quiz
           </Link>

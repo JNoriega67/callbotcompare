@@ -11,28 +11,38 @@ function tileHref(tile: (typeof FEATURE_TILES)[number]): string {
 
 export function FeatureTiles() {
   return (
-    <Section tone="cream">
+    <Section tone="deep">
       <Container>
-        <div className="mb-8 max-w-2xl">
-          <h2 className="font-heading text-3xl font-bold text-slate">
-            Compare the features buyers care about most
-          </h2>
-          <p className="mt-2 text-charcoal/80">
-            Drill into the directory by the capability that actually drives your decision.
-          </p>
+        <div className="grid gap-6 md:grid-cols-[5fr_7fr] md:gap-16">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-signal">
+              Browse by feature
+            </p>
+            <h2 className="mt-3 font-display text-3xl leading-[1.1] md:text-4xl">
+              Drill in by the capability that actually drives the decision.
+            </h2>
+          </div>
+
+          {/* Two-column linklist with hairline dividers — reads like an index, not a tile grid */}
+          <ul className="grid grid-cols-1 md:grid-cols-2 md:gap-x-12">
+            {FEATURE_TILES.map((tile) => (
+              <li key={tile.label}>
+                <Link
+                  href={tileHref(tile)}
+                  className="group flex items-baseline justify-between gap-4 border-b border-rule-strong py-4 text-base text-ink hover:text-signal"
+                >
+                  <span className="font-display text-lg md:text-xl">{tile.label}</span>
+                  <span
+                    aria-hidden
+                    className="text-sm text-muted-ink transition-colors group-hover:text-signal"
+                  >
+                    →
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
-        <ul className="grid gap-3 sm:grid-cols-2 md:grid-cols-4">
-          {FEATURE_TILES.map((tile) => (
-            <li key={tile.label}>
-              <Link
-                href={tileHref(tile)}
-                className="block rounded-[var(--radius-card)] border border-border bg-surface px-4 py-5 text-sm font-medium text-slate transition-colors hover:border-teal hover:text-teal"
-              >
-                {tile.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
       </Container>
     </Section>
   );

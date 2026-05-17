@@ -5,26 +5,30 @@ import { Section } from "@/components/layout/section";
 
 export function ConciergeCTA() {
   return (
-    <Section tone="white">
+    <Section tone="ink" className="py-20 md:py-28">
       <Container>
-        <div className="rounded-card border border-border bg-sage/60 p-8 text-center md:p-12">
-          <h2 className="font-heading text-3xl font-bold text-slate">Want help choosing?</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-charcoal/85">
-            If you do not want to sort through demos and feature lists yourself, tell us a little
-            about your business and we will point you to the strongest options.
-          </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
+        <div className="grid gap-10 md:grid-cols-[7fr_5fr] md:items-end md:gap-16">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-signal">
+              Want help choosing?
+            </p>
+            <h2 className="mt-3 font-display text-3xl leading-[1.1] text-paper md:text-5xl">
+              Skip the demos. Tell us about your business and we'll point you at the strongest
+              options.
+            </h2>
+          </div>
+          <div className="flex flex-col items-start gap-3 md:items-end">
             <Link
               href="/quiz"
-              className="rounded-[var(--radius-button)] bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[color:var(--brand-teal-hover)]"
+              className="rounded-[var(--radius-button)] bg-signal px-5 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-signal-ink transition-colors hover:bg-signal-hover"
             >
-              Get a recommendation
+              Take the quiz
             </Link>
             <Link
               href="/contact"
-              className="rounded-[var(--radius-button)] border border-slate/30 bg-surface px-5 py-3 text-sm font-semibold text-slate transition-colors hover:border-slate/50"
+              className="text-sm uppercase tracking-[0.08em] text-paper/70 underline-offset-4 hover:text-paper hover:underline"
             >
-              Talk to us
+              or talk to us →
             </Link>
           </div>
         </div>

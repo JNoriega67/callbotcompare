@@ -6,35 +6,44 @@ import { USE_CASE_CARDS } from "@/lib/constants";
 
 export function UseCaseGrid() {
   return (
-    <Section tone="white">
+    <Section tone="paper">
       <Container>
-        <div className="mb-8 max-w-2xl">
-          <h2 className="font-heading text-3xl font-bold text-slate">
-            Find the right fit for your business
-          </h2>
-          <p className="mt-2 text-charcoal/80">
-            The best AI receptionist for a law firm is not always the best one for a contractor or
-            multi-location clinic. Compare tools by the environment they actually need to support.
-          </p>
-        </div>
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {USE_CASE_CARDS.map((card) => (
-            <li key={card.verticalSlug}>
-              <Link
-                href={`/vendors?verticals=${card.verticalSlug}`}
-                className="group block h-full rounded-card border border-border bg-surface p-5 transition-colors hover:border-teal"
+        <div className="grid gap-6 md:grid-cols-[5fr_7fr] md:gap-16">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-signal">
+              Browse by vertical
+            </p>
+            <h2 className="mt-3 font-display text-3xl leading-[1.1] md:text-4xl">
+              The best AI receptionist for a law firm isn't the best one for a contractor.
+            </h2>
+            <p className="mt-4 text-ink-soft">
+              Compare tools by the environment they actually need to support.
+            </p>
+          </div>
+
+          <ul className="grid grid-cols-1 sm:grid-cols-2">
+            {USE_CASE_CARDS.map((card, i) => (
+              <li
+                key={card.verticalSlug}
+                className={
+                  // Hairline grid using only borders — no card chrome.
+                  "border-b border-rule-strong " +
+                  (i % 2 === 0 ? "sm:border-r" : "")
+                }
               >
-                <h3 className="font-heading text-lg font-semibold text-slate group-hover:text-teal">
-                  {card.label}
-                </h3>
-                <p className="mt-2 text-sm text-charcoal/80">{card.blurb}</p>
-                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-teal">
-                  Compare →
-                </p>
-              </Link>
-            </li>
-          ))}
-        </ul>
+                <Link
+                  href={`/vendors?verticals=${card.verticalSlug}`}
+                  className="group block px-1 py-5 transition-colors hover:bg-paper-deep md:px-5"
+                >
+                  <p className="font-display text-xl text-ink group-hover:text-signal md:text-2xl">
+                    {card.label}
+                  </p>
+                  <p className="mt-1 text-sm text-ink-soft">{card.blurb}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </Container>
     </Section>
   );

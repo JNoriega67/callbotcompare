@@ -2,48 +2,78 @@ import Link from "next/link";
 
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
-import { VendorCard } from "@/components/vendors/vendor-card";
 import { prisma } from "@/lib/db";
+import { formatPricing, formatScore } from "@/lib/scoring";
 
 export async function TopPicks() {
   const vendors = await prisma.vendor.findMany({
     where: { isPublished: true },
     orderBy: [{ overallScore: { sort: "desc", nulls: "last" } }, { name: "asc" }],
-    take: 3,
+    take: 5,
   });
 
   return (
-    <Section tone="cream">
+    <Section tone="paper">
       <Container>
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+        <div className="grid gap-6 md:grid-cols-[5fr_7fr] md:gap-16">
           <div>
-            <h2 className="font-heading text-3xl font-bold text-slate">
-              Top AI receptionist software to start with
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-signal">
+              Top picks
+            </p>
+            <h2 className="mt-3 font-display text-3xl leading-[1.1] md:text-4xl">
+              The strongest category players, ranked.
             </h2>
-            <p className="mt-2 max-w-2xl text-charcoal/80">
-              Start with the strongest category players, then narrow by use case, budget, and
-              workflow complexity.
+            <p className="mt-4 text-ink-soft">
+              Start here, then narrow by use case, budget, and workflow complexity. Each rank is the
+              editor's overall score out of 10. See every vendor in{" "}
+              <Link href="/vendors" className="text-ink underline underline-offset-4 hover:text-signal">
+                the full directory
+              </Link>
+              .
             </p>
           </div>
-          <Link
-            href="/vendors"
-            className="rounded-[var(--radius-button)] border border-slate/25 px-4 py-2 text-sm font-semibold text-slate transition-colors hover:border-teal hover:text-teal"
-          >
-            View all vendors →
-          </Link>
+
+          <ol className="md:col-span-1">
+            {vendors.length === 0 ? (
+              <li className="border-y border-rule-strong py-6 text-sm text-muted-ink">
+                No published vendors yet. Run <code className="font-mono">pnpm prisma db seed</code>.
+              </li>
+            ) : (
+              vendors.map((v, i) => (
+                <li
+                  key={v.id}
+                  className="grid grid-cols-[3rem_1fr_auto] items-center gap-4 border-b border-rule-strong py-5 first:border-t md:gap-6 md:py-6"
+                >
+                  <span className="font-display text-3xl font-medium text-muted-ink md:text-4xl">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="min-w-0">
+                    <Link
+                      href={`/vendors/${v.slug}`}
+                      className="font-display text-xl text-ink hover:text-signal md:text-2xl"
+                    >
+                      {v.name}
+                    </Link>
+                    {v.tagline ? (
+                      <p className="mt-1 truncate text-sm text-ink-soft">{v.tagline}</p>
+                    ) : null}
+                    <p className="mt-1 text-[11px] uppercase tracking-[0.16em] text-muted-ink">
+                      {formatPricing(v.pricingFromUsd, v.pricingModel)}
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-display text-2xl font-medium leading-none md:text-3xl">
+                      {formatScore(v.overallScore)}
+                    </p>
+                    <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-muted-ink">
+                      Score
+                    </p>
+                  </div>
+                </li>
+              ))
+            )}
+          </ol>
         </div>
-        {vendors.length === 0 ? (
-          <p className="rounded-card border border-dashed border-border bg-surface p-6 text-center text-sm text-muted">
-            No published vendors yet. Run <code className="font-mono">pnpm prisma db seed</code> to
-            populate the directory.
-          </p>
-        ) : (
-          <div className="grid gap-4 md:grid-cols-3">
-            {vendors.map((vendor) => (
-              <VendorCard key={vendor.id} vendor={vendor} />
-            ))}
-          </div>
-        )}
       </Container>
     </Section>
   );

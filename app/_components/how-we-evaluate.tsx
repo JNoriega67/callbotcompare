@@ -4,36 +4,39 @@ import { METHODOLOGY_CRITERIA } from "@/lib/constants";
 
 export function HowWeEvaluate() {
   return (
-    <Section tone="sage">
-      <Container className="grid gap-10 md:grid-cols-[1fr_1.4fr] md:items-start">
-        <div className="space-y-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal">
-            Methodology
-          </p>
-          <h2 className="font-heading text-3xl font-bold text-slate">
-            How we evaluate vendors
-          </h2>
-          <p className="text-charcoal/85">
-            We score vendors across call handling quality, integrations, workflow automation, ease
-            of setup, pricing clarity, vertical fit, escalation options, reporting, and onboarding
-            support.
-          </p>
-          <p className="text-charcoal/85">
-            We do not assume every business needs the same thing. The right tool depends on your
-            call volume, workflow, and tolerance for complexity.
-          </p>
+    <Section tone="paper">
+      <Container>
+        <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-signal">
+              Methodology
+            </p>
+            <h2 className="mt-3 font-display text-3xl leading-[1.1] md:text-4xl">
+              How we evaluate vendors.
+            </h2>
+            <p className="mt-4 text-ink-soft">
+              We score across nine dimensions, weighted by how much they matter to a real
+              small-business buyer. We don't assume every business needs the same thing — the right
+              tool depends on call volume, workflow, and tolerance for complexity.
+            </p>
+          </div>
+          <dl className="grid grid-cols-1 md:grid-cols-2 md:gap-x-12">
+            {METHODOLOGY_CRITERIA.map((c, i) => (
+              <div
+                key={c.label}
+                className="grid grid-cols-[2rem_1fr] items-baseline gap-4 border-b border-rule-strong py-5"
+              >
+                <dt className="font-display text-base text-muted-ink">
+                  {String(i + 1).padStart(2, "0")}
+                </dt>
+                <dd>
+                  <p className="font-display text-lg text-ink">{c.label}</p>
+                  <p className="mt-1 text-sm text-ink-soft">{c.description}</p>
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
-        <ul className="grid gap-3 sm:grid-cols-2">
-          {METHODOLOGY_CRITERIA.map((c) => (
-            <li
-              key={c.label}
-              className="rounded-card border border-border bg-surface p-4"
-            >
-              <p className="font-heading text-sm font-semibold text-slate">{c.label}</p>
-              <p className="mt-1 text-xs text-muted">{c.description}</p>
-            </li>
-          ))}
-        </ul>
       </Container>
     </Section>
   );

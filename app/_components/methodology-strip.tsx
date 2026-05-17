@@ -1,26 +1,21 @@
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
-import { METHODOLOGY_CRITERIA } from "@/lib/constants";
 
 export function MethodologyStrip() {
-  // First 5 of 9 criteria — the strip is a glanceable summary; full
-  // editorial lives in <HowWeEvaluate />.
-  const criteria = METHODOLOGY_CRITERIA.slice(0, 5);
-
   return (
-    <Section tone="white" className="py-12 md:py-14">
+    <Section tone="ink" className="py-12 md:py-14">
       <Container>
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted">
-          We rank vendors on what buyers actually use
+        <p className="text-center text-sm leading-relaxed text-paper md:text-base">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-paper/60">
+            How we evaluate ·{" "}
+          </span>
+          Call handling, integrations, automation, setup complexity, vertical fit, escalation,
+          reporting, pricing clarity, support. Read the rubric →{" "}
+          <a href="/best-ai-receptionist-software" className="text-signal underline-offset-4 hover:underline">
+            our methodology
+          </a>
+          .
         </p>
-        <ul className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-5">
-          {criteria.map((c) => (
-            <li key={c.label} className="text-center md:text-left">
-              <p className="font-heading text-sm font-semibold text-slate">{c.label}</p>
-              <p className="mt-1 text-xs text-muted">{c.description}</p>
-            </li>
-          ))}
-        </ul>
       </Container>
     </Section>
   );
