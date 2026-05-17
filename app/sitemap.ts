@@ -19,6 +19,7 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${base}/contact`, changeFrequency: "monthly", priority: 0.6 },
   { url: `${base}/services`, changeFrequency: "monthly", priority: 0.7 },
   { url: `${base}/disclosure`, changeFrequency: "yearly", priority: 0.3 },
+  { url: `${base}/ai-receptionist-vs-virtual-receptionist`, changeFrequency: "monthly", priority: 0.85 },
 ];
 
 const COMMERCIAL_ROUTES: MetadataRoute.Sitemap = Object.values(COMMERCIAL_PAGES).map((cfg) => ({

@@ -20,6 +20,7 @@ export const FOOTER_LINKS = [
       { label: "All vendors", href: "/vendors" },
       { label: "Compare hub", href: "/compare" },
       { label: "Best AI receptionist software", href: "/best-ai-receptionist-software" },
+      { label: "AI vs virtual receptionist", href: "/ai-receptionist-vs-virtual-receptionist" },
     ],
   },
   {
