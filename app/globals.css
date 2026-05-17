@@ -163,18 +163,23 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  color: var(--ink);
-  font-weight: 700;
-  letter-spacing: -0.018em;
+/* Wrap base element styles in @layer base so Tailwind utility classes
+   (in the @utilities layer) can still override them. Without the layer,
+   these rules sit in the unlayered cascade and beat every utility —
+   that broke text-signal-ink on <a> CTAs (color stayed inherited from
+   the parent Section's text-ink instead of going white). */
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--ink);
+    font-weight: 700;
+    letter-spacing: -0.018em;
+  }
+
+  h1 { font-weight: 700; letter-spacing: -0.028em; }
+  h2 { font-weight: 700; letter-spacing: -0.022em; }
+  h3 { font-weight: 600; letter-spacing: -0.016em; }
 }
-
-h1 { font-weight: 700; letter-spacing: -0.028em; }
-h2 { font-weight: 700; letter-spacing: -0.022em; }
-h3 { font-weight: 600; letter-spacing: -0.016em; }
-
-a { color: inherit; }
 
 ::selection {
   background: var(--signal);

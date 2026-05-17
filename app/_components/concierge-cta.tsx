@@ -9,7 +9,7 @@ export function ConciergeCTA() {
       <Container>
         <div className="grid gap-10 md:grid-cols-[7fr_5fr] md:items-end md:gap-16">
           <div>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-over-ink/70">
+            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-over-ink/85">
               Want help choosing?
             </p>
             <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-paper md:text-[2.75rem]">
@@ -31,7 +31,7 @@ export function ConciergeCTA() {
             </Link>
             <Link
               href="/contact"
-              className="font-heading text-[12px] font-semibold uppercase tracking-[0.14em] text-over-ink/70 underline-offset-4 hover:text-paper hover:underline"
+              className="font-heading text-[12px] font-semibold uppercase tracking-[0.14em] text-over-ink/85 underline-offset-4 hover:text-paper hover:underline"
             >
               or talk to us
             </Link>

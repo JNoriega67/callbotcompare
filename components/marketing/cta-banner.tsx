@@ -76,7 +76,7 @@ export function CtaBanner({ variant, tone = "deep", className }: CtaBannerProps)
           <p
             className={cn(
               "font-heading text-[10px] font-semibold uppercase tracking-[0.22em]",
-              isDark ? "text-signal" : "text-signal",
+              isDark ? "text-signal-soft" : "text-signal",
             )}
           >
             {copy.eyebrow}

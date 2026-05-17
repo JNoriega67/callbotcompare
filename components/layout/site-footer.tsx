@@ -18,7 +18,7 @@ export function SiteFooter() {
             Independent comparisons of AI receptionist and AI phone agent software, ranked against a
             transparent rubric for small and mid-sized service businesses.
           </p>
-          <p className="mt-4 max-w-sm text-xs leading-relaxed text-over-ink/55">
+          <p className="mt-4 max-w-sm text-xs leading-relaxed text-over-ink/85">
             Methodology and editorial standards are{" "}
             <Link href="/methodology" className="underline underline-offset-2 hover:text-paper">
               public
@@ -32,7 +32,7 @@ export function SiteFooter() {
         </div>
         {FOOTER_LINKS.map((column) => (
           <div key={column.heading}>
-            <h3 className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <h3 className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal-soft">
               {column.heading}
             </h3>
             <ul className="mt-3 space-y-2 text-sm text-over-ink/85">
@@ -47,7 +47,7 @@ export function SiteFooter() {
           </div>
         ))}
       </Container>
-      <Container className="flex flex-col gap-2 border-t border-rule-dark py-6 text-xs text-over-ink/55 md:flex-row md:items-center md:justify-between">
+      <Container className="flex flex-col gap-2 border-t border-rule-dark py-6 text-xs text-over-ink/85 md:flex-row md:items-center md:justify-between">
         <p>© {year} CallTreo. All rights reserved.</p>
         <p>
           Vendor mentions and scores are editorial. Where a referral relationship exists, we
