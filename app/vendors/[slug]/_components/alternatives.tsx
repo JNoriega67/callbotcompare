@@ -26,9 +26,9 @@ export function Alternatives({ items }: { items: Alternative[] }) {
               <h3 className="font-heading text-sm font-semibold text-ink group-hover:text-signal">
                 {v.name}
               </h3>
-              <span className="text-xs font-semibold text-muted">{formatScore(v.overallScore)}</span>
+              <span className="text-xs font-semibold text-muted-ink">{formatScore(v.overallScore)}</span>
             </div>
-            {v.tagline ? <p className="mt-1 text-xs text-muted">{v.tagline}</p> : null}
+            {v.tagline ? <p className="mt-1 text-xs text-muted-ink">{v.tagline}</p> : null}
           </Link>
         ))}
       </div>

@@ -15,7 +15,7 @@ export function QuizStep({ question, helper, options, value, onSelect }: QuizSte
     <div className="space-y-5">
       <div className="space-y-1">
         <h2 className="font-heading text-2xl font-semibold text-ink">{question}</h2>
-        {helper ? <p className="text-sm text-muted">{helper}</p> : null}
+        {helper ? <p className="text-sm text-muted-ink">{helper}</p> : null}
       </div>
       <div className="grid gap-2 sm:grid-cols-2">
         {options.map((opt) => {
@@ -34,7 +34,7 @@ export function QuizStep({ question, helper, options, value, onSelect }: QuizSte
               aria-pressed={checked}
             >
               <span className="font-heading text-sm font-semibold text-ink">{opt.label}</span>
-              {opt.hint ? <span className="mt-1 block text-xs text-muted">{opt.hint}</span> : null}
+              {opt.hint ? <span className="mt-1 block text-xs text-muted-ink">{opt.hint}</span> : null}
             </button>
           );
         })}

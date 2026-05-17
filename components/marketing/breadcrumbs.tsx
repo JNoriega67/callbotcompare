@@ -10,7 +10,7 @@ type BreadcrumbsProps = {
 export function Breadcrumbs({ trail }: BreadcrumbsProps) {
   return (
     <>
-      <nav aria-label="Breadcrumb" className="text-xs text-muted">
+      <nav aria-label="Breadcrumb" className="text-xs text-muted-ink">
         <ol className="flex flex-wrap items-center gap-1">
           {trail.map((item, i) => {
             const isLast = i === trail.length - 1;
@@ -25,7 +25,7 @@ export function Breadcrumbs({ trail }: BreadcrumbsProps) {
                     <Link href={item.href} className="hover:text-signal">
                       {item.label}
                     </Link>
-                    <span aria-hidden className="text-muted/60">
+                    <span aria-hidden className="text-muted-ink/60">
                       /
                     </span>
                   </>

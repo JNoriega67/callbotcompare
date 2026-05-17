@@ -7,7 +7,7 @@ export function QuizProgress({ current, total }: QuizProgressProps) {
   const pct = Math.round(((current + 1) / total) * 100);
   return (
     <div className="space-y-2">
-      <div className="flex items-baseline justify-between text-xs font-semibold uppercase tracking-wide text-muted">
+      <div className="flex items-baseline justify-between text-xs font-semibold uppercase tracking-wide text-muted-ink">
         <span>
           Step {current + 1} of {total}
         </span>

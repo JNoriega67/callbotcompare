@@ -75,11 +75,11 @@ export function ComparePicker({ vendors, seededComparisons = [] }: ComparePicker
           <h2 className="font-heading text-xl font-semibold text-ink">
             Pick up to {MAX_SELECTION} vendors
           </h2>
-          <p className="text-sm text-muted">
+          <p className="text-sm text-muted-ink">
             Selection is shareable — the URL encodes which vendors you chose.
           </p>
         </div>
-        <p className="text-xs font-semibold uppercase tracking-wide text-muted">
+        <p className="text-xs font-semibold uppercase tracking-wide text-muted-ink">
           {selected.length}/{MAX_SELECTION} selected
         </p>
       </header>
@@ -108,7 +108,7 @@ export function ComparePicker({ vendors, seededComparisons = [] }: ComparePicker
                       {v.name}
                     </span>
                     {v.tagline ? (
-                      <span className="mt-0.5 block text-xs text-muted">{v.tagline}</span>
+                      <span className="mt-0.5 block text-xs text-muted-ink">{v.tagline}</span>
                     ) : null}
                   </span>
                 </span>
