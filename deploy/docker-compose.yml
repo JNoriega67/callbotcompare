@@ -1,0 +1,38 @@
+# /docker/callbotcompare/docker-compose.yml on the VPS.
+#
+# Joins the n8n_default network (shared with the existing Traefik proxy)
+# and is auto-routed by Traefik via labels. SSL provisioned automatically
+# through the existing `mytlschallenge` ACME resolver (TLS-ALPN-01).
+#
+# Image is built and pushed by the GitHub Actions deploy workflow to
+# ghcr.io/jnoriega67/callbotcompare:latest. The remote step is just
+# `docker compose pull && docker compose up -d`.
+
+services:
+  app:
+    image: ghcr.io/jnoriega67/callbotcompare:latest
+    container_name: callbotcompare
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    networks:
+      - n8n_default
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=n8n_default"
+      # Primary router (apex + www)
+      - "traefik.http.routers.callbotcompare.rule=Host(`callbotcompare.com`) || Host(`www.callbotcompare.com`)"
+      - "traefik.http.routers.callbotcompare.entrypoints=websecure"
+      - "traefik.http.routers.callbotcompare.tls=true"
+      - "traefik.http.routers.callbotcompare.tls.certresolver=mytlschallenge"
+      # Upstream port
+      - "traefik.http.services.callbotcompare.loadbalancer.server.port=3000"
+      # Redirect www -> apex (optional, comment out if you prefer keeping www)
+      - "traefik.http.middlewares.callbotcompare-www-redirect.redirectregex.regex=^https?://www\\.callbotcompare\\.com/(.*)"
+      - "traefik.http.middlewares.callbotcompare-www-redirect.redirectregex.replacement=https://callbotcompare.com/$$1"
+      - "traefik.http.middlewares.callbotcompare-www-redirect.redirectregex.permanent=true"
+      - "traefik.http.routers.callbotcompare.middlewares=callbotcompare-www-redirect"
+
+networks:
+  n8n_default:
+    external: true

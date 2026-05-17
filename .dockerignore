@@ -1,0 +1,32 @@
+# Source control
+.git
+.github
+.gitignore
+
+# Build artifacts
+.next
+out
+build
+.deploy
+
+# Dev-only
+node_modules
+.pnpm-store
+coverage
+*.log
+
+# Env (never bake into image)
+.env
+.env.*
+!.env.example
+
+# IDE / OS
+.vscode
+.idea
+.DS_Store
+
+# Specs and planning docs (not needed in the runtime image)
+docs
+
+# Local Prisma artifacts
+prisma/migrations/dev

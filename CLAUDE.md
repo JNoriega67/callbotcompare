@@ -82,7 +82,10 @@ docs/                 Source specs and copy (reference, do not edit)
 
 ## Deployment
 
-- **CI** (`.github/workflows/ci.yml`): lint + typecheck + build on PRs.
-- **Deploy** (`.github/workflows/deploy.yml`): on push to `main`, build in CI, run `prisma migrate deploy` against Neon, rsync `.next/standalone` to Hostinger over SSH (port 65002), `touch tmp/restart.txt` to restart the Passenger-style app.
-- **Secrets required**: `HOSTINGER_SSH_HOST`, `HOSTINGER_SSH_USER`, `HOSTINGER_SSH_PORT`, `HOSTINGER_SSH_KEY`, `HOSTINGER_DEPLOY_PATH`, `NEON_DATABASE_URL` (pooled), `NEON_DIRECT_URL` (direct).
-- Hostinger restart: `touch tmp/restart.txt` in the deploy directory; falls back to the Node.js panel "Restart" button if that file isn't honored on the active plan.
+- **Target**: Hostinger KVM 2 **VPS** (not the classic Web Hosting plans — those don't run Node). The VPS already runs Docker + a Traefik reverse proxy with auto Let's Encrypt SSL.
+- **Pattern**: CallBotCompare is a Docker container joined to the existing `n8n_default` network and routed by Traefik via labels. Config lives at `/docker/callbotcompare/` on the VPS (`docker-compose.yml` + `.env`).
+- **Image**: built and pushed to `ghcr.io/jnoriega67/callbotcompare` by GitHub Actions.
+- **CI** (`.github/workflows/ci.yml`): lint + typecheck + build on PRs (no image build).
+- **Deploy** (`.github/workflows/deploy.yml`): on push to `main` — `prisma migrate deploy` against Neon, `docker buildx` + push to ghcr.io, SSH to VPS, `docker compose pull && up -d`, curl smoke check.
+- **Secrets required**: `HOSTINGER_SSH_HOST` (VPS IP), `HOSTINGER_SSH_USER` (`root`), `HOSTINGER_SSH_KEY` (PEM private key, no passphrase), `NEON_DATABASE_URL` (pooled, prod), `NEON_DIRECT_URL` (direct, prod), `SITE_URL`, `NEXT_PUBLIC_SITE_URL`.
+- **Image visibility**: the ghcr.io package should be **public** so the VPS can pull without auth (or configure `docker login ghcr.io` on the VPS with a PAT having `read:packages`).

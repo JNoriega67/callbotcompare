@@ -106,38 +106,59 @@ The exact weighted-score formula is in [`docs/SCORING_RUBRIC.md`](docs/SCORING_R
 
 ### Architecture
 
-- **App** → Hostinger Premium/Business Node.js shared hosting (Passenger-style restart, port 65002 SSH).
+- **App** → Docker container running the Next.js standalone server, on a Hostinger **KVM 2 VPS**. The container joins the VPS's existing `n8n_default` Docker network and is routed by the existing **Traefik** reverse proxy (which handles SSL via Let's Encrypt TLS-ALPN-01).
+- **Image registry** → GitHub Container Registry (`ghcr.io/jnoriega67/callbotcompare`).
 - **Database** → Neon (managed Postgres). Pooled connection at runtime; direct connection for migrations.
-- **Build** → GitHub Actions. Hostinger's shared plan has tight memory; we never build on the server.
+- **Build** → GitHub Actions: build the image, push to ghcr.io, SSH to VPS, `docker compose pull && up -d`. Nothing builds on the VPS.
 
 ### One-time setup
 
-1. **Neon project:** create `callbotcompare` project. Use the default branch for prod and create a `dev` branch for local development.
-2. **Hostinger app:** in hPanel, create a Node.js app, select Node 22.x, enable SSH. Note the SSH host, port (usually 65002), user, and the app's deploy path. Set the "startup file" to `.next/standalone/server.js`. Add the production env vars (`DATABASE_URL`, `DIRECT_URL`, `SITE_URL`, `NEXT_PUBLIC_SITE_URL`, `NODE_ENV=production`, `PORT`).
-3. **Domain & SSL:** point `callbotcompare.com` at the Hostinger app and provision SSL via Let's Encrypt in hPanel.
-4. **GitHub secrets** (Settings → Secrets and variables → Actions → New repository secret):
-   - `HOSTINGER_SSH_HOST`
-   - `HOSTINGER_SSH_USER`
-   - `HOSTINGER_SSH_PORT` (typically `65002`)
-   - `HOSTINGER_SSH_KEY` (private key in PEM format; add the matching public key to the Hostinger account)
-   - `HOSTINGER_DEPLOY_PATH` (absolute path on the server)
-   - `NEON_DATABASE_URL` (pooled connection string for prod)
-   - `NEON_DIRECT_URL` (direct connection string for prod)
-   - `SITE_URL` and `NEXT_PUBLIC_SITE_URL` (e.g. `https://callbotcompare.com`)
-5. **First migration:** from local with the prod Neon URLs in a `.env.production.local`, run `pnpm prisma migrate deploy` and `DATABASE_URL=$NEON_DATABASE_URL DIRECT_URL=$NEON_DIRECT_URL pnpm tsx prisma/seed.ts`.
+1. **Neon:** create the project. Use the default branch for prod and create a `dev` branch for local development.
+2. **VPS bootstrap:**
+   - Provision the deploy SSH key (one-shot Ed25519, no passphrase) and add the public half to the VPS's `~/.ssh/authorized_keys`.
+   - Make sure the existing Traefik stack is running (`docker ps | grep traefik`).
+   - Create the app directory and drop in the compose file + env:
+     ```bash
+     ssh root@<vps-ip> "mkdir -p /docker/callbotcompare"
+     scp deploy/docker-compose.yml root@<vps-ip>:/docker/callbotcompare/
+     scp deploy/env.production.example root@<vps-ip>:/docker/callbotcompare/.env
+     # then edit /docker/callbotcompare/.env on the VPS with real Neon URLs
+     ```
+3. **GitHub Container Registry visibility:** after the first `deploy.yml` run pushes the image, open https://github.com/users/JNoriega67/packages/container/callbotcompare/settings and change visibility to **Public** so the VPS can `docker pull` without auth. (Or keep it private and `docker login ghcr.io` on the VPS with a PAT that has `read:packages`.)
+4. **Domain & SSL:** point `callbotcompare.com` (and optionally `www`) at the VPS IP via A record. Traefik will issue the cert on first request — no manual step.
+5. **GitHub secrets** (Settings → Secrets and variables → Actions → New repository secret):
+   - `HOSTINGER_SSH_HOST` (e.g. `187.124.70.200`)
+   - `HOSTINGER_SSH_USER` (e.g. `root`)
+   - `HOSTINGER_SSH_KEY` (private key, PEM format, no passphrase)
+   - `NEON_DATABASE_URL` (pooled connection string, **main** branch)
+   - `NEON_DIRECT_URL` (direct connection string, **main** branch)
+   - `SITE_URL` and `NEXT_PUBLIC_SITE_URL` (`https://callbotcompare.com`)
+6. **First seed (manual):** the deploy workflow runs `prisma migrate deploy` but doesn't seed. From local, with the prod Neon URLs in env, run:
+   ```bash
+   DATABASE_URL="<neon-main-pooled>" DIRECT_URL="<neon-main-direct>" pnpm tsx prisma/seed.ts
+   ```
 
 ### Continuous deploy
 
-After the one-time setup, pushing to `main` runs `.github/workflows/deploy.yml`:
+Push to `main` runs `.github/workflows/deploy.yml`:
 
-1. Build the app in CI (with `output: 'standalone'`)
-2. Run `prisma migrate deploy` against Neon
-3. `rsync` the standalone bundle (+ `public/`, `.next/static/`) to Hostinger
-4. Install prod deps remotely (`pnpm install --prod --frozen-lockfile`) — _not currently in the workflow because standalone bundles its own `node_modules`; uncomment in `deploy.yml` if your Hostinger app needs an extra step_
-5. Touch `tmp/restart.txt` to restart the app (Passenger-style)
-6. Smoke check the public URL
+1. `prisma migrate deploy` against Neon main
+2. `docker build` + `docker push` of the image to ghcr.io (tagged `latest` and `<sha>`)
+3. SSH to VPS, `docker compose pull && docker compose up -d --remove-orphans && docker image prune -f`
+4. Smoke check `/` and `/vendors` on `$SITE_URL` (curl with retry)
 
-PRs run `.github/workflows/ci.yml` (lint + typecheck + build).
+PRs run `.github/workflows/ci.yml` (lint + typecheck + build of the pnpm bundle — no image build).
+
+### Manual ops on the VPS
+
+```bash
+ssh root@<vps-ip>
+cd /docker/callbotcompare
+docker compose ps               # status
+docker compose logs -f app      # tail logs
+docker compose pull && docker compose up -d   # force redeploy of :latest
+docker compose down             # stop (Traefik will 404 until back up)
+```
 
 ## Notable choices & gotchas
 
