@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Breadcrumbs } from "@/components/marketing/breadcrumbs";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { EditorialMeta } from "@/components/marketing/editorial-meta";
 import { JsonLd } from "@/components/marketing/json-ld";
 import { COMMERCIAL_PAGES, type CommercialPageConfig } from "@/lib/commercial-pages";
 import { GUIDES, type GuideBlock, type GuideConfig, type GuideSection } from "@/lib/guides";
@@ -147,6 +148,7 @@ export function GuidePage({ guide }: GuidePageProps) {
             <h1 className="font-heading text-[2.25rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[3.25rem]">
               {guide.title}
             </h1>
+            <EditorialMeta updated={guide.updatedYearMonth ?? "2026-05"} />
             <p className="max-w-3xl text-lg leading-relaxed text-ink-soft md:text-xl">
               {guide.tagline}
             </p>

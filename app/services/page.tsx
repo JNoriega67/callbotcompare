@@ -5,6 +5,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Breadcrumbs } from "@/components/marketing/breadcrumbs";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { EditorialMeta } from "@/components/marketing/editorial-meta";
 import { JsonLd } from "@/components/marketing/json-ld";
 import { SERVICE_PACKAGES_ORDERED } from "@/lib/services";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
@@ -44,6 +45,9 @@ export default function ServicesPage() {
                 <span className="font-bold">Pick the right tool.</span>{" "}
                 <span className="font-light text-ink/55">Launch it correctly.</span>
               </h1>
+              <div className="mt-5">
+                <EditorialMeta updated="2026-05" sourcingLabel="Disclosure" sourcingHref="/disclosure" />
+              </div>
             </div>
             <div className="flex flex-col justify-end gap-5">
               <p className="text-lg leading-relaxed text-ink-soft md:text-xl">

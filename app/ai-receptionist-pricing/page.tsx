@@ -5,6 +5,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Breadcrumbs } from "@/components/marketing/breadcrumbs";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { EditorialMeta } from "@/components/marketing/editorial-meta";
 import { FaqAccordion } from "@/components/marketing/faq-accordion";
 import { JsonLd } from "@/components/marketing/json-ld";
 import { prisma } from "@/lib/db";
@@ -217,6 +218,13 @@ export default async function Page() {
                 AI receptionist pricing,{" "}
                 <span className="font-light text-ink/60">explained without the spin.</span>
               </h1>
+              <div className="mt-5">
+                <EditorialMeta
+                  updated="2026-05"
+                  sourcingLabel="Methodology"
+                  reviewCadence="Pricing reviewed quarterly"
+                />
+              </div>
             </div>
             <div className="flex flex-col justify-end gap-5">
               <p className="text-base leading-relaxed text-ink-soft md:text-lg">

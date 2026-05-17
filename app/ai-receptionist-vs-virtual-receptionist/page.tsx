@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { EditorialMeta } from "@/components/marketing/editorial-meta";
 import { FaqAccordion } from "@/components/marketing/faq-accordion";
 import { JsonLd } from "@/components/marketing/json-ld";
 import { buildMetadata, faqJsonLd } from "@/lib/seo";
@@ -205,6 +206,9 @@ export default async function Page() {
                 neither one wins every call.
               </span>
             </h1>
+            <div className="mt-5">
+              <EditorialMeta updated="2026-05" />
+            </div>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft md:text-xl">
               Both solve the &quot;a real person needs to answer the phone&quot;
               problem in overlapping but different ways. This is an honest

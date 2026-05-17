@@ -5,6 +5,14 @@ export const SITE_URL =
 
 export const SITE_TAGLINE = "Compare AI receptionist software without wasting weeks on demos.";
 
+/**
+ * The institutional byline used across editorial pages. We don't
+ * fabricate individual author names; the byline is the team that
+ * collectively maintains the rubric and content. See /methodology and
+ * /disclosure for the editorial standard.
+ */
+export const EDITORIAL_TEAM = "The CallTreo editorial team";
+
 export const NAV_ITEMS = [
   { label: "Vendors", href: "/vendors" },
   { label: "Compare", href: "/compare" },

@@ -7,6 +7,7 @@ import { Section } from "@/components/layout/section";
 import { Breadcrumbs } from "@/components/marketing/breadcrumbs";
 import { CtaBanner } from "@/components/marketing/cta-banner";
 import { Disclosure } from "@/components/marketing/disclosure";
+import { EditorialMeta } from "@/components/marketing/editorial-meta";
 import { JsonLd } from "@/components/marketing/json-ld";
 import { OutboundVendorCTA } from "@/components/vendors/outbound-vendor-cta";
 import { VendorBadgeRow } from "@/components/vendors/vendor-badge-row";
@@ -97,6 +98,13 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
                 <h1 className="mt-3 font-heading text-3xl font-bold text-ink md:text-5xl">
                   {vendor.name}
                 </h1>
+                <div className="mt-4">
+                  <EditorialMeta
+                    updated={vendor.updatedAt}
+                    sourcingLabel="Scoring rubric"
+                    reviewCadence="Reviewed quarterly"
+                  />
+                </div>
               </div>
               {vendor.tagline ? (
                 <p className="text-lg leading-relaxed text-ink-soft md:text-xl">

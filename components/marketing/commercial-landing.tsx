@@ -5,6 +5,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Breadcrumbs } from "@/components/marketing/breadcrumbs";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { EditorialMeta } from "@/components/marketing/editorial-meta";
 import { FaqAccordion } from "@/components/marketing/faq-accordion";
 import { JsonLd } from "@/components/marketing/json-ld";
 import { ComparisonStackedCards } from "@/components/comparisons/comparison-stacked-cards";
@@ -104,6 +105,9 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
                   <span className="font-light text-ink/55">{config.headlineAccent}</span>
                 ) : null}
               </h1>
+              <div className="mt-5">
+                <EditorialMeta updated={config.updatedYearMonth ?? "2026-05"} />
+              </div>
             </div>
             <div className="flex flex-col justify-end gap-5">
               <p className="text-base leading-relaxed text-ink-soft md:text-lg">{config.intro}</p>

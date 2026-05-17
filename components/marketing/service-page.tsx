@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Breadcrumbs } from "@/components/marketing/breadcrumbs";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { EditorialMeta } from "@/components/marketing/editorial-meta";
 import { FaqAccordion } from "@/components/marketing/faq-accordion";
 import { JsonLd } from "@/components/marketing/json-ld";
 import { SERVICE_PACKAGES, type ServicePackage } from "@/lib/services";
@@ -50,6 +51,9 @@ export function ServicePage({ pkg }: ServicePageProps) {
               <h1 className="mt-3 font-heading text-[2.25rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[3.5rem]">
                 {pkg.title}
               </h1>
+              <div className="mt-5">
+                <EditorialMeta updated="2026-05" sourcingLabel="Disclosure" sourcingHref="/disclosure" />
+              </div>
               <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft md:text-xl">
                 {pkg.tagline}
               </p>

@@ -5,6 +5,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Breadcrumbs } from "@/components/marketing/breadcrumbs";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { EditorialMeta } from "@/components/marketing/editorial-meta";
 import { JsonLd } from "@/components/marketing/json-ld";
 import { VendorCard } from "@/components/vendors/vendor-card";
 import { prisma } from "@/lib/db";
@@ -40,6 +41,7 @@ export default async function BestAIReceptionistPage() {
           <h1 className="font-heading text-3xl font-bold text-ink md:text-4xl">
             Best AI Receptionist Software for Small Business
           </h1>
+          <EditorialMeta updated="2026-05" reviewCadence="Reviewed quarterly" />
           <p className="max-w-3xl text-ink-soft">
             An opinionated, independent ranking of AI receptionist and AI phone agent platforms
             for small and mid-sized service businesses. We score on call handling quality,

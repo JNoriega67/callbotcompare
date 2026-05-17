@@ -51,6 +51,12 @@ export type GuideConfig = {
   relatedCommercialSlugs?: ReadonlyArray<string>;
   relatedIntegrationSlugs?: ReadonlyArray<string>;
   relatedServiceSlugs?: ReadonlyArray<string>;
+  /**
+   * Year-month the page was last editorially reviewed (e.g. "2026-05").
+   * Surfaces as "Updated May 2026" via <EditorialMeta />. Defaults to
+   * "2026-05" in the template if not set.
+   */
+  updatedYearMonth?: string;
 };
 
 /* ------------------------------------------------------------------ */

@@ -6,6 +6,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Breadcrumbs } from "@/components/marketing/breadcrumbs";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { EditorialMeta } from "@/components/marketing/editorial-meta";
 import { JsonLd } from "@/components/marketing/json-ld";
 import { ComparisonStackedCards } from "@/components/comparisons/comparison-stacked-cards";
 import { ComparisonTable } from "@/components/comparisons/comparison-table";
@@ -156,6 +157,9 @@ export default async function ComparisonDetailPage({ params }: { params: Params 
               <h1 className="mt-3 font-heading text-[2.2rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[3.5rem]">
                 {page.title}
               </h1>
+              <div className="mt-5">
+                <EditorialMeta updated={page.updatedAt} sourcingLabel="Scoring rubric" />
+              </div>
             </div>
 
             {/* Score-vs-score stat for quick scan */}
