@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { COMMERCIAL_PAGES } from "@/lib/commercial-pages";
+import { GUIDES_ORDERED } from "@/lib/guides";
 import { INTEGRATION_PAGES } from "@/lib/integration-pages";
 import { SERVICE_PACKAGES_ORDERED } from "@/lib/services";
 import { SITE_URL } from "@/lib/constants";
@@ -21,6 +22,7 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${base}/ai-receptionist-vs-virtual-receptionist`, changeFrequency: "monthly", priority: 0.85 },
   { url: `${base}/methodology`, changeFrequency: "yearly", priority: 0.6 },
   { url: `${base}/services`, changeFrequency: "monthly", priority: 0.75 },
+  { url: `${base}/guides`, changeFrequency: "monthly", priority: 0.8 },
   { url: `${base}/quiz`, changeFrequency: "monthly", priority: 0.7 },
   { url: `${base}/contact`, changeFrequency: "monthly", priority: 0.6 },
   { url: `${base}/disclosure`, changeFrequency: "yearly", priority: 0.3 },
@@ -42,6 +44,12 @@ const SERVICE_SUBPAGE_ROUTES: MetadataRoute.Sitemap = SERVICE_PACKAGES_ORDERED.m
   url: `${base}/services/${pkg.slug}`,
   changeFrequency: "monthly" as const,
   priority: 0.7,
+}));
+
+const GUIDE_ROUTES: MetadataRoute.Sitemap = GUIDES_ORDERED.map((g) => ({
+  url: `${base}/guides/${g.slug}`,
+  changeFrequency: "monthly" as const,
+  priority: 0.75,
 }));
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -83,6 +91,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...COMMERCIAL_ROUTES,
     ...INTEGRATION_ROUTES,
     ...SERVICE_SUBPAGE_ROUTES,
+    ...GUIDE_ROUTES,
     ...vendorEntries,
     ...comparisonEntries,
   ];

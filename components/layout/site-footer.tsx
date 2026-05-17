@@ -9,8 +9,8 @@ export function SiteFooter() {
 
   return (
     <footer className="border-t border-rule bg-ink text-over-ink">
-      <Container className="grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-[2.2fr_1fr_1fr_1fr_1fr_1fr]">
-        <div className="md:col-span-2 lg:col-span-1">
+      <Container className="grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[2.2fr_repeat(6,minmax(0,1fr))]">
+        <div className="md:col-span-2 lg:col-span-3 xl:col-span-1">
           <Link href="/" className="text-base">
             <Wordmark invert />
           </Link>

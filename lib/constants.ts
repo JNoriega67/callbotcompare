@@ -8,9 +8,9 @@ export const SITE_TAGLINE = "Compare AI receptionist software without wasting we
 export const NAV_ITEMS = [
   { label: "Vendors", href: "/vendors" },
   { label: "Compare", href: "/compare" },
+  { label: "Guides", href: "/guides" },
   { label: "Pricing", href: "/ai-receptionist-pricing" },
   { label: "Services", href: "/services" },
-  { label: "Methodology", href: "/methodology" },
 ] as const;
 
 export const FOOTER_LINKS = [
@@ -44,6 +44,17 @@ export const FOOTER_LINKS = [
       { label: "ServiceTitan", href: "/ai-receptionist-with-servicetitan" },
       { label: "Clio", href: "/ai-receptionist-with-clio" },
       { label: "Jobber", href: "/ai-receptionist-with-jobber" },
+    ],
+  },
+  {
+    heading: "Guides",
+    links: [
+      { label: "All guides", href: "/guides" },
+      { label: "Setup guide", href: "/guides/ai-receptionist-setup-guide" },
+      { label: "CRM & booking integration", href: "/guides/crm-and-booking-integration-guide" },
+      { label: "Call flow design", href: "/guides/call-flow-design-guide" },
+      { label: "Launch checklist", href: "/guides/ai-receptionist-launch-checklist" },
+      { label: "Post-launch optimization", href: "/guides/post-launch-optimization-guide" },
     ],
   },
   {
