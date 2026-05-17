@@ -16,7 +16,7 @@
   --surface:      #FFFFFF;
 
   /* ----- Text ----- */
-  --ink:          #0F1B2D;
+  --ink:          #2F4F70;
   --ink-soft:     #1F2933;
   --muted-ink:    #5B6875;
   --over-ink:     #E6ECF2;
@@ -24,7 +24,7 @@
   /* ----- Lines ----- */
   --rule:         #D6DEE6;
   --rule-strong:  #B2BFCD;
-  --rule-dark:    #1F3A5F;
+  --rule-dark:    #3A6190;
 
   /* ----- Brand teals (from logo) ----- */
   --signal-deep:  #1A6B72;
@@ -138,9 +138,9 @@
   --radius-input:  0.5rem;
   --radius-pill:   9999px;
 
-  --shadow-card:        0 1px 2px rgba(15, 27, 45, 0.04), 0 1px 1px rgba(15, 27, 45, 0.04);
-  --shadow-card-hover:  0 4px 12px rgba(15, 27, 45, 0.08), 0 1px 2px rgba(15, 27, 45, 0.04);
-  --shadow-elevated:    0 12px 32px rgba(15, 27, 45, 0.1);
+  --shadow-card:        0 1px 2px rgba(47, 79, 112, 0.05), 0 1px 1px rgba(47, 79, 112, 0.05);
+  --shadow-card-hover:  0 4px 12px rgba(47, 79, 112, 0.1), 0 1px 2px rgba(47, 79, 112, 0.05);
+  --shadow-elevated:    0 12px 32px rgba(47, 79, 112, 0.12);
 }
 
 body {
