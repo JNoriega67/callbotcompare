@@ -2,15 +2,37 @@ import Link from "next/link";
 
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
+import { TrustStrip } from "@/components/marketing/trust-strip";
+import { COMMERCIAL_PAGES } from "@/lib/commercial-pages";
+import { GUIDES } from "@/lib/guides";
+import { INTEGRATION_PAGES } from "@/lib/integration-pages";
+import { prisma } from "@/lib/db";
+import { WEIGHTS } from "@/lib/scoring";
 
-export function Hero() {
+export async function Hero() {
+  // Dynamic stats — drive from registries + the live vendor pool so the
+  // hero stays current as the site grows.
+  const vendorCount = await prisma.vendor.count({ where: { isPublished: true } });
+  const integrationCount = Object.keys(INTEGRATION_PAGES).length;
+  const segmentCount = Object.keys(COMMERCIAL_PAGES).length;
+  const guideCount = Object.keys(GUIDES).length;
+  const criteriaCount = Object.keys(WEIGHTS).length;
+
   return (
-    <Section tone="paper" className="pt-16 pb-20 md:pt-24 md:pb-28">
+    <Section tone="paper" className="pt-16 pb-20 md:pt-24 md:pb-24">
       <Container>
         {/* Editorial masthead row */}
         <div className="flex items-baseline justify-between border-b border-rule pb-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-ink">
           <span className="text-signal">CallTreo · Buyer Guide</span>
-          <span>Updated 2026</span>
+          <span className="flex items-center gap-4">
+            <Link
+              href="/methodology"
+              className="hidden underline-offset-4 hover:text-signal hover:underline md:inline"
+            >
+              Methodology
+            </Link>
+            <span>Updated 2026</span>
+          </span>
         </div>
 
         <div className="mt-10 grid gap-10 md:mt-14 md:grid-cols-[7fr_5fr] md:gap-14">
@@ -52,30 +74,36 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Stat band */}
-        <dl className="mt-16 grid grid-cols-3 border-y border-rule">
-          {[
-            { k: "8", v: "Vendors compared" },
-            { k: "9", v: "Scoring criteria" },
-            { k: "7", v: "Verticals covered" },
-          ].map((stat, i) => (
-            <div
-              key={stat.v}
-              className={
-                i < 2
-                  ? "border-r border-rule px-2 py-6 md:px-6 md:py-8"
-                  : "px-2 py-6 md:px-6 md:py-8"
-              }
-            >
-              <dt className="font-heading text-[2.4rem] font-bold leading-none text-ink md:text-[3.25rem]">
-                {stat.k}
-              </dt>
-              <dd className="mt-2 font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-ink">
-                {stat.v}
-              </dd>
-            </div>
-          ))}
-        </dl>
+        {/* Dynamic trust strip */}
+        <div className="mt-14 border-y border-rule">
+          <TrustStrip
+            items={[
+              { label: "Vendors scored", value: String(vendorCount), href: "/vendors" },
+              { label: "Buyer segments", value: String(segmentCount), href: "/best-ai-receptionist-software" },
+              { label: "Integrations covered", value: String(integrationCount), href: "/ai-receptionist-with-hubspot" },
+              { label: "Implementation guides", value: String(guideCount), href: "/guides" },
+            ]}
+          />
+        </div>
+
+        {/* Tiny editorial commitment line */}
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-ink">
+          Scored against{" "}
+          <Link
+            href="/methodology"
+            className="text-ink underline underline-offset-4 hover:text-signal"
+          >
+            {criteriaCount} weighted criteria
+          </Link>{" "}
+          · referral relationships{" "}
+          <Link
+            href="/disclosure"
+            className="text-ink underline underline-offset-4 hover:text-signal"
+          >
+            disclosed
+          </Link>{" "}
+          · no fabricated vendor claims.
+        </p>
       </Container>
     </Section>
   );

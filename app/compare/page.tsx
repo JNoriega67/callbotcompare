@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 
+import Link from "next/link";
+
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Breadcrumbs } from "@/components/marketing/breadcrumbs";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { TrustStrip } from "@/components/marketing/trust-strip";
 import { ComparisonStackedCards } from "@/components/comparisons/comparison-stacked-cards";
 import { ComparisonTable } from "@/components/comparisons/comparison-table";
 import { ComparePicker } from "@/app/compare/_components/compare-picker";
@@ -66,21 +69,62 @@ export default async function CompareHubPage({ searchParams }: CompareHubProps) 
 
   return (
     <>
-      <Section tone="paper" className="pt-10 pb-8 md:pt-14 md:pb-10">
-        <Container className="space-y-4">
+      <Section tone="paper" className="pt-10 pb-10 md:pt-14 md:pb-12">
+        <Container className="space-y-6">
           <Breadcrumbs
             trail={[
               { label: "Home", href: "/" },
               { label: "Compare", href: "/compare" },
             ]}
           />
-          <h1 className="font-heading text-3xl font-bold text-ink md:text-4xl">
-            Build a side-by-side comparison
-          </h1>
-          <p className="max-w-2xl text-sm text-ink-soft">
-            Pick the vendors you&apos;re seriously evaluating. We&apos;ll render a table you can share with
-            anyone on your buying committee.
-          </p>
+          <div className="grid gap-10 md:grid-cols-[7fr_5fr] md:items-end md:gap-14">
+            <div>
+              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+                Side-by-side · Buyer tool
+              </p>
+              <h1 className="mt-3 font-heading text-[2.25rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[3.5rem]">
+                <span className="font-bold">Build a side-by-side</span>{" "}
+                <span className="font-light text-ink/55">your buying committee can use.</span>
+              </h1>
+            </div>
+            <div className="flex flex-col justify-end gap-5">
+              <p className="text-base leading-relaxed text-ink-soft md:text-lg">
+                Pick up to three vendors. We&apos;ll render a 9-column side-by-side scored against
+                the same rubric we publish on every vendor page — shareable link, no signup.
+              </p>
+              <div className="flex flex-wrap items-center gap-3">
+                <Link
+                  href="/quiz"
+                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-4 py-2.5 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-ink transition-colors hover:border-signal hover:text-signal"
+                >
+                  Not sure who to compare? Take the quiz
+                </Link>
+                <Link
+                  href="/methodology"
+                  className="font-heading text-[12px] font-semibold uppercase tracking-[0.14em] text-muted-ink underline-offset-4 hover:text-signal hover:underline"
+                >
+                  How we score →
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-rule pt-2">
+            <TrustStrip
+              items={[
+                {
+                  label: "Score dimensions",
+                  value: "9",
+                  href: "/methodology",
+                },
+                {
+                  label: "Side-by-side max",
+                  value: "3",
+                },
+                { label: "Mobile layout", value: "Cards" },
+              ]}
+            />
+          </div>
         </Container>
       </Section>
 
