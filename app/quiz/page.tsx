@@ -31,7 +31,7 @@ export default async function QuizPage() {
 
   return (
     <>
-      <Section tone="cream" className="pt-10 pb-8 md:pt-14 md:pb-10">
+      <Section tone="paper" className="pt-10 pb-8 md:pt-14 md:pb-10">
         <Container className="space-y-4">
           <Breadcrumbs
             trail={[
@@ -39,17 +39,17 @@ export default async function QuizPage() {
               { label: "Quiz", href: "/quiz" },
             ]}
           />
-          <h1 className="font-heading text-3xl font-bold text-slate md:text-4xl">
+          <h1 className="font-heading text-3xl font-bold text-ink md:text-4xl">
             Find your AI receptionist match
           </h1>
-          <p className="max-w-2xl text-charcoal/85">
-            Five questions. No email required up front — we'll show your shortlist first, then you
-            can grab a personalized walkthrough if it's useful.
+          <p className="max-w-2xl text-ink-soft">
+            Five questions. No email required up front — we&apos;ll show your shortlist first, then you
+            can grab a personalized walkthrough if it&apos;s useful.
           </p>
         </Container>
       </Section>
 
-      <Section tone="white">
+      <Section tone="paper">
         <Container className="max-w-3xl">
           <QuizStepper publishedVendors={publishedVendors} />
         </Container>

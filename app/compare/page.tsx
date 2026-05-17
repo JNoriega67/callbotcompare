@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Breadcrumbs } from "@/components/marketing/breadcrumbs";
+import { CtaBanner } from "@/components/marketing/cta-banner";
 import { ComparisonStackedCards } from "@/components/comparisons/comparison-stacked-cards";
 import { ComparisonTable } from "@/components/comparisons/comparison-table";
 import { ComparePicker } from "@/app/compare/_components/compare-picker";
@@ -65,7 +66,7 @@ export default async function CompareHubPage({ searchParams }: CompareHubProps) 
 
   return (
     <>
-      <Section tone="cream" className="pt-10 pb-8 md:pt-14 md:pb-10">
+      <Section tone="paper" className="pt-10 pb-8 md:pt-14 md:pb-10">
         <Container className="space-y-4">
           <Breadcrumbs
             trail={[
@@ -73,17 +74,17 @@ export default async function CompareHubPage({ searchParams }: CompareHubProps) 
               { label: "Compare", href: "/compare" },
             ]}
           />
-          <h1 className="font-heading text-3xl font-bold text-slate md:text-4xl">
+          <h1 className="font-heading text-3xl font-bold text-ink md:text-4xl">
             Build a side-by-side comparison
           </h1>
-          <p className="max-w-2xl text-sm text-charcoal/85">
-            Pick the vendors you're seriously evaluating. We'll render a table you can share with
+          <p className="max-w-2xl text-sm text-ink-soft">
+            Pick the vendors you&apos;re seriously evaluating. We&apos;ll render a table you can share with
             anyone on your buying committee.
           </p>
         </Container>
       </Section>
 
-      <Section tone="white">
+      <Section tone="paper">
         <Container className="space-y-10">
           <ComparePicker
             vendors={pickerVendors}
@@ -95,7 +96,7 @@ export default async function CompareHubPage({ searchParams }: CompareHubProps) 
 
           {orderedSelection.length >= 2 ? (
             <div className="space-y-4">
-              <h2 className="font-heading text-xl font-semibold text-slate">
+              <h2 className="font-heading text-xl font-semibold text-ink">
                 Your comparison ({orderedSelection.length})
               </h2>
               <div className="hidden md:block">
@@ -106,12 +107,14 @@ export default async function CompareHubPage({ searchParams }: CompareHubProps) 
               </div>
             </div>
           ) : orderedSelection.length === 1 ? (
-            <p className="rounded-card border border-dashed border-border bg-surface p-6 text-center text-sm text-muted">
+            <p className="rounded-[var(--radius-card)] border border-dashed border-rule bg-surface p-6 text-center text-sm text-muted-ink">
               Pick at least one more vendor to render the comparison.
             </p>
           ) : null}
         </Container>
       </Section>
+
+      <CtaBanner variant="matched" />
     </>
   );
 }
