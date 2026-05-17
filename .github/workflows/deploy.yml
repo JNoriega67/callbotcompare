@@ -70,15 +70,20 @@ jobs:
           cache-to: type=gha,mode=max
 
       # ---- Trigger remote `docker compose pull && up -d` ----
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.HOSTINGER_SSH_KEY }}
-
-      - name: Trust VPS host key
+      - name: Configure SSH
         env:
           SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
         run: |
+          set -euo pipefail
           mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          # Write the private key, normalizing line endings, ensuring trailing newline.
+          printf '%s\n' "$SSH_KEY" | tr -d '\r' > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          # Sanity-check the key parses
+          ssh-keygen -y -f ~/.ssh/deploy_key > /dev/null
+          # Trust the host
           ssh-keyscan "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
 
       - name: Pull image and recreate container on VPS
@@ -86,7 +91,7 @@ jobs:
           SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
           SSH_USER: ${{ secrets.HOSTINGER_SSH_USER }}
         run: |
-          ssh "$SSH_USER@$SSH_HOST" "\
+          ssh -i ~/.ssh/deploy_key -o BatchMode=yes "$SSH_USER@$SSH_HOST" "\
             cd /docker/callbotcompare && \
             docker compose pull && \
             docker compose up -d --remove-orphans && \
