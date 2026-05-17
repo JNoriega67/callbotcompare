@@ -5,7 +5,10 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Breadcrumbs } from "@/components/marketing/breadcrumbs";
+import { CtaBanner } from "@/components/marketing/cta-banner";
+import { Disclosure } from "@/components/marketing/disclosure";
 import { JsonLd } from "@/components/marketing/json-ld";
+import { OutboundVendorCTA } from "@/components/vendors/outbound-vendor-cta";
 import { VendorBadgeRow } from "@/components/vendors/vendor-badge-row";
 import { Alternatives } from "@/app/vendors/[slug]/_components/alternatives";
 import { ProsCons } from "@/app/vendors/[slug]/_components/pros-cons";
@@ -32,7 +35,13 @@ async function loadVendor(slug: string) {
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { slug } = await params;
   const vendor = await loadVendor(slug);
-  if (!vendor) return buildMetadata({ title: "Vendor not found", description: "", path: `/vendors/${slug}`, noIndex: true });
+  if (!vendor)
+    return buildMetadata({
+      title: "Vendor not found",
+      description: "",
+      path: `/vendors/${slug}`,
+      noIndex: true,
+    });
 
   return buildMetadata({
     title: `${vendor.name} review and scorecard`,
@@ -56,12 +65,14 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
     select: { slug: true, name: true, tagline: true, overallScore: true },
   });
 
-  const outboundHref = vendor.affiliateUrl ?? vendor.websiteUrl;
+  const hasOutbound = Boolean(vendor.affiliateUrl ?? vendor.websiteUrl);
+  const isReferral = Boolean(vendor.affiliateUrl);
 
   return (
     <>
-      <Section tone="cream" className="pt-10 pb-8 md:pt-14 md:pb-10">
-        <Container className="space-y-4">
+      {/* ABOVE-THE-FOLD */}
+      <Section tone="paper" className="pt-10 pb-10 md:pt-14 md:pb-12">
+        <Container className="space-y-6">
           <Breadcrumbs
             trail={[
               { label: "Home", href: "/" },
@@ -69,106 +80,141 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
               { label: vendor.name, href: `/vendors/${vendor.slug}` },
             ]}
           />
-          <div className="grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-start">
-            <div className="space-y-4">
-              <h1 className="font-heading text-3xl font-bold text-slate md:text-4xl">
-                {vendor.name}
-              </h1>
-              {vendor.tagline ? <p className="text-lg text-charcoal/85">{vendor.tagline}</p> : null}
-              {vendor.summary ? <p className="text-charcoal/80">{vendor.summary}</p> : null}
+          <div className="grid gap-10 md:grid-cols-[1.5fr_1fr] md:items-start">
+            <div className="space-y-5">
+              <div>
+                <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+                  Vendor review
+                </p>
+                <h1 className="mt-3 font-heading text-3xl font-bold text-ink md:text-5xl">
+                  {vendor.name}
+                </h1>
+              </div>
+              {vendor.tagline ? (
+                <p className="text-lg leading-relaxed text-ink-soft md:text-xl">
+                  {vendor.tagline}
+                </p>
+              ) : null}
+              {vendor.summary ? <p className="text-ink-soft">{vendor.summary}</p> : null}
               <VendorBadgeRow vendor={vendor} limit={6} />
             </div>
-            <aside className="rounded-card border border-border bg-surface p-5 shadow-[var(--shadow-card)]">
-              <div className="grid grid-cols-2 gap-4 text-sm">
+
+            {/* Sticky sidebar — scorecard + primary CTAs */}
+            <aside className="rounded-[var(--radius-card)] border border-rule bg-surface p-5 shadow-[var(--shadow-card)] md:sticky md:top-24">
+              <dl className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-muted">
+                  <dt className="font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-ink">
                     Editor score
-                  </p>
-                  <p className="font-heading text-3xl font-bold text-slate">
+                  </dt>
+                  <dd className="mt-1 font-heading text-4xl font-bold leading-none tabular-nums text-ink">
                     {formatScore(vendor.overallScore)}
-                  </p>
+                  </dd>
                 </div>
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-muted">
+                  <dt className="font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-ink">
                     Pricing
-                  </p>
-                  <p className="font-medium text-charcoal">
+                  </dt>
+                  <dd className="mt-1 font-heading text-base font-semibold text-ink">
                     {formatPricing(vendor.pricingFromUsd, vendor.pricingModel)}
-                  </p>
+                  </dd>
                 </div>
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-muted">
+                  <dt className="font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-ink">
                     Setup
-                  </p>
-                  <p className="font-medium text-charcoal">
+                  </dt>
+                  <dd className="mt-1 text-ink-soft">
                     {formatSetupComplexity(vendor.setupComplexity)}
-                  </p>
+                  </dd>
                 </div>
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-muted">
+                  <dt className="font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-ink">
                     HIPAA-friendly
-                  </p>
-                  <p className="font-medium text-charcoal">
+                  </dt>
+                  <dd className="mt-1 text-ink-soft">
                     {vendor.hipaaFriendly === true
                       ? "Yes"
                       : vendor.hipaaFriendly === false
                         ? "No"
                         : "—"}
-                  </p>
+                  </dd>
                 </div>
-              </div>
-              {outboundHref ? (
-                <a
-                  href={outboundHref}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  className="mt-5 block rounded-[var(--radius-button)] bg-primary px-4 py-2.5 text-center text-sm font-semibold text-primary-foreground transition-colors hover:bg-[color:var(--brand-teal-hover)]"
-                  data-event="vendor_outbound"
-                  data-slug={vendor.slug}
+              </dl>
+
+              <div className="mt-6 space-y-3">
+                {hasOutbound ? (
+                  <OutboundVendorCTA vendor={vendor} variant="stacked" />
+                ) : null}
+
+                <Link
+                  href="/quiz"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-4 py-2.5 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-ink transition-colors hover:border-signal hover:text-signal"
                 >
-                  Visit {vendor.name} ↗
-                </a>
-              ) : null}
-              <Link
-                href="/contact"
-                className="mt-2 block rounded-[var(--radius-button)] border border-slate/20 px-4 py-2 text-center text-sm font-semibold text-slate hover:border-teal hover:text-teal"
-              >
-                Need help choosing?
-              </Link>
+                  Get matched in 5 questions
+                </Link>
+                <Link
+                  href="/contact"
+                  className="block text-center font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-ink underline-offset-4 hover:text-signal hover:underline"
+                >
+                  Need help choosing?
+                </Link>
+              </div>
             </aside>
           </div>
         </Container>
       </Section>
 
-      <Section tone="white">
-        <Container className="space-y-12">
+      {/* BODY */}
+      <Section tone="paper" className="pt-0 pb-16 md:pb-20">
+        <Container className="space-y-14">
           <ProsCons vendor={vendor} />
 
-          <div className="space-y-4">
-            <h2 className="font-heading text-xl font-semibold text-slate">Scorecard</h2>
-            <p className="text-sm text-muted">
-              How we rank vendors. See the rubric at{" "}
-              <Link href="/best-ai-receptionist-software" className="text-teal hover:underline">
-                Best AI receptionist software
-              </Link>
-              .
-            </p>
+          {/* Mid-page conversion: get matched. Trust-first framing. */}
+          <CtaBanner variant="matched" tone="deep" />
+
+          <div className="grid gap-4 md:grid-cols-[5fr_7fr] md:gap-12">
+            <div>
+              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+                Scorecard
+              </p>
+              <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
+                How {vendor.name} scores across the nine dimensions.
+              </h2>
+              <p className="mt-4 text-sm text-ink-soft">
+                Each dimension is rated 0–10 against our published rubric. The overall score
+                weights them per{" "}
+                <Link
+                  href="/best-ai-receptionist-software"
+                  className="text-ink underline underline-offset-4 hover:text-signal"
+                >
+                  our methodology
+                </Link>
+                .
+              </p>
+            </div>
             <ScoreBreakdown vendor={vendor} />
           </div>
 
           {vendor.vendorFeatures.length ? (
-            <div className="space-y-3">
-              <h2 className="font-heading text-xl font-semibold text-slate">Features &amp; integrations</h2>
-              <ul className="grid gap-2 sm:grid-cols-2 md:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-[5fr_7fr] md:gap-12">
+              <div>
+                <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+                  Features &amp; integrations
+                </p>
+                <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
+                  What ships in the box.
+                </h2>
+                <p className="mt-4 text-sm text-ink-soft">
+                  Capabilities CallTreo has verified for {vendor.name}. Fields we haven&apos;t
+                  confirmed are intentionally omitted rather than guessed.
+                </p>
+              </div>
+              <ul className="grid gap-2 sm:grid-cols-2">
                 {vendor.vendorFeatures.map((vf) => (
                   <li
                     key={vf.featureId}
-                    className="flex items-center gap-2 rounded-[var(--radius-button)] border border-border bg-surface px-3 py-2 text-sm text-charcoal"
+                    className="flex items-center gap-2 rounded-[var(--radius-button)] border border-rule bg-surface px-3 py-2 text-sm text-ink-soft"
                   >
-                    <span
-                      aria-hidden
-                      className="inline-block h-1.5 w-1.5 rounded-full bg-teal"
-                    />
+                    <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-signal" />
                     {vf.feature.name}
                   </li>
                 ))}
@@ -177,13 +223,20 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
           ) : null}
 
           {vendor.vendorVerticals.length ? (
-            <div className="space-y-3">
-              <h2 className="font-heading text-xl font-semibold text-slate">Industries served</h2>
+            <div className="grid gap-4 md:grid-cols-[5fr_7fr] md:gap-12">
+              <div>
+                <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+                  Industries served
+                </p>
+                <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
+                  Where {vendor.name} shows up most.
+                </h2>
+              </div>
               <div className="flex flex-wrap gap-2">
                 {vendor.vendorVerticals.map((vv) => (
                   <span
                     key={vv.verticalId}
-                    className="rounded-full border border-border bg-sage px-3 py-1 text-xs font-medium text-slate"
+                    className="rounded-[var(--radius-button)] border border-rule bg-paper-deep/60 px-3 py-1.5 font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-soft"
                   >
                     {vv.vertical.name}
                   </span>
@@ -192,7 +245,30 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
             </div>
           ) : null}
 
-          <Alternatives items={alternatives} />
+          <div className="grid gap-4 md:grid-cols-[5fr_7fr] md:gap-12">
+            <div>
+              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+                Alternatives
+              </p>
+              <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
+                Don&apos;t commit yet — compare against the next best fits.
+              </h2>
+              <Link
+                href={`/compare?vendors=${vendor.slug}`}
+                className="mt-4 inline-flex items-center gap-2 font-heading text-[12px] font-semibold uppercase tracking-[0.12em] text-ink underline-offset-4 hover:text-signal hover:underline"
+              >
+                Build a side-by-side with {vendor.name}
+                <span aria-hidden>→</span>
+              </Link>
+            </div>
+            <Alternatives items={alternatives} />
+          </div>
+
+          {/* Implementation help CTA */}
+          <CtaBanner variant="setup" tone="ink" />
+
+          {/* Persistent disclosure when monetized */}
+          {isReferral ? <Disclosure variant="panel" vendorSlug={vendor.slug} /> : null}
         </Container>
       </Section>
 

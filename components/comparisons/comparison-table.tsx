@@ -22,56 +22,54 @@ type ComparisonTableProps = {
 };
 
 /**
- * 9-column comparison table per docs/COMPONENT_UI_SPEC.md.
- * Desktop only — pair with <ComparisonStackedCards /> using `hidden md:block`
- * / `md:hidden` because mobile must NOT use horizontal scroll
- * (see docs/MOBILE_LAYOUT_SPEC.md).
+ * 9-column comparison table (desktop). Pair with <ComparisonStackedCards />
+ * via `hidden md:block` / `md:hidden` — mobile must NOT use horizontal scroll.
  */
 export function ComparisonTable({ vendors, className }: ComparisonTableProps) {
   if (!vendors.length) return null;
 
   return (
-    <div className={cn("overflow-hidden rounded-card border border-border bg-surface", className)}>
+    <div className={cn("overflow-hidden rounded-[var(--radius-card)] border border-rule bg-surface", className)}>
       <table className="w-full text-sm">
-        <thead className="sticky top-0 bg-sage/80 text-left text-xs font-semibold uppercase tracking-wide text-slate">
+        <thead className="sticky top-0 bg-paper-deep font-heading text-[10px] uppercase tracking-[0.14em] text-muted-ink">
           <tr>
-            <th scope="col" className="px-4 py-3">Vendor</th>
-            <th scope="col" className="px-4 py-3">Best for</th>
-            <th scope="col" className="px-4 py-3">Pricing</th>
-            <th scope="col" className="px-3 py-3 text-center">Booking</th>
-            <th scope="col" className="px-3 py-3 text-center">CRM</th>
-            <th scope="col" className="px-3 py-3 text-center">Handoff</th>
-            <th scope="col" className="px-3 py-3 text-center">24/7</th>
-            <th scope="col" className="px-3 py-3 text-center">Score</th>
+            <th scope="col" className="px-4 py-3 text-left font-semibold">Vendor</th>
+            <th scope="col" className="px-4 py-3 text-left font-semibold">Best for</th>
+            <th scope="col" className="px-4 py-3 text-left font-semibold">Pricing</th>
+            <th scope="col" className="px-3 py-3 text-center font-semibold">Booking</th>
+            <th scope="col" className="px-3 py-3 text-center font-semibold">CRM</th>
+            <th scope="col" className="px-3 py-3 text-center font-semibold">Handoff</th>
+            <th scope="col" className="px-3 py-3 text-center font-semibold">24/7</th>
+            <th scope="col" className="px-3 py-3 text-center font-semibold">Score</th>
             <th scope="col" className="px-4 py-3" />
           </tr>
         </thead>
-        <tbody className="divide-y divide-border">
-          {vendors.map((v, i) => (
-            <tr key={v.slug} className={cn(i % 2 === 1 && "bg-cream/40")}>
+        <tbody className="divide-y divide-rule">
+          {vendors.map((v) => (
+            <tr key={v.slug} className="transition-colors hover:bg-paper-deep/40">
               <th scope="row" className="px-4 py-4 text-left align-top">
                 <Link
                   href={`/vendors/${v.slug}`}
-                  className="font-heading font-semibold text-slate hover:text-teal"
+                  className="font-heading text-base font-bold text-ink hover:text-signal"
                 >
                   {v.name}
                 </Link>
               </th>
-              <td className="px-4 py-4 align-top text-charcoal/85">{v.bestFor ?? "—"}</td>
-              <td className="px-4 py-4 align-top text-charcoal/85">
+              <td className="px-4 py-4 align-top text-ink-soft">{v.bestFor ?? "—"}</td>
+              <td className="px-4 py-4 align-top text-ink-soft">
                 {formatPricing(v.pricingFromUsd, v.pricingModel)}
               </td>
               <BoolCell value={v.hasAppointmentBooking} />
               <BoolCell value={v.hasCrmIntegration} />
               <BoolCell value={v.hasHumanHandoff} />
               <BoolCell value={v.has24x7} />
-              <td className="px-3 py-4 text-center align-top font-heading font-bold text-slate">
+              <td className="px-3 py-4 text-center align-top font-heading text-lg font-bold tabular-nums text-ink">
                 {formatScore(v.overallScore)}
               </td>
               <td className="px-4 py-4 align-top text-right">
                 <Link
                   href={`/vendors/${v.slug}`}
-                  className="inline-block rounded-[var(--radius-button)] border border-slate/25 px-3 py-1.5 text-xs font-semibold text-slate hover:border-teal hover:text-teal"
+                  className="inline-block rounded-[var(--radius-button)] border border-ink/15 px-3 py-1.5 font-heading text-[11px] font-semibold uppercase tracking-[0.12em] text-ink hover:border-signal hover:text-signal"
                 >
                   View
                 </Link>
@@ -85,12 +83,24 @@ export function ComparisonTable({ vendors, className }: ComparisonTableProps) {
 }
 
 function BoolCell({ value }: { value: boolean | null }) {
-  const symbol = value === true ? "●" : value === false ? "○" : "—";
+  const label = value === true ? "Yes" : value === false ? "No" : "Unknown";
+  const symbol = value === true ? "✓" : value === false ? "✕" : "—";
   const tone =
-    value === true ? "text-success" : value === false ? "text-muted" : "text-muted/60";
+    value === true
+      ? "bg-signal-soft text-signal"
+      : value === false
+        ? "bg-paper-deep text-muted-ink"
+        : "text-muted-ink/60";
   return (
-    <td className={cn("px-3 py-4 text-center align-top font-semibold", tone)} aria-label={value === true ? "Yes" : value === false ? "No" : "Unknown"}>
-      {symbol}
+    <td className="px-3 py-4 text-center align-top" aria-label={label}>
+      <span
+        className={cn(
+          "inline-flex h-6 min-w-6 items-center justify-center rounded-full px-2 font-heading text-xs font-bold",
+          tone,
+        )}
+      >
+        {symbol}
+      </span>
     </td>
   );
 }

@@ -32,11 +32,11 @@ export function SiteHeader() {
         scrolled ? "shadow-[0_1px_0_var(--rule)]" : "shadow-none",
       )}
     >
-      <Container className="flex h-14 items-center justify-between gap-6">
+      <Container className="flex h-16 items-center justify-between gap-6">
         <Link href="/" className="text-base">
           <Wordmark />
         </Link>
-        <nav className="hidden items-center gap-7 text-[13px] font-medium uppercase tracking-[0.08em] md:flex">
+        <nav className="hidden items-center gap-7 font-heading text-[12px] font-semibold uppercase tracking-[0.12em] md:flex">
           {NAV_ITEMS.map((item) => {
             const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
             return (
@@ -44,11 +44,17 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "text-ink-soft transition-colors hover:text-ink",
+                  "relative text-muted-ink transition-colors hover:text-ink",
                   active && "text-ink",
                 )}
               >
                 {item.label}
+                {active ? (
+                  <span
+                    aria-hidden
+                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-signal"
+                  />
+                ) : null}
               </Link>
             );
           })}
@@ -56,7 +62,7 @@ export function SiteHeader() {
         <div className="hidden items-center gap-3 md:flex">
           <Link
             href="/contact"
-            className="rounded-[var(--radius-button)] border border-ink bg-ink px-3.5 py-1.5 text-[13px] font-semibold uppercase tracking-[0.08em] text-paper transition-colors hover:bg-signal hover:border-signal"
+            className="rounded-[var(--radius-button)] bg-ink px-3.5 py-1.5 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-paper transition-colors hover:bg-signal"
           >
             Talk to us
           </Link>
@@ -99,14 +105,14 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-md px-2 py-2 text-sm font-medium uppercase tracking-[0.08em] text-ink hover:bg-paper-deep"
+                className="rounded-md px-2 py-2 font-heading text-sm font-semibold uppercase tracking-[0.1em] text-ink hover:bg-paper-deep"
               >
                 {item.label}
               </Link>
             ))}
             <Link
               href="/contact"
-              className="mt-2 rounded-[var(--radius-button)] bg-ink px-4 py-2 text-center text-sm font-semibold uppercase tracking-[0.08em] text-paper"
+              className="mt-2 rounded-[var(--radius-button)] bg-ink px-4 py-2 text-center font-heading text-sm font-semibold uppercase tracking-[0.1em] text-paper"
             >
               Talk to us
             </Link>

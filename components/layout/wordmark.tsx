@@ -7,34 +7,33 @@ type WordmarkProps = {
 };
 
 /**
- * Calltreo wordmark.
- *
- *   calltreo.
- *
- * Lowercase Inter ExtraBold with a signal-orange period. Reads like an
- * editorial publication mark, not a SaaS logo. Pure SVG so it renders
- * crisply at any size and inherits color via currentColor.
+ * CallTreo wordmark — PascalCase, Montserrat 700, tightly kerned,
+ * with a small teal mark to the right. Reads as a confident
+ * editorial publication name without resorting to a logo motif.
  */
 export function Wordmark({ className, invert = false }: WordmarkProps) {
   return (
     <span
       className={cn(
-        "inline-flex select-none items-baseline gap-0",
+        "inline-flex select-none items-center gap-2",
         invert ? "text-paper" : "text-ink",
         className,
       )}
-      aria-label="calltreo"
+      aria-label="CallTreo"
     >
       <span
-        className="font-body text-[1.25em] font-extrabold leading-none tracking-tight"
-        // Fixed kerning override so the letters sit tighter than Inter's defaults.
-        style={{ letterSpacing: "-0.045em" }}
+        className="font-heading text-[1.05em] font-bold leading-none"
+        style={{ letterSpacing: "-0.022em" }}
       >
-        calltreo
+        CallTreo
       </span>
-      <span className="text-[1.25em] font-extrabold leading-none text-signal" aria-hidden>
-        .
-      </span>
+      <span
+        aria-hidden
+        className={cn(
+          "block h-1.5 w-1.5 rounded-full",
+          invert ? "bg-paper" : "bg-signal",
+        )}
+      />
     </span>
   );
 }

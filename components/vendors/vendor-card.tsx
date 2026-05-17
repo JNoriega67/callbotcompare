@@ -23,11 +23,11 @@ type VendorCardProps = {
 
 export function VendorCard({ vendor }: VendorCardProps) {
   return (
-    <article className="group flex h-full flex-col gap-4 border-t-2 border-ink bg-surface p-5 transition-colors hover:bg-paper-deep">
+    <article className="group relative flex h-full flex-col gap-4 rounded-[var(--radius-card)] border border-rule bg-surface p-6 shadow-[var(--shadow-card)] transition-all hover:-translate-y-0.5 hover:border-signal/40 hover:shadow-[var(--shadow-card-hover)]">
       <header className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <h3 className="font-display text-2xl leading-tight">
-            <Link href={`/vendors/${vendor.slug}`} className="text-ink hover:text-signal">
+          <h3 className="font-heading text-xl font-bold leading-tight text-ink md:text-2xl">
+            <Link href={`/vendors/${vendor.slug}`} className="hover:text-signal">
               {vendor.name}
             </Link>
           </h3>
@@ -36,25 +36,27 @@ export function VendorCard({ vendor }: VendorCardProps) {
           ) : null}
         </div>
         <div className="shrink-0 text-right">
-          <p className="font-display text-3xl font-medium leading-none">
+          <p className="font-heading text-3xl font-bold leading-none tabular-nums text-ink">
             {formatScore(vendor.overallScore)}
           </p>
-          <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-muted-ink">Score</p>
+          <p className="mt-1 font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-ink">
+            Score
+          </p>
         </div>
       </header>
       {vendor.summary ? (
         <p className="text-sm leading-relaxed text-ink-soft">{vendor.summary}</p>
       ) : null}
       <VendorBadgeRow vendor={vendor} />
-      <footer className="mt-auto flex items-center justify-between gap-3 border-t border-rule pt-3 text-xs uppercase tracking-[0.14em]">
-        <span className="text-muted-ink">
+      <footer className="mt-auto flex items-center justify-between gap-3 border-t border-rule pt-3">
+        <span className="font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
           {formatPricing(vendor.pricingFromUsd, vendor.pricingModel)}
         </span>
         <Link
           href={`/vendors/${vendor.slug}`}
-          className="font-semibold text-ink underline-offset-4 hover:text-signal hover:underline"
+          className="font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-signal underline-offset-4 hover:underline"
         >
-          View details →
+          Read review →
         </Link>
       </footer>
     </article>

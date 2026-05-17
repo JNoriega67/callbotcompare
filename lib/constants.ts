@@ -9,6 +9,7 @@ export const NAV_ITEMS = [
   { label: "Compare", href: "/compare" },
   { label: "Vendors", href: "/vendors" },
   { label: "Best of", href: "/best-ai-receptionist-software" },
+  { label: "Services", href: "/services" },
   { label: "Quiz", href: "/quiz" },
 ] as const;
 
@@ -22,10 +23,20 @@ export const FOOTER_LINKS = [
     ],
   },
   {
-    heading: "Tools",
+    heading: "Services",
+    links: [
+      { label: "Vendor selection", href: "/services#selection" },
+      { label: "AI receptionist setup", href: "/services#setup" },
+      { label: "CRM & booking", href: "/services#integration" },
+      { label: "Call flow design", href: "/services#flow" },
+    ],
+  },
+  {
+    heading: "About",
     links: [
       { label: "Take the quiz", href: "/quiz" },
       { label: "Talk to us", href: "/contact" },
+      { label: "Disclosure", href: "/disclosure" },
     ],
   },
 ] as const;

@@ -11,14 +11,14 @@ export function FaqSection() {
       <Container>
         <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
               FAQ
             </p>
-            <h2 className="mt-3 font-display text-3xl leading-[1.1] md:text-4xl">
+            <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
               Common questions.
             </h2>
           </div>
-          <div className="border-t border-rule-strong">
+          <div className="border-t border-rule">
             <FaqAccordion items={HOMEPAGE_FAQS} />
           </div>
         </div>
