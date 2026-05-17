@@ -24,9 +24,8 @@ export function MobileFilterSheet({ verticals, features }: MobileFilterSheetProp
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-border bg-surface px-3 py-2 text-sm font-medium text-slate md:hidden">
+      <SheetTrigger className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-3.5 py-2 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-ink transition-colors hover:border-signal hover:text-signal md:hidden">
         <svg
-          xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -42,10 +41,10 @@ export function MobileFilterSheet({ verticals, features }: MobileFilterSheetProp
         </svg>
         Filters
       </SheetTrigger>
-      <SheetContent side="left" className="w-[90vw] max-w-md overflow-y-auto bg-surface p-6">
-        <SheetHeader className="mb-4">
-          <SheetTitle className="font-heading text-lg font-semibold text-slate">
-            Filter vendors
+      <SheetContent side="left" className="w-[88vw] max-w-md overflow-y-auto bg-surface p-0">
+        <SheetHeader className="border-b border-rule px-5 py-4">
+          <SheetTitle className="font-heading text-base font-bold text-ink">
+            Refine vendors
           </SheetTitle>
           <SheetDescription className="sr-only">
             Narrow the directory by capability, vertical, or feature.
