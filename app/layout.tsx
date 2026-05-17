@@ -8,12 +8,12 @@ import { SITE_NAME, SITE_URL } from "@/lib/constants";
 
 import "./globals.css";
 
-// Montserrat across the full weight range — 300 (light) + 700 (bold)
-// do the heavy editorial lifting in headlines; 600 for CTAs.
+// Montserrat headings: 300 (light) and 700 (bold) do the editorial
+// dual-weight headline contrast; 500/600 cover shadcn primitives + CTAs.
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
