@@ -14,6 +14,7 @@ import { Alternatives } from "@/app/vendors/[slug]/_components/alternatives";
 import { ProsCons } from "@/app/vendors/[slug]/_components/pros-cons";
 import { ScoreBreakdown } from "@/app/vendors/[slug]/_components/score-breakdown";
 import { prisma } from "@/lib/db";
+import { relatedGuidesForVendor } from "@/lib/related-for-vendor";
 import { formatPricing, formatScore, formatSetupComplexity } from "@/lib/scoring";
 import { buildMetadata, breadcrumbJsonLd, vendorJsonLd } from "@/lib/seo";
 
@@ -67,6 +68,13 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
 
   const hasOutbound = Boolean(vendor.affiliateUrl ?? vendor.websiteUrl);
   const isReferral = Boolean(vendor.affiliateUrl);
+
+  const relatedGuides = relatedGuidesForVendor({
+    verticalSlugs: vendor.vendorVerticals.map((vv) => vv.vertical.slug),
+    hasCrmIntegration: vendor.hasCrmIntegration,
+    hasAppointmentBooking: vendor.hasAppointmentBooking,
+    hipaaFriendly: vendor.hipaaFriendly,
+  });
 
   return (
     <>
@@ -263,6 +271,40 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
             </div>
             <Alternatives items={alternatives} />
           </div>
+
+          {/* Related editorial guides (cross-cluster internal linking) */}
+          {relatedGuides.length ? (
+            <div>
+              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+                Related guides
+              </p>
+              <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
+                Buyer guides aligned with {vendor.name}&apos;s fit.
+              </h2>
+              <ul className="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+                {relatedGuides.map((g) => (
+                  <li key={g.href}>
+                    <Link
+                      href={g.href}
+                      className="group flex h-full flex-col justify-between rounded-[var(--radius-card)] border border-rule bg-surface p-4 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)]"
+                    >
+                      <div>
+                        <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+                          {g.eyebrow}
+                        </p>
+                        <p className="mt-2 font-heading text-base font-semibold text-ink group-hover:text-signal">
+                          {g.title}
+                        </p>
+                      </div>
+                      <p className="mt-3 font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-signal group-hover:underline">
+                        Read the guide →
+                      </p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
 
           {/* Implementation help CTA */}
           <CtaBanner variant="setup" tone="ink" />

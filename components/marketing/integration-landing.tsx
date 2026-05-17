@@ -7,56 +7,63 @@ import { Breadcrumbs } from "@/components/marketing/breadcrumbs";
 import { CtaBanner } from "@/components/marketing/cta-banner";
 import { FaqAccordion } from "@/components/marketing/faq-accordion";
 import { JsonLd } from "@/components/marketing/json-ld";
-import { ComparisonStackedCards } from "@/components/comparisons/comparison-stacked-cards";
-import { ComparisonTable } from "@/components/comparisons/comparison-table";
-import { COMMERCIAL_PAGES, type CommercialFilter, type CommercialPageConfig } from "@/lib/commercial-pages";
-import { INTEGRATION_PAGES, type IntegrationPageConfig } from "@/lib/integration-pages";
+import {
+  INTEGRATION_PAGES,
+  type IntegrationCategory,
+  type IntegrationDepth,
+  type IntegrationPageConfig,
+} from "@/lib/integration-pages";
+import { COMMERCIAL_PAGES, type CommercialPageConfig } from "@/lib/commercial-pages";
 import { prisma } from "@/lib/db";
 import { formatPricing, formatScore } from "@/lib/scoring";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 
 /**
- * Maps a CommercialFilter into a Prisma `where`. Single source of
- * truth for "which vendors count for this page."
+ * Map integration category → vendor pool filter. CRM/FSM/legal-cms
+ * pages rank vendors with `hasCrmIntegration` (proxy for "supports
+ * structured push to an external system"); calendar pages rank by
+ * `hasAppointmentBooking`. We rank by overall score within that pool;
+ * the *specific* tool support is editorial.
  */
-function filterToWhere(filter: CommercialFilter) {
-  if (filter.type === "vertical") {
-    return {
-      isPublished: true,
-      vendorVerticals: { some: { vertical: { slug: filter.slug } } },
-    };
+function categoryFilter(category: IntegrationCategory) {
+  if (category === "calendar") {
+    return { isPublished: true, hasAppointmentBooking: true };
   }
-  if (filter.type === "capability") {
-    const map = {
-      booking: { hasAppointmentBooking: true },
-      crm: { hasCrmIntegration: true },
-      handoff: { hasHumanHandoff: true },
-      multilingual: { hasMultilingual: true },
-      "247": { has24x7: true },
-      hipaa: { hipaaFriendly: true },
-    } as const;
-    return { isPublished: true, ...map[filter.slug] };
-  }
-  // feature
-  return {
-    isPublished: true,
-    vendorFeatures: { some: { feature: { slug: filter.slug } } },
-  };
+  // crm | fsm | legal-cms all proxy through CRM-integration capability.
+  return { isPublished: true, hasCrmIntegration: true };
 }
 
-/** Builds the URL that filters the directory to the same vendors. */
-function directoryHref(filter: CommercialFilter): string {
-  if (filter.type === "vertical") return `/vendors?verticals=${filter.slug}`;
-  if (filter.type === "capability") return `/vendors?capabilities=${filter.slug}`;
-  return `/vendors?features=${filter.slug}`;
-}
-
-type CommercialLandingProps = {
-  config: CommercialPageConfig;
+const DEPTH_RANK: Record<IntegrationDepth, number> = {
+  native: 0,
+  webhook: 1,
+  zapier: 2,
+  none: 3,
 };
 
-export async function CommercialLanding({ config }: CommercialLandingProps) {
-  const where = filterToWhere(config.filter);
+const DEPTH_PILL_CLASS: Record<IntegrationDepth, string> = {
+  native:
+    "bg-signal text-signal-ink ring-1 ring-inset ring-signal-deep/30",
+  webhook:
+    "bg-signal-soft text-signal-deep ring-1 ring-inset ring-signal/30",
+  zapier:
+    "bg-paper-deep text-ink-soft ring-1 ring-inset ring-rule",
+  none:
+    "bg-paper text-muted-ink ring-1 ring-inset ring-rule",
+};
+
+const DEPTH_RANK_LABEL: Record<IntegrationDepth, string> = {
+  native: "01",
+  webhook: "02",
+  zapier: "03",
+  none: "04",
+};
+
+type IntegrationLandingProps = {
+  config: IntegrationPageConfig;
+};
+
+export async function IntegrationLanding({ config }: IntegrationLandingProps) {
+  const where = categoryFilter(config.category);
 
   const vendors = await prisma.vendor.findMany({
     where,
@@ -64,23 +71,30 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
     take: 6,
   });
 
-  const related: ReadonlyArray<CommercialPageConfig> =
+  const related: ReadonlyArray<IntegrationPageConfig> =
     config.relatedSlugs
-      ?.map((slug) => COMMERCIAL_PAGES[slug])
-      .filter((c): c is CommercialPageConfig => Boolean(c)) ?? [];
-
-  const relatedIntegrations: ReadonlyArray<IntegrationPageConfig> =
-    config.relatedIntegrationSlugs
       ?.map((slug) => INTEGRATION_PAGES[slug])
       .filter((c): c is IntegrationPageConfig => Boolean(c)) ?? [];
 
+  const relatedCommercial: ReadonlyArray<CommercialPageConfig> =
+    config.relatedCommercialSlugs
+      ?.map((slug) => COMMERCIAL_PAGES[slug])
+      .filter((c): c is CommercialPageConfig => Boolean(c)) ?? [];
+
   if (!vendors.length) {
-    // Defensive: shouldn't happen with seeded data, but better to 404
-    // than render a page that promises a ranking and then shows nothing.
     notFound();
   }
 
   const topThree = vendors.slice(0, 3);
+  const sortedSpectrum = [...config.spectrum].sort(
+    (a, b) => DEPTH_RANK[a.level] - DEPTH_RANK[b.level],
+  );
+
+  // Map the category to a sensible directory pre-filter URL.
+  const directoryHref =
+    config.category === "calendar"
+      ? "/vendors?capabilities=booking"
+      : "/vendors?capabilities=crm";
 
   return (
     <>
@@ -90,7 +104,8 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
           <Breadcrumbs
             trail={[
               { label: "Home", href: "/" },
-              { label: config.eyebrow, href: `/${config.slug}` },
+              { label: "Integrations", href: "/vendors?capabilities=crm" },
+              { label: config.toolName, href: `/${config.slug}` },
             ]}
           />
           <div className="grid gap-10 md:grid-cols-[7fr_5fr] md:items-end md:gap-14">
@@ -109,10 +124,10 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
               <p className="text-base leading-relaxed text-ink-soft md:text-lg">{config.intro}</p>
               <div className="flex flex-wrap items-center gap-3">
                 <Link
-                  href={directoryHref(config.filter)}
+                  href={directoryHref}
                   className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-ink px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-paper transition-colors hover:bg-signal"
                 >
-                  Compare these vendors
+                  See {config.category === "calendar" ? "booking-capable" : "CRM-capable"} vendors
                   <span aria-hidden>→</span>
                 </Link>
                 <Link
@@ -125,7 +140,7 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
                   href="/services"
                   className="font-heading text-[12px] font-semibold uppercase tracking-[0.14em] text-muted-ink underline-offset-4 hover:text-signal hover:underline"
                 >
-                  Need help launching it? →
+                  Need help wiring it? →
                 </Link>
               </div>
             </div>
@@ -133,8 +148,67 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
         </Container>
       </Section>
 
-      {/* TOP PICKS — ranked list */}
+      {/* INTEGRATION DEPTH SPECTRUM */}
       <Section tone="paper" className="pt-2 pb-14 md:pt-4 md:pb-16">
+        <Container>
+          <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
+            <div>
+              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+                Integration depth
+              </p>
+              <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
+                Not all &quot;{config.toolName} integration&quot; is the same.
+              </h2>
+              <p className="mt-4 text-ink-soft">
+                Most vendor pages just say &quot;integrates with {config.toolName}.&quot; Four very
+                different things hide under that label — and only one of them lets you skip the
+                manual re-entry tax.
+              </p>
+              <Link
+                href="/disclosure"
+                className="mt-5 inline-flex items-center gap-1 font-heading text-[12px] font-semibold uppercase tracking-[0.12em] text-ink underline-offset-4 hover:text-signal hover:underline"
+              >
+                How we score integrations →
+              </Link>
+            </div>
+            <ol className="space-y-3">
+              {sortedSpectrum.map((row) => (
+                <li
+                  key={row.level}
+                  className="rounded-[var(--radius-card)] border border-rule bg-surface p-5 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)] md:p-6"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="font-heading text-sm font-bold tabular-nums text-muted-ink/70">
+                      {DEPTH_RANK_LABEL[row.level]}
+                    </span>
+                    <span
+                      className={
+                        "inline-flex items-center rounded-full px-2.5 py-0.5 font-heading text-[10px] font-semibold uppercase tracking-[0.12em] " +
+                        DEPTH_PILL_CLASS[row.level]
+                      }
+                    >
+                      {row.level === "native"
+                        ? "Best"
+                        : row.level === "webhook"
+                          ? "Good"
+                          : row.level === "zapier"
+                            ? "Workable"
+                            : "Avoid"}
+                    </span>
+                    <h3 className="font-heading text-base font-semibold text-ink md:text-lg">
+                      {row.label}
+                    </h3>
+                  </div>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-soft">{row.body}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </Container>
+      </Section>
+
+      {/* TOP PICKS — ranked vendors */}
+      <Section tone="deep" className="py-14 md:py-20">
         <Container>
           <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
             <div>
@@ -142,18 +216,21 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
                 Top picks
               </p>
               <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
-                The {topThree.length === 1 ? "lead pick" : `top ${topThree.length}`} for this use
-                case.
+                Vendors most likely to actually integrate cleanly.
               </h2>
               <p className="mt-4 text-ink-soft">
-                Pulled live from the directory using the same editor rubric. Scores update as
-                vendors change.
+                Ranked from the directory pool with{" "}
+                {config.category === "calendar"
+                  ? "appointment-booking capability"
+                  : "CRM-integration capability"}
+                . Always confirm {config.toolName} support specifically on a live demo against your
+                own setup.
               </p>
               <Link
-                href={directoryHref(config.filter)}
+                href={directoryHref}
                 className="mt-5 inline-flex items-center gap-1 font-heading text-[12px] font-semibold uppercase tracking-[0.12em] text-ink underline-offset-4 hover:text-signal hover:underline"
               >
-                See all {vendors.length} in the directory →
+                See all {vendors.length} candidates →
               </Link>
             </div>
             <ol>
@@ -174,14 +251,6 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
                     </Link>
                     {v.tagline ? (
                       <p className="mt-1 truncate text-sm text-ink-soft">{v.tagline}</p>
-                    ) : null}
-                    {v.bestFor ? (
-                      <p className="mt-1 text-sm text-ink-soft">
-                        <span className="font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-ink">
-                          Best for ·{" "}
-                        </span>
-                        {v.bestFor}
-                      </p>
                     ) : null}
                     <p className="mt-2 font-heading text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-ink">
                       {formatPricing(v.pricingFromUsd, v.pricingModel)}
@@ -205,32 +274,6 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
         </Container>
       </Section>
 
-      {/* TABLE */}
-      <Section tone="deep" className="py-14 md:py-20">
-        <Container className="space-y-6">
-          <div className="grid gap-3 md:grid-cols-[5fr_7fr] md:items-end md:gap-12">
-            <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
-                Side by side
-              </p>
-              <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
-                The full shortlist on one row each.
-              </h2>
-            </div>
-            <p className="text-sm text-ink-soft">
-              Same data as the directory, filtered to this use case. Mobile renders as stacked
-              cards instead of a scroll-table.
-            </p>
-          </div>
-          <div className="hidden md:block">
-            <ComparisonTable vendors={vendors} />
-          </div>
-          <div className="md:hidden">
-            <ComparisonStackedCards vendors={vendors} />
-          </div>
-        </Container>
-      </Section>
-
       {/* GET MATCHED CTA */}
       <Section tone="paper" className="pt-14 pb-10 md:pt-16 md:pb-12">
         <Container>
@@ -238,15 +281,15 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
         </Container>
       </Section>
 
-      {/* WHAT WE LOOK FOR + BUYER NOTES */}
+      {/* CRITERIA + BUYER NOTES */}
       <Section tone="paper" className="pt-6 pb-14 md:pt-10 md:pb-20">
         <Container className="grid gap-14 md:grid-cols-2 md:gap-16">
           <div>
             <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
-              What we look for
+              What &quot;good&quot; looks like
             </p>
             <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
-              Criteria we weight heavy for this use case.
+              Criteria for a real {config.toolName} integration.
             </h2>
             <dl className="mt-6">
               {config.criteria.map((c, i) => (
@@ -270,7 +313,7 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
               Buyer notes
             </p>
             <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
-              Things you&apos;ll wish someone told you.
+              Gotchas specific to {config.toolName}.
             </h2>
             <ul className="mt-6 space-y-6">
               {config.buyerNotes.map((n) => (
@@ -293,7 +336,7 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
                 FAQ
               </p>
               <h2 className="mt-3 font-heading text-3xl font-bold text-ink md:text-4xl">
-                Specific to this segment.
+                {config.toolName}-specific questions.
               </h2>
             </div>
             <div className="border-t border-rule">
@@ -310,15 +353,15 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
         </Container>
       </Section>
 
-      {/* RELATED COMMERCIAL PAGES */}
+      {/* RELATED INTEGRATIONS */}
       {related.length ? (
         <Section tone="paper" className="border-t border-rule pt-12 pb-16 md:pt-16 md:pb-20">
           <Container>
             <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
-              Related
+              Related integrations
             </p>
             <h2 className="mt-2 font-heading text-2xl font-bold text-ink md:text-3xl">
-              Other angles on the same problem.
+              Same evaluation, different tool.
             </h2>
             <ul className="mt-6 divide-y divide-rule border-y border-rule">
               {related.map((r) => (
@@ -363,18 +406,18 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
         </Section>
       ) : null}
 
-      {/* RELATED INTEGRATIONS — cross-cluster link */}
-      {relatedIntegrations.length ? (
+      {/* RELATED COMMERCIAL PAGES — cross-cluster link */}
+      {relatedCommercial.length ? (
         <Section tone="deep" className="border-t border-rule py-12 md:py-16">
           <Container>
             <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
-              Tool-specific integration guides
+              For buyers in these segments
             </p>
             <h2 className="mt-2 font-heading text-2xl font-bold text-ink md:text-3xl">
-              For buyers wiring the AI into a specific stack.
+              {config.toolName} buyers usually come from these use cases.
             </h2>
             <ul className="mt-6 grid gap-4 md:grid-cols-2">
-              {relatedIntegrations.map((r) => (
+              {relatedCommercial.map((r) => (
                 <li key={r.slug}>
                   <Link
                     href={`/${r.slug}`}
@@ -389,7 +432,7 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
                       </p>
                     </div>
                     <p className="mt-4 font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-signal group-hover:underline">
-                      Read the {r.toolName} guide →
+                      Read the segment guide →
                     </p>
                   </Link>
                 </li>
@@ -410,7 +453,7 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
         data={[
           breadcrumbJsonLd([
             { label: "Home", href: "/" },
-            { label: config.eyebrow, href: `/${config.slug}` },
+            { label: config.toolName, href: `/${config.slug}` },
           ]),
           faqJsonLd(config.faqs),
         ]}

@@ -42,6 +42,8 @@ export type CommercialPageConfig = {
 
   /** Slugs of other commercial pages to surface in the "related" block. */
   relatedSlugs?: ReadonlyArray<string>;
+  /** Integration pages most relevant to this segment (cross-cluster wiring). */
+  relatedIntegrationSlugs?: ReadonlyArray<string>;
 };
 
 /* ------------------------------------------------------------------ */
@@ -118,6 +120,7 @@ export const COMMERCIAL_LAW_FIRMS: CommercialPageConfig = {
     },
   ],
   relatedSlugs: ["best-ai-phone-agent-with-crm-integration"],
+  relatedIntegrationSlugs: ["ai-receptionist-with-clio", "ai-receptionist-with-hubspot"],
 };
 
 export const COMMERCIAL_CRM_INTEGRATION: CommercialPageConfig = {
@@ -186,6 +189,11 @@ export const COMMERCIAL_CRM_INTEGRATION: CommercialPageConfig = {
     },
   ],
   relatedSlugs: ["best-ai-receptionist-for-law-firms"],
+  relatedIntegrationSlugs: [
+    "ai-receptionist-with-hubspot",
+    "ai-receptionist-with-salesforce",
+    "ai-receptionist-with-gohighlevel",
+  ],
 };
 
 export const COMMERCIAL_HOME_SERVICES: CommercialPageConfig = {
@@ -258,6 +266,7 @@ export const COMMERCIAL_HOME_SERVICES: CommercialPageConfig = {
     },
   ],
   relatedSlugs: ["best-ai-receptionist-for-contractors", "best-ai-answering-service-for-appointment-booking"],
+  relatedIntegrationSlugs: ["ai-receptionist-with-servicetitan", "ai-receptionist-with-jobber"],
 };
 
 export const COMMERCIAL_MEDICAL: CommercialPageConfig = {
@@ -334,6 +343,7 @@ export const COMMERCIAL_MEDICAL: CommercialPageConfig = {
     },
   ],
   relatedSlugs: ["best-ai-answering-service-for-appointment-booking", "best-ai-phone-agent-with-crm-integration"],
+  relatedIntegrationSlugs: ["ai-receptionist-with-calendly", "ai-receptionist-with-hubspot"],
 };
 
 export const COMMERCIAL_CONTRACTORS: CommercialPageConfig = {
@@ -406,6 +416,7 @@ export const COMMERCIAL_CONTRACTORS: CommercialPageConfig = {
     },
   ],
   relatedSlugs: ["best-ai-receptionist-for-home-services", "best-ai-phone-agent-with-crm-integration"],
+  relatedIntegrationSlugs: ["ai-receptionist-with-jobber", "ai-receptionist-with-gohighlevel"],
 };
 
 export const COMMERCIAL_BOOKING: CommercialPageConfig = {
@@ -478,6 +489,7 @@ export const COMMERCIAL_BOOKING: CommercialPageConfig = {
     },
   ],
   relatedSlugs: ["best-ai-receptionist-for-medical-offices", "best-ai-receptionist-for-home-services"],
+  relatedIntegrationSlugs: ["ai-receptionist-with-calendly", "ai-receptionist-with-gohighlevel"],
 };
 
 /** Lookup by slug for the related-pages block. */

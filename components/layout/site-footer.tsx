@@ -9,14 +9,25 @@ export function SiteFooter() {
 
   return (
     <footer className="border-t border-rule bg-ink text-over-ink">
-      <Container className="grid gap-10 py-14 md:grid-cols-[2fr_1fr_1fr_1fr]">
-        <div>
+      <Container className="grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-[2.2fr_1fr_1fr_1fr_1fr_1fr]">
+        <div className="md:col-span-2 lg:col-span-1">
           <Link href="/" className="text-base">
             <Wordmark invert />
           </Link>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-over-ink/75">
             Independent comparisons of AI receptionist and AI phone agent software, ranked against a
             transparent rubric for small and mid-sized service businesses.
+          </p>
+          <p className="mt-4 max-w-sm text-xs leading-relaxed text-over-ink/55">
+            Methodology and editorial standards are{" "}
+            <Link href="/methodology" className="underline underline-offset-2 hover:text-paper">
+              public
+            </Link>
+            . Referral relationships are{" "}
+            <Link href="/disclosure" className="underline underline-offset-2 hover:text-paper">
+              disclosed
+            </Link>
+            .
           </p>
         </div>
         {FOOTER_LINKS.map((column) => (

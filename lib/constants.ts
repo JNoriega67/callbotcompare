@@ -6,11 +6,11 @@ export const SITE_URL =
 export const SITE_TAGLINE = "Compare AI receptionist software without wasting weeks on demos.";
 
 export const NAV_ITEMS = [
-  { label: "Compare", href: "/compare" },
   { label: "Vendors", href: "/vendors" },
-  { label: "Best of", href: "/best-ai-receptionist-software" },
+  { label: "Compare", href: "/compare" },
+  { label: "Pricing", href: "/ai-receptionist-pricing" },
   { label: "Services", href: "/services" },
-  { label: "Quiz", href: "/quiz" },
+  { label: "Methodology", href: "/methodology" },
 ] as const;
 
 export const FOOTER_LINKS = [
@@ -21,23 +21,47 @@ export const FOOTER_LINKS = [
       { label: "Compare hub", href: "/compare" },
       { label: "Best AI receptionist software", href: "/best-ai-receptionist-software" },
       { label: "AI vs virtual receptionist", href: "/ai-receptionist-vs-virtual-receptionist" },
+      { label: "Pricing guide", href: "/ai-receptionist-pricing" },
+    ],
+  },
+  {
+    heading: "By industry",
+    links: [
+      { label: "Law firms", href: "/best-ai-receptionist-for-law-firms" },
+      { label: "Home services", href: "/best-ai-receptionist-for-home-services" },
+      { label: "Medical offices", href: "/best-ai-receptionist-for-medical-offices" },
+      { label: "Contractors", href: "/best-ai-receptionist-for-contractors" },
+      { label: "Appointment booking", href: "/best-ai-answering-service-for-appointment-booking" },
+    ],
+  },
+  {
+    heading: "Integrations",
+    links: [
+      { label: "HubSpot", href: "/ai-receptionist-with-hubspot" },
+      { label: "Salesforce", href: "/ai-receptionist-with-salesforce" },
+      { label: "GoHighLevel", href: "/ai-receptionist-with-gohighlevel" },
+      { label: "Calendly", href: "/ai-receptionist-with-calendly" },
+      { label: "ServiceTitan", href: "/ai-receptionist-with-servicetitan" },
+      { label: "Clio", href: "/ai-receptionist-with-clio" },
+      { label: "Jobber", href: "/ai-receptionist-with-jobber" },
     ],
   },
   {
     heading: "Services",
     links: [
-      { label: "Vendor selection", href: "/services#selection" },
-      { label: "AI receptionist setup", href: "/services#setup" },
-      { label: "CRM & booking", href: "/services#integration" },
-      { label: "Call flow design", href: "/services#flow" },
+      { label: "Vendor selection", href: "/services/vendor-selection" },
+      { label: "AI receptionist setup", href: "/services/setup" },
+      { label: "CRM & booking integration", href: "/services/integration" },
+      { label: "Call flow design", href: "/services/call-flow" },
     ],
   },
   {
     heading: "About",
     links: [
+      { label: "Methodology", href: "/methodology" },
+      { label: "Disclosure", href: "/disclosure" },
       { label: "Take the quiz", href: "/quiz" },
       { label: "Talk to us", href: "/contact" },
-      { label: "Disclosure", href: "/disclosure" },
     ],
   },
 ] as const;
