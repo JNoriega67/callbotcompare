@@ -68,13 +68,16 @@ async function main() {
   const LOCK_ID = 72707369;
 
   console.log(`Looking for holders of advisory lock objid=${LOCK_ID}…`);
+  // Exclude pg_backend_pid() — under Neon's pooler our own session can
+  // appear in pg_locks, and terminating it would just kill this script.
   const locks = await prisma.$queryRawUnsafe<LockRow[]>(
-    `SELECT pid, granted FROM pg_locks WHERE locktype='advisory' AND objid=${LOCK_ID}`,
+    `SELECT pid, granted FROM pg_locks
+      WHERE locktype='advisory' AND objid=${LOCK_ID} AND pid <> pg_backend_pid()`,
   );
-  console.log("pg_locks rows:", locks);
+  console.log("pg_locks rows (excluding self):", locks);
 
   if (locks.length === 0) {
-    console.log("No advisory-lock rows found. Lock is already free — proceed with migration.");
+    console.log("No other backends hold the lock — proceed with migration.");
     return;
   }
 
