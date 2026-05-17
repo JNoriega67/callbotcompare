@@ -2,34 +2,39 @@
 @import "tw-animate-css";
 
 /* ----------------------------------------------------------------
-   CallTreo — visual system, round 3.
-   Cool premium editorial. No cream, no neon. Single teal accent.
-   Headings Montserrat with weight contrast (300 + 700) doing the
-   editorial work; Inter for body.
+   CallTreo — visual system, round 4 (logo-matched).
+   - 'Call' deep teal  #1A6B72 (text-signal-deep)
+   - 'Treo' bright teal #2E9B97 (text-signal)
+   - Slate ink for headings stays cool/serious
+   - Warm gold #F4A434 reserved for tiny accents (matches sparkle)
    ---------------------------------------------------------------- */
 
 :root {
   /* ----- Surfaces ----- */
-  --paper:        #F4F6F8;   /* cool soft off-white page background */
-  --paper-deep:   #ECEFF3;   /* alternate section tint */
-  --surface:      #FFFFFF;   /* cards */
+  --paper:        #F4F6F8;
+  --paper-deep:   #ECEFF3;
+  --surface:      #FFFFFF;
 
   /* ----- Text ----- */
-  --ink:          #0F1B2D;   /* deep slate / navy — headings */
-  --ink-soft:     #1F2933;   /* charcoal — body emphasis */
-  --muted-ink:    #5B6875;   /* muted gray — supporting text */
-  --over-ink:     #E6ECF2;   /* readable light over deep slate sections */
+  --ink:          #0F1B2D;
+  --ink-soft:     #1F2933;
+  --muted-ink:    #5B6875;
+  --over-ink:     #E6ECF2;
 
   /* ----- Lines ----- */
-  --rule:         #D6DEE6;   /* soft hairline */
-  --rule-strong:  #B2BFCD;   /* stronger hairline */
-  --rule-dark:    #1F3A5F;   /* hairline on dark sections */
+  --rule:         #D6DEE6;
+  --rule-strong:  #B2BFCD;
+  --rule-dark:    #1F3A5F;
 
-  /* ----- Accent — single soft teal ----- */
-  --signal:       #2F7F79;   /* primary accent */
-  --signal-hover: #256B66;
-  --signal-soft:  #DCE9E2;   /* pale wash, for tints */
-  --signal-ink:   #FFFFFF;   /* foreground on signal */
+  /* ----- Brand teals (from logo) ----- */
+  --signal-deep:  #1A6B72;
+  --signal:       #2E9B97;
+  --signal-hover: #248580;
+  --signal-soft:  #DDEEEC;
+  --signal-ink:   #FFFFFF;
+
+  /* ----- Tiny warm accent (matches logo sparkle) ----- */
+  --accent-warm:  #F4A434;
 
   /* ----- States ----- */
   --success:      #1F7A4F;
@@ -56,87 +61,83 @@
   --input: var(--surface);
   --ring: color-mix(in srgb, var(--signal) 55%, transparent);
 
-  /* ----- Back-compat aliases (kept so older files keep rendering) ----- */
+  /* ----- Back-compat aliases ----- */
   --brand-cream:        var(--paper);
   --brand-slate:        var(--ink);
   --brand-teal:         var(--signal);
   --brand-teal-hover:   var(--signal-hover);
   --brand-sage:         var(--signal-soft);
-  --brand-gold:         var(--signal);
+  --brand-gold:         var(--accent-warm);
   --brand-charcoal:     var(--ink-soft);
   --brand-muted:        var(--muted-ink);
   --brand-border-soft:  var(--rule);
 }
 
 @theme inline {
-  /* ---- Surfaces + text ---- */
-  --color-background:        var(--background);
-  --color-foreground:        var(--foreground);
-  --color-paper:             var(--paper);
-  --color-paper-deep:        var(--paper-deep);
-  --color-surface:           var(--surface);
-  --color-surface-alt:       var(--paper-deep);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--paper-deep);
 
-  --color-ink:               var(--ink);
-  --color-ink-soft:          var(--ink-soft);
-  --color-muted-ink:         var(--muted-ink);
-  --color-over-ink:          var(--over-ink);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted-ink: var(--muted-ink);
+  --color-over-ink: var(--over-ink);
 
-  --color-rule:              var(--rule);
-  --color-rule-strong:       var(--rule-strong);
-  --color-rule-dark:         var(--rule-dark);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-rule-dark: var(--rule-dark);
 
-  --color-signal:            var(--signal);
-  --color-signal-hover:      var(--signal-hover);
-  --color-signal-soft:       var(--signal-soft);
-  --color-signal-ink:        var(--signal-ink);
+  --color-signal: var(--signal);
+  --color-signal-deep: var(--signal-deep);
+  --color-signal-hover: var(--signal-hover);
+  --color-signal-soft: var(--signal-soft);
+  --color-signal-ink: var(--signal-ink);
+  --color-accent-warm: var(--accent-warm);
 
-  /* ---- shadcn + shape ---- */
-  --color-border:            var(--border);
-  --color-input:             var(--input);
-  --color-ring:              var(--ring);
-  --color-card:              var(--card);
-  --color-card-foreground:   var(--card-foreground);
-  --color-popover:           var(--popover);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
-  --color-primary:           var(--primary);
+  --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-secondary:         var(--secondary);
+  --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-accent:            var(--accent);
+  --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  --color-muted:             var(--muted);
-  --color-muted-foreground:  var(--muted-foreground);
-  --color-destructive:       var(--destructive);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
-  --color-success:           var(--success);
-  --color-warning:           var(--warning);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
 
-  /* ---- Back-compat color tokens (legacy class names keep working) ---- */
   --color-cream:        var(--paper);
   --color-slate:        var(--ink);
   --color-teal:         var(--signal);
   --color-sage:         var(--signal-soft);
-  --color-gold:         var(--signal);
+  --color-gold:         var(--accent-warm);
   --color-charcoal:     var(--ink-soft);
   --color-border-soft:  var(--rule);
 
-  /* ---- Typography ---- */
   --font-heading:  var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-display:  var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-body:     var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-sans:     var(--font-body);
 
-  /* ---- Shape ---- */
   --radius-sm:     0.25rem;
-  --radius-md:     0.5rem;     /* button / input */
-  --radius-lg:     0.75rem;    /* card */
+  --radius-md:     0.5rem;
+  --radius-lg:     0.75rem;
   --radius-card:   0.75rem;
   --radius-button: 0.5rem;
   --radius-input:  0.5rem;
   --radius-pill:   9999px;
 
-  /* ---- Shadows (subtle, structural) ---- */
   --shadow-card:        0 1px 2px rgba(15, 27, 45, 0.04), 0 1px 1px rgba(15, 27, 45, 0.04);
   --shadow-card-hover:  0 4px 12px rgba(15, 27, 45, 0.08), 0 1px 2px rgba(15, 27, 45, 0.04);
   --shadow-elevated:    0 12px 32px rgba(15, 27, 45, 0.1);
@@ -169,9 +170,6 @@ a { color: inherit; }
   color: var(--signal-ink);
 }
 
-/* ---- Premium utility classes used across the site ---- */
-
-/* Editorial small-caps eyebrow */
 .eyebrow {
   font-family: var(--font-heading);
   font-weight: 600;
@@ -181,7 +179,6 @@ a { color: inherit; }
   color: var(--signal);
 }
 
-/* A hairline rule that fades to nothing on the right (used in sections) */
 .hrule {
   height: 1px;
   background: linear-gradient(to right, var(--rule-strong), transparent);
