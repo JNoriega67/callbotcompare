@@ -35,7 +35,10 @@ ENV DIRECT_URL="postgresql://stub:stub@localhost:5432/stub?sslmode=disable"
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-RUN pnpm prisma generate && \
+# public/ is tracked but may be empty on checkout; ensure the dir exists
+# so the runtime stage's COPY --from=build /app/public can resolve.
+RUN mkdir -p /app/public && \
+    pnpm prisma generate && \
     pnpm build
 
 ############################
