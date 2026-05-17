@@ -266,7 +266,7 @@ export function GuidePage({ guide }: GuidePageProps) {
 
       {/* RELATED GUIDES */}
       {relatedGuides.length ? (
-        <Section tone="paper" className="border-t border-rule pt-12 pb-12 md:pt-16 md:pb-16">
+        <Section tone="tint" className="border-t border-rule pt-12 pb-12 md:pt-16 md:pb-16">
           <Container>
             <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
               Continue reading

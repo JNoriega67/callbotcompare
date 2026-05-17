@@ -286,7 +286,7 @@ export async function IntegrationLanding({ config }: IntegrationLandingProps) {
       </Section>
 
       {/* CRITERIA + BUYER NOTES */}
-      <Section tone="paper" className="pt-6 pb-14 md:pt-10 md:pb-20">
+      <Section tone="tint" className="pt-6 pb-14 md:pt-10 md:pb-20">
         <Container className="grid gap-14 md:grid-cols-2 md:gap-16">
           <div>
             <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
