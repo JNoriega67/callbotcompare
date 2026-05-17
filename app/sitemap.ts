@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 
+import { COMMERCIAL_PAGES } from "@/lib/commercial-pages";
 import { SITE_URL } from "@/lib/constants";
 import { prisma } from "@/lib/db";
 
@@ -16,7 +17,15 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${base}/best-ai-receptionist-software`, changeFrequency: "weekly", priority: 0.9 },
   { url: `${base}/quiz`, changeFrequency: "monthly", priority: 0.7 },
   { url: `${base}/contact`, changeFrequency: "monthly", priority: 0.6 },
+  { url: `${base}/services`, changeFrequency: "monthly", priority: 0.7 },
+  { url: `${base}/disclosure`, changeFrequency: "yearly", priority: 0.3 },
 ];
+
+const COMMERCIAL_ROUTES: MetadataRoute.Sitemap = Object.values(COMMERCIAL_PAGES).map((cfg) => ({
+  url: `${base}/${cfg.slug}`,
+  changeFrequency: "monthly" as const,
+  priority: 0.85,
+}));
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let vendorEntries: MetadataRoute.Sitemap = [];
@@ -52,5 +61,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Static routes still ship.
   }
 
-  return [...STATIC_ROUTES, ...vendorEntries, ...comparisonEntries];
+  return [...STATIC_ROUTES, ...COMMERCIAL_ROUTES, ...vendorEntries, ...comparisonEntries];
 }

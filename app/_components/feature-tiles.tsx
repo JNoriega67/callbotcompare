@@ -4,8 +4,15 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { FEATURE_TILES } from "@/lib/constants";
 
+const CAPABILITY_LANDING: Partial<Record<string, string>> = {
+  booking: "/best-ai-answering-service-for-appointment-booking",
+  crm: "/best-ai-phone-agent-with-crm-integration",
+};
+
 function tileHref(tile: (typeof FEATURE_TILES)[number]): string {
-  if ("capability" in tile) return `/vendors?capabilities=${tile.capability}`;
+  if ("capability" in tile) {
+    return CAPABILITY_LANDING[tile.capability] ?? `/vendors?capabilities=${tile.capability}`;
+  }
   return `/vendors?features=${tile.featureSlug}`;
 }
 

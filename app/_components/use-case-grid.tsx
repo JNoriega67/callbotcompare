@@ -22,7 +22,12 @@ export function UseCaseGrid() {
           </div>
 
           <ul className="grid grid-cols-1 sm:grid-cols-2">
-            {USE_CASE_CARDS.map((card, i) => (
+            {USE_CASE_CARDS.map((card, i) => {
+              const href =
+                "landingHref" in card && card.landingHref
+                  ? card.landingHref
+                  : `/vendors?verticals=${card.verticalSlug}`;
+              return (
               <li
                 key={card.verticalSlug}
                 className={
@@ -30,7 +35,7 @@ export function UseCaseGrid() {
                 }
               >
                 <Link
-                  href={`/vendors?verticals=${card.verticalSlug}`}
+                  href={href}
                   className="group flex h-full items-baseline justify-between gap-4 px-1 py-5 transition-colors hover:bg-paper-deep md:px-5"
                 >
                   <span>
@@ -47,7 +52,8 @@ export function UseCaseGrid() {
                   </span>
                 </Link>
               </li>
-            ))}
+              );
+            })}
           </ul>
         </div>
       </Container>

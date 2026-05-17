@@ -81,15 +81,44 @@ export const METHODOLOGY_CRITERIA = [
   { label: "Pricing clarity", description: "How visible plans are and how cleanly they map to needs." },
 ] as const;
 
-/* Compare-by-use-case cards on the homepage. Each links into a filtered
- * vendor directory until full vertical pages ship. */
+/* Compare-by-use-case cards on the homepage. If a dedicated landing page
+ * exists for the vertical, link there; otherwise fall back to the filtered
+ * vendor directory. */
 export const USE_CASE_CARDS = [
-  { label: "For law firms", verticalSlug: "law-firms", blurb: "Intake quality, conflict checks, structured routing." },
-  { label: "For home services", verticalSlug: "home-services", blurb: "Dispatch, lead qualification, after-hours coverage." },
-  { label: "For medical offices", verticalSlug: "medical-offices", blurb: "HIPAA-friendly, appointment booking, escalation." },
-  { label: "For contractors", verticalSlug: "contractors", blurb: "Bilingual capacity, lead capture, project follow-up." },
-  { label: "For real estate teams", verticalSlug: "real-estate", blurb: "Inbound buyer/seller routing, fast handoff." },
-  { label: "For small business", verticalSlug: "small-business", blurb: "Light setup, predictable pricing, real-world workflows." },
+  {
+    label: "For law firms",
+    verticalSlug: "law-firms",
+    landingHref: "/best-ai-receptionist-for-law-firms",
+    blurb: "Intake quality, conflict checks, structured routing.",
+  },
+  {
+    label: "For home services",
+    verticalSlug: "home-services",
+    landingHref: "/best-ai-receptionist-for-home-services",
+    blurb: "Dispatch, lead qualification, after-hours coverage.",
+  },
+  {
+    label: "For medical offices",
+    verticalSlug: "medical-offices",
+    landingHref: "/best-ai-receptionist-for-medical-offices",
+    blurb: "HIPAA-friendly, appointment booking, escalation.",
+  },
+  {
+    label: "For contractors",
+    verticalSlug: "contractors",
+    landingHref: "/best-ai-receptionist-for-contractors",
+    blurb: "Bilingual capacity, lead capture, project follow-up.",
+  },
+  {
+    label: "For real estate teams",
+    verticalSlug: "real-estate",
+    blurb: "Inbound buyer/seller routing, fast handoff.",
+  },
+  {
+    label: "For small business",
+    verticalSlug: "small-business",
+    blurb: "Light setup, predictable pricing, real-world workflows.",
+  },
 ] as const;
 
 /* Compare-by-feature tiles. */
