@@ -1,6 +1,8 @@
-# CallBotCompare
+# CallTreo
 
-A directory and comparison site for AI receptionist and AI phone agent software, built as a credible buyer tool. Public domain target: **callbotcompare.com**.
+A directory and comparison site for AI receptionist and AI phone agent software, built as a credible buyer tool. Public domain target: **calltreo.com**.
+
+> _Note: the repo, npm package, ghcr image, and `/docker/callbotcompare/` VPS folder all keep the legacy `callbotcompare` name as internal identifiers — only the user-facing brand and public URLs are `CallTreo` / `calltreo.com`._
 
 - **Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind v4 · shadcn/ui · Prisma · PostgreSQL (Neon)
 - **Hosting:** Hostinger Premium/Business Node.js shared hosting
@@ -125,14 +127,14 @@ The exact weighted-score formula is in [`docs/SCORING_RUBRIC.md`](docs/SCORING_R
      # then edit /docker/callbotcompare/.env on the VPS with real Neon URLs
      ```
 3. **GitHub Container Registry visibility:** after the first `deploy.yml` run pushes the image, open https://github.com/users/JNoriega67/packages/container/callbotcompare/settings and change visibility to **Public** so the VPS can `docker pull` without auth. (Or keep it private and `docker login ghcr.io` on the VPS with a PAT that has `read:packages`.)
-4. **Domain & SSL:** point `callbotcompare.com` (and optionally `www`) at the VPS IP via A record. Traefik will issue the cert on first request — no manual step.
+4. **Domain & SSL:** point `calltreo.com` (and optionally `www`) at the VPS IP via A record. Traefik will issue the cert on first request — no manual step.
 5. **GitHub secrets** (Settings → Secrets and variables → Actions → New repository secret):
    - `HOSTINGER_SSH_HOST` (e.g. `187.124.70.200`)
    - `HOSTINGER_SSH_USER` (e.g. `root`)
    - `HOSTINGER_SSH_KEY` (private key, PEM format, no passphrase)
    - `NEON_DATABASE_URL` (pooled connection string, **main** branch)
    - `NEON_DIRECT_URL` (direct connection string, **main** branch)
-   - `SITE_URL` and `NEXT_PUBLIC_SITE_URL` (`https://callbotcompare.com`)
+   - `SITE_URL` and `NEXT_PUBLIC_SITE_URL` (`https://calltreo.com`)
 6. **First seed (manual):** the deploy workflow runs `prisma migrate deploy` but doesn't seed. From local, with the prod Neon URLs in env, run:
    ```bash
    DATABASE_URL="<neon-main-pooled>" DIRECT_URL="<neon-main-direct>" pnpm tsx prisma/seed.ts

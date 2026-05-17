@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-`callbotcompare.com` — a directory and comparison site for AI receptionist / AI phone agent software. Built with **Next.js 16 (App Router) + TypeScript + Tailwind v4 + shadcn/ui + Prisma + PostgreSQL (Neon)**, deployed to **Hostinger Premium/Business Node.js shared hosting** via **GitHub Actions** on push to `main`. Private GitHub repo.
+`calltreo.com` — a directory and comparison site for AI receptionist / AI phone agent software (formerly planned as `callbotcompare.com`; internal code identifiers and the repo name still use `callbotcompare`). Built with **Next.js 16 (App Router) + TypeScript + Tailwind v4 + shadcn/ui + Prisma + PostgreSQL (Neon)**, deployed to **Hostinger Premium/Business Node.js shared hosting** via **GitHub Actions** on push to `main`. Private GitHub repo.
 
 Source specs and copy live in [docs/](docs/) — the original briefs that drove the build, kept as reference. The full build plan is at `/Users/grady/.claude/plans/snuggly-floating-hammock.md`.
 
@@ -83,7 +83,7 @@ docs/                 Source specs and copy (reference, do not edit)
 ## Deployment
 
 - **Target**: Hostinger KVM 2 **VPS** (not the classic Web Hosting plans — those don't run Node). The VPS already runs Docker + a Traefik reverse proxy with auto Let's Encrypt SSL.
-- **Pattern**: CallBotCompare is a Docker container joined to the existing `n8n_default` network and routed by Traefik via labels. Config lives at `/docker/callbotcompare/` on the VPS (`docker-compose.yml` + `.env`).
+- **Pattern**: CallTreo is a Docker container joined to the existing `n8n_default` network and routed by Traefik via labels. Config lives at `/docker/callbotcompare/` on the VPS (path keeps the legacy folder name; only the public brand changed).
 - **Image**: built and pushed to `ghcr.io/jnoriega67/callbotcompare` by GitHub Actions.
 - **CI** (`.github/workflows/ci.yml`): lint + typecheck + build on PRs (no image build).
 - **Deploy** (`.github/workflows/deploy.yml`): on push to `main` — `prisma migrate deploy` against Neon, `docker buildx` + push to ghcr.io, SSH to VPS, `docker compose pull && up -d`, curl smoke check.

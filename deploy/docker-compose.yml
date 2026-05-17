@@ -21,15 +21,15 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=n8n_default"
       # Primary router (apex + www)
-      - "traefik.http.routers.callbotcompare.rule=Host(`callbotcompare.com`) || Host(`www.callbotcompare.com`)"
+      - "traefik.http.routers.callbotcompare.rule=Host(`calltreo.com`) || Host(`www.calltreo.com`)"
       - "traefik.http.routers.callbotcompare.entrypoints=websecure"
       - "traefik.http.routers.callbotcompare.tls=true"
       - "traefik.http.routers.callbotcompare.tls.certresolver=mytlschallenge"
       # Upstream port
       - "traefik.http.services.callbotcompare.loadbalancer.server.port=3000"
       # Redirect www -> apex (optional, comment out if you prefer keeping www)
-      - "traefik.http.middlewares.callbotcompare-www-redirect.redirectregex.regex=^https?://www\\.callbotcompare\\.com/(.*)"
-      - "traefik.http.middlewares.callbotcompare-www-redirect.redirectregex.replacement=https://callbotcompare.com/$$1"
+      - "traefik.http.middlewares.callbotcompare-www-redirect.redirectregex.regex=^https?://www\\.calltreo\\.com/(.*)"
+      - "traefik.http.middlewares.callbotcompare-www-redirect.redirectregex.replacement=https://calltreo.com/$$1"
       - "traefik.http.middlewares.callbotcompare-www-redirect.redirectregex.permanent=true"
       - "traefik.http.routers.callbotcompare.middlewares=callbotcompare-www-redirect"
 

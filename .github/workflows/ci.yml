@@ -18,8 +18,8 @@ jobs:
       # connects in CI. The deploy workflow uses the real Neon secrets.
       DATABASE_URL: postgresql://stub:stub@localhost:5432/stub?sslmode=disable
       DIRECT_URL: postgresql://stub:stub@localhost:5432/stub?sslmode=disable
-      SITE_URL: https://callbotcompare.com
-      NEXT_PUBLIC_SITE_URL: https://callbotcompare.com
+      SITE_URL: https://calltreo.com
+      NEXT_PUBLIC_SITE_URL: https://calltreo.com
     steps:
       - uses: actions/checkout@v4
 

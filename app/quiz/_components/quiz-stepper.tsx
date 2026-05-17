@@ -129,7 +129,7 @@ export function QuizStepper({ publishedVendors }: QuizStepperProps) {
           // flow we synthesize placeholders so the server still validates while
           // the user has not yet entered their email.
           name: "quiz-anon",
-          email: `quiz+${Date.now()}@callbotcompare.local`,
+          email: `quiz+${Date.now()}@calltreo.local`,
           industry: answers.industry ?? undefined,
           monthlyCallVolume: answers.volume ?? undefined,
           mainUseCase: answers.needs ?? undefined,

@@ -15,8 +15,8 @@ export function Hero() {
             Compare AI receptionist software without wasting weeks on demos.
           </h1>
           <p className="max-w-xl text-lg text-charcoal/85">
-            CallBotCompare helps small businesses evaluate AI receptionists, phone agents, and
-            answering tools by the things that actually matter: call handling, booking, integrations,
+            CallTreo helps small businesses evaluate AI receptionists, phone agents, and answering
+            tools by the things that actually matter: call handling, booking, integrations,
             after-hours coverage, and setup complexity.
           </p>
           <ul className="grid gap-2 text-sm text-charcoal/85">
