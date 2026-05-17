@@ -10,7 +10,7 @@ import { Section } from "@/components/layout/section";
  */
 export function GetMatched() {
   return (
-    <Section tone="paper" className="py-16 md:py-20">
+    <Section tone="hint" className="py-16 md:py-20">
       <Container>
         <div className="rounded-[var(--radius-card)] border border-rule bg-signal-soft/60 p-8 md:p-12">
           <div className="grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-center md:gap-12">

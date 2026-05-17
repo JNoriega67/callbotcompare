@@ -280,7 +280,7 @@ export default function Page() {
       </Section>
 
       {/* WHAT WE REFUSE */}
-      <Section tone="paper" className="py-14 md:py-20">
+      <Section tone="tint" className="py-14 md:py-20">
         <Container className="grid gap-14 md:grid-cols-[5fr_7fr] md:gap-16">
           <div>
             <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">

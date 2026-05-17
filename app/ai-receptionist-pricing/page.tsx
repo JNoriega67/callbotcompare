@@ -427,7 +427,7 @@ export default async function Page() {
       </Section>
 
       {/* ROI FRAMING */}
-      <Section tone="paper" className="py-14 md:py-20">
+      <Section tone="hint" className="py-14 md:py-20">
         <Container>
           <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
             <div>

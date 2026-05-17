@@ -111,7 +111,7 @@ export default function ServicesPage() {
       </Section>
 
       {/* HOW WE WORK */}
-      <Section tone="deep" className="py-14 md:py-20">
+      <Section tone="tint" className="py-14 md:py-20">
         <Container>
           <div className="max-w-3xl">
             <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">

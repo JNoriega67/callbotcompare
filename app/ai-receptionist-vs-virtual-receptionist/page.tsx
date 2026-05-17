@@ -376,7 +376,7 @@ export default async function Page() {
       </Section>
 
       {/* Hybrid */}
-      <Section tone="deep">
+      <Section tone="tint">
         <Container>
           <div className="max-w-3xl">
             <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">

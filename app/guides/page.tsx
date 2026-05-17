@@ -98,7 +98,7 @@ export default function GuidesHub() {
       </Section>
 
       {/* READING PATH */}
-      <Section tone="deep" className="py-14 md:py-20">
+      <Section tone="tint" className="py-14 md:py-20">
         <Container>
           <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
             <div>

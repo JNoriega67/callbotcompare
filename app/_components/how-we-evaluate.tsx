@@ -4,7 +4,7 @@ import { METHODOLOGY_CRITERIA } from "@/lib/constants";
 
 export function HowWeEvaluate() {
   return (
-    <Section tone="paper">
+    <Section tone="tint">
       <Container>
         <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
           <div>
