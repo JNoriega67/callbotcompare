@@ -89,7 +89,7 @@ export function CtaBanner({ variant, tone = "deep", className }: CtaBannerProps)
           >
             {copy.heading}
           </h3>
-          <p className={cn("mt-2 text-sm leading-relaxed", isDark ? "text-over-ink/80" : "text-ink-soft")}>
+          <p className={cn("mt-2 text-sm leading-relaxed", isDark ? "text-paper" : "text-ink-soft")}>
             {copy.body}
           </p>
         </div>

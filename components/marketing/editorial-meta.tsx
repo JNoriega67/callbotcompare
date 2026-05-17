@@ -66,7 +66,7 @@ export function EditorialMeta({
   const updatedStr = formatUpdated(updated);
   const isDark = variant === "dark";
 
-  const baseClass = isDark ? "text-paper/70" : "text-muted-ink";
+  const baseClass = isDark ? "text-paper" : "text-muted-ink";
   const accentClass = isDark ? "text-paper" : "text-ink";
   const linkClass = isDark
     ? "text-paper underline-offset-4 hover:text-signal-soft hover:underline"

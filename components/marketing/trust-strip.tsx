@@ -30,7 +30,7 @@ export function TrustStrip({ items, variant = "light", className }: TrustStripPr
   const isDark = variant === "dark";
 
   const labelClass = isDark
-    ? "text-over-ink/85"
+    ? "text-paper"
     : "text-muted-ink";
   const valueClass = isDark ? "text-paper" : "text-ink";
   const dividerClass = isDark ? "border-paper/15" : "border-rule";

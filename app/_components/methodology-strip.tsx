@@ -7,7 +7,7 @@ export function MethodologyStrip() {
   return (
     <Section tone="ink" className="py-10 md:py-12">
       <Container>
-        <p className="text-center text-sm leading-relaxed text-over-ink/85 md:text-base">
+        <p className="text-center text-sm leading-relaxed text-paper md:text-base">
           <span className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal-soft">
             How we evaluate ·{" "}
           </span>
