@@ -1,6 +1,9 @@
+import type { Lead } from "@prisma/client";
 import { z } from "zod";
 
 import { prisma } from "@/lib/db";
+import { isMailerConfigured, sendMail } from "@/lib/mailer";
+import { SITE_URL } from "@/lib/constants";
 
 const NON_EMPTY = z.string().trim().min(1);
 
@@ -88,18 +91,92 @@ export async function persistLead(input: PersistLeadInput, source: LeadSource) {
   });
 }
 
-export function notifyLead(lead: {
-  id: string;
-  source: string | null;
-  email: string;
-  name: string;
-  recommendedVendors: string | null;
-}) {
-  // TODO(resend): swap for transactional email via Resend.
+/**
+ * Sends an internal notification email for a new lead. Always logs; only
+ * sends mail when the Microsoft Graph mailer is configured. Throws are
+ * caught so a mail failure can never break the API response — the lead
+ * is already persisted by the time this runs.
+ */
+export async function notifyLead(lead: Lead): Promise<void> {
   console.log(
     `[lead] new (${lead.source ?? "unknown"}) id=${lead.id} email=${lead.email} name="${lead.name}"` +
       (lead.recommendedVendors ? ` recommended=${lead.recommendedVendors}` : ""),
   );
+
+  if (!isMailerConfigured()) return;
+
+  try {
+    const { subject, html, text } = renderLeadEmail(lead);
+    await sendMail({ subject, html, text });
+  } catch (err) {
+    console.error("[lead] notify email failed:", err);
+  }
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function renderLeadEmail(lead: Lead) {
+  const sourceLabel = (lead.source ?? "unknown").toUpperCase();
+  const subject = `[CallTreo] New ${sourceLabel} lead — ${lead.name}`;
+
+  const rows: Array<[string, string | null]> = [
+    ["Source", lead.source ?? null],
+    ["Name", lead.name],
+    ["Email", lead.email],
+    ["Company", lead.company],
+    ["Phone", lead.phone],
+    ["Industry", lead.industry],
+    ["Monthly call volume", lead.monthlyCallVolume],
+    ["Main use case", lead.mainUseCase],
+    ["Current phone setup", lead.currentPhoneSetup],
+    ["Must-have integrations", lead.mustHaveIntegrations],
+    ["Budget range", lead.budgetRange],
+    ["Timeline", lead.timeline],
+    ["Recommended vendors", lead.recommendedVendors],
+    ["Notes", lead.notes],
+  ];
+
+  const rowsHtml = rows
+    .filter(([, value]) => value && value.trim().length > 0)
+    .map(
+      ([label, value]) => `
+      <tr>
+        <td style="padding:8px 16px 8px 0;vertical-align:top;color:#5B6875;font-size:13px;text-transform:uppercase;letter-spacing:0.04em;font-weight:600;white-space:nowrap;">${escapeHtml(label)}</td>
+        <td style="padding:8px 0;vertical-align:top;color:#1F2933;font-size:14px;line-height:1.5;">${escapeHtml(value as string).replace(/\n/g, "<br>")}</td>
+      </tr>`,
+    )
+    .join("");
+
+  const html = `<!doctype html>
+<html><body style="margin:0;padding:24px;background:#F4F6F8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#1F2933;">
+  <div style="max-width:640px;margin:0 auto;background:#FFFFFF;border:1px solid #D6DEE6;border-radius:12px;overflow:hidden;">
+    <div style="padding:20px 24px;background:#2F4F70;color:#F4F6F8;">
+      <div style="font-size:12px;text-transform:uppercase;letter-spacing:0.18em;opacity:0.85;">CallTreo · New lead</div>
+      <div style="margin-top:6px;font-size:20px;font-weight:700;">${escapeHtml(sourceLabel)} · ${escapeHtml(lead.name)}</div>
+    </div>
+    <table style="width:100%;border-collapse:collapse;padding:24px;">
+      ${rowsHtml}
+    </table>
+    <div style="padding:16px 24px;background:#ECEFF3;color:#5B6875;font-size:12px;line-height:1.6;">
+      Lead ID: <code>${escapeHtml(lead.id)}</code> · captured ${escapeHtml(lead.createdAt.toISOString())}<br>
+      Submitted via ${escapeHtml(SITE_URL)} · open Prisma Studio against the prod database to manage.
+    </div>
+  </div>
+</body></html>`;
+
+  const text = rows
+    .filter(([, value]) => value && value.trim().length > 0)
+    .map(([label, value]) => `${label}: ${value}`)
+    .join("\n");
+
+  return { subject, html, text: `New ${sourceLabel} lead — ${lead.name}\n\n${text}` };
 }
 
 /**

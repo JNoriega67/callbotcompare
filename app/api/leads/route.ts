@@ -38,13 +38,7 @@ export async function POST(request: Request) {
     : undefined;
 
   const lead = await persistLead({ ...parsed.data, recommendedVendors }, source);
-  notifyLead({
-    id: lead.id,
-    source: lead.source,
-    email: lead.email,
-    name: lead.name,
-    recommendedVendors: lead.recommendedVendors,
-  });
+  await notifyLead(lead);
 
   return NextResponse.json({ id: lead.id }, { status: 200 });
 }
