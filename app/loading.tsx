@@ -11,7 +11,7 @@ export default function Loading() {
           {[0, 1, 2].map((i) => (
             <div
               key={i}
-              className="h-40 animate-pulse rounded-card border border-border bg-surface"
+              className="h-40 animate-pulse rounded-[var(--radius-card)] border border-rule bg-surface"
             />
           ))}
         </div>

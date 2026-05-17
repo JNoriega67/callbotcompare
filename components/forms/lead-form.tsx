@@ -59,16 +59,16 @@ export function LeadForm({
 
   if (submitted) {
     return (
-      <div className="rounded-card border border-border bg-sage/50 p-6">
-        <h3 className="font-heading text-lg font-semibold text-slate">Thanks — we got it.</h3>
-        <p className="mt-1 text-sm text-charcoal/85">
+      <div className="rounded-[var(--radius-card)] border border-rule bg-signal-soft/50 p-6">
+        <h3 className="font-heading text-lg font-semibold text-ink">Thanks — we got it.</h3>
+        <p className="mt-1 text-sm text-ink-soft/85">
           Expect a response within one business day. If it's urgent, reply to our email with
           "urgent" in the subject.
         </p>
         <button
           type="button"
           onClick={() => setSubmitted(false)}
-          className="mt-4 text-xs font-semibold uppercase tracking-wide text-teal hover:underline"
+          className="mt-4 text-xs font-semibold uppercase tracking-wide text-signal hover:underline"
         >
           Submit another
         </button>
@@ -77,9 +77,9 @@ export function LeadForm({
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 rounded-card border border-border bg-surface p-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 rounded-[var(--radius-card)] border border-rule bg-surface p-6">
       {heading ? (
-        <h2 className="font-heading text-lg font-semibold text-slate">{heading}</h2>
+        <h2 className="font-heading text-lg font-semibold text-ink">{heading}</h2>
       ) : null}
       <Field label="Your name" id="lead-name" error={errors.name?.message}>
         <Input id="lead-name" autoComplete="name" {...register("name")} />
@@ -107,7 +107,7 @@ export function LeadForm({
         <textarea
           id="lead-notes"
           rows={4}
-          className="w-full rounded-[var(--radius-input)] border border-border bg-surface px-3 py-2 text-sm text-charcoal focus-visible:border-ring focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40"
+          className="w-full rounded-[var(--radius-input)] border border-rule bg-surface px-3 py-2 text-sm text-ink-soft focus-visible:border-ring focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40"
           placeholder="Use case, must-have integrations, timeline…"
           {...register("notes")}
         />
@@ -115,7 +115,7 @@ export function LeadForm({
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded-[var(--radius-button)] bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[color:var(--brand-teal-hover)] disabled:opacity-60"
+        className="w-full rounded-[var(--radius-button)] bg-signal px-4 py-2.5 text-sm font-semibold text-signal-ink transition-colors hover:bg-signal-hover disabled:opacity-60"
       >
         {isSubmitting ? "Sending…" : submitLabel}
       </button>

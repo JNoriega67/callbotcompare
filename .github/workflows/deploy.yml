@@ -35,6 +35,15 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # Self-heal: if a prior migration crashed holding the Prisma advisory
+      # lock, every subsequent `migrate deploy` times out with P1002. This
+      # step finds + terminates any holder before we attempt the migration.
+      # Safe to always run: idempotent, no-op when nothing is holding the lock.
+      - name: Release any stuck Prisma migration lock
+        env:
+          DIRECT_URL: ${{ secrets.NEON_DIRECT_URL }}
+        run: pnpm tsx scripts/unlock-prisma-migration.ts
+
       - name: Prisma migrate deploy against Neon
         env:
           DATABASE_URL: ${{ secrets.NEON_DATABASE_URL }}

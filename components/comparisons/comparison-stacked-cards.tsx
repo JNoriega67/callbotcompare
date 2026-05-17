@@ -28,20 +28,20 @@ export function ComparisonStackedCards({ vendors }: { vendors: Vendor[] }) {
       {vendors.map((v) => (
         <article
           key={v.slug}
-          className="rounded-card border border-border bg-surface p-5 shadow-[var(--shadow-card)]"
+          className="rounded-[var(--radius-card)] border border-rule bg-surface p-5 shadow-[var(--shadow-card)]"
         >
           <header className="flex items-start justify-between gap-3">
             <Link
               href={`/vendors/${v.slug}`}
-              className="font-heading text-lg font-semibold text-slate hover:text-teal"
+              className="font-heading text-lg font-semibold text-ink hover:text-signal"
             >
               {v.name}
             </Link>
-            <span className="font-heading text-xl font-bold text-slate">
+            <span className="font-heading text-xl font-bold text-ink">
               {formatScore(v.overallScore)}
             </span>
           </header>
-          {v.bestFor ? <p className="mt-2 text-sm text-charcoal/85">{v.bestFor}</p> : null}
+          {v.bestFor ? <p className="mt-2 text-sm text-ink-soft/85">{v.bestFor}</p> : null}
           <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
             <Row label="Pricing" value={formatPricing(v.pricingFromUsd, v.pricingModel)} />
             <Row label="Booking" value={fmtBool(v.hasAppointmentBooking)} />
@@ -51,7 +51,7 @@ export function ComparisonStackedCards({ vendors }: { vendors: Vendor[] }) {
           </dl>
           <Link
             href={`/vendors/${v.slug}`}
-            className="mt-5 inline-block rounded-[var(--radius-button)] border border-slate/25 px-3 py-1.5 text-xs font-semibold text-slate hover:border-teal hover:text-teal"
+            className="mt-5 inline-block rounded-[var(--radius-button)] border border-ink/25 px-3 py-1.5 text-xs font-semibold text-ink hover:border-signal hover:text-signal"
           >
             View details →
           </Link>
@@ -65,7 +65,7 @@ function Row({ label, value }: { label: string; value: string }) {
   return (
     <>
       <dt className="font-medium uppercase tracking-wide text-muted">{label}</dt>
-      <dd className="text-charcoal">{value}</dd>
+      <dd className="text-ink-soft">{value}</dd>
     </>
   );
 }

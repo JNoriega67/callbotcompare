@@ -15,8 +15,8 @@ export function VendorScoreBar({ score, label, max = 10, className }: VendorScor
     <div className={cn("space-y-1", className)}>
       {label ? (
         <div className="flex items-baseline justify-between gap-2 text-sm">
-          <span className="text-charcoal/80">{label}</span>
-          <span className="font-heading font-semibold text-slate">{formatScore(score)}</span>
+          <span className="text-ink-soft/80">{label}</span>
+          <span className="font-heading font-semibold text-ink">{formatScore(score)}</span>
         </div>
       ) : null}
       <div
@@ -29,7 +29,7 @@ export function VendorScoreBar({ score, label, max = 10, className }: VendorScor
         aria-label={label}
       >
         <div
-          className="h-full rounded-full bg-primary transition-[width]"
+          className="h-full rounded-full bg-signal transition-[width]"
           style={{ width: `${pct}%` }}
         />
       </div>

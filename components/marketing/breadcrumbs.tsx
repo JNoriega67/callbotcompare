@@ -17,12 +17,12 @@ export function Breadcrumbs({ trail }: BreadcrumbsProps) {
             return (
               <li key={item.href} className="flex items-center gap-1">
                 {isLast ? (
-                  <span aria-current="page" className="text-slate">
+                  <span aria-current="page" className="text-ink">
                     {item.label}
                   </span>
                 ) : (
                   <>
-                    <Link href={item.href} className="hover:text-teal">
+                    <Link href={item.href} className="hover:text-signal">
                       {item.label}
                     </Link>
                     <span aria-hidden className="text-muted/60">

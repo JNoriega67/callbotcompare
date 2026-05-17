@@ -9,19 +9,19 @@ export function ProsCons({ vendor }: { vendor: Vendor }) {
   return (
     <div className="grid gap-4 md:grid-cols-2">
       {vendor.bestFor ? (
-        <div className="rounded-card border border-border bg-surface p-5">
-          <h3 className="font-heading text-sm font-semibold uppercase tracking-wide text-teal">
+        <div className="rounded-[var(--radius-card)] border border-rule bg-surface p-5">
+          <h3 className="font-heading text-sm font-semibold uppercase tracking-wide text-signal">
             Best for
           </h3>
-          <p className="mt-2 text-sm text-charcoal/90">{vendor.bestFor}</p>
+          <p className="mt-2 text-sm text-ink-soft/90">{vendor.bestFor}</p>
         </div>
       ) : null}
       {vendor.editorVerdict ? (
-        <div className="rounded-card border border-border bg-surface p-5">
+        <div className="rounded-[var(--radius-card)] border border-rule bg-surface p-5">
           <h3 className="font-heading text-sm font-semibold uppercase tracking-wide text-gold">
             Editor verdict
           </h3>
-          <p className="mt-2 text-sm text-charcoal/90">{vendor.editorVerdict}</p>
+          <p className="mt-2 text-sm text-ink-soft/90">{vendor.editorVerdict}</p>
         </div>
       ) : null}
     </div>

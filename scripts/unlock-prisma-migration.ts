@@ -9,19 +9,47 @@
  * pg_locks / pg_stat_activity rows), find every backend holding the lock,
  * terminate them, and verify the lock is free.
  *
- * Run: pnpm tsx scripts/unlock-prisma-migration.ts
+ * Run:
+ *   - Locally: pnpm tsx scripts/unlock-prisma-migration.ts
+ *     (reads DIRECT_URL from .env if not already set in process.env)
+ *   - CI: set DIRECT_URL in the step's env block; .env is not required.
+ *
+ * Zero external runtime deps beyond @prisma/client — we read .env manually
+ * because dotenv isn't a declared project dep.
  */
 
-import { config } from "dotenv";
+import { readFileSync, existsSync } from "node:fs";
 import { PrismaClient } from "@prisma/client";
 
-// Load .env (override:false) then force DATABASE_URL to point at the direct
-// (non-pooled) Neon URL so we can see + terminate real backends.
-config();
+/**
+ * Minimal .env loader: only sets keys that aren't already in process.env,
+ * matching the standard `override:false` semantics. Handles `KEY=value`
+ * and `KEY="value with spaces"` lines; ignores comments and blanks.
+ */
+function loadDotenv(path: string) {
+  if (!existsSync(path)) return;
+  const raw = readFileSync(path, "utf8");
+  for (const rawLine of raw.split("\n")) {
+    const line = rawLine.trim();
+    if (!line || line.startsWith("#")) continue;
+    const eq = line.indexOf("=");
+    if (eq === -1) continue;
+    const key = line.slice(0, eq).trim();
+    let value = line.slice(eq + 1).trim();
+    if (value.startsWith('"') && value.endsWith('"')) value = value.slice(1, -1);
+    if (process.env[key] === undefined) process.env[key] = value;
+  }
+}
+
+loadDotenv(".env");
+
 if (!process.env.DIRECT_URL) {
-  console.error("DIRECT_URL not set; aborting.");
+  console.error("DIRECT_URL not set in env or .env; aborting.");
   process.exit(1);
 }
+
+// Prisma reads DATABASE_URL for the datasource; force it to the direct
+// (non-pooled) URL so pg_locks / pg_stat_activity show real backends.
 process.env.DATABASE_URL = process.env.DIRECT_URL;
 
 const prisma = new PrismaClient();
@@ -46,7 +74,7 @@ async function main() {
   console.log("pg_locks rows:", locks);
 
   if (locks.length === 0) {
-    console.log("No advisory-lock rows found. Lock is already free — re-run the deploy.");
+    console.log("No advisory-lock rows found. Lock is already free — proceed with migration.");
     return;
   }
 
@@ -71,9 +99,10 @@ async function main() {
   console.log("pg_locks after termination:", afterLocks);
 
   if (afterLocks.length === 0) {
-    console.log("Lock released. Re-run the deploy.");
+    console.log("Lock released. Proceed with migration.");
   } else {
     console.log("Lock still held — Neon may have re-attached the backend; try restarting the compute via the Neon dashboard.");
+    process.exit(1);
   }
 }
 

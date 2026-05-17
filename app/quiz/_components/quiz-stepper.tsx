@@ -157,7 +157,7 @@ export function QuizStepper({ publishedVendors }: QuizStepperProps) {
   }
 
   return (
-    <div className="space-y-8 rounded-card border border-border bg-surface p-6 md:p-8">
+    <div className="space-y-8 rounded-[var(--radius-card)] border border-rule bg-surface p-6 md:p-8">
       <QuizProgress current={stepIndex} total={total} />
       <QuizStep
         question={step.question}
@@ -171,7 +171,7 @@ export function QuizStepper({ publishedVendors }: QuizStepperProps) {
           type="button"
           onClick={goBack}
           disabled={stepIndex === 0}
-          className="rounded-[var(--radius-button)] border border-slate/25 px-4 py-2 text-sm font-semibold text-slate transition-colors hover:border-slate/50 disabled:opacity-40"
+          className="rounded-[var(--radius-button)] border border-ink/25 px-4 py-2 text-sm font-semibold text-ink transition-colors hover:border-ink/50 disabled:opacity-40"
         >
           ← Back
         </button>
@@ -179,7 +179,7 @@ export function QuizStepper({ publishedVendors }: QuizStepperProps) {
           type="button"
           onClick={goNext}
           disabled={!currentValue || submitting}
-          className="rounded-[var(--radius-button)] bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[color:var(--brand-teal-hover)] disabled:opacity-60"
+          className="rounded-[var(--radius-button)] bg-signal px-5 py-2.5 text-sm font-semibold text-signal-ink transition-colors hover:bg-signal-hover disabled:opacity-60"
         >
           {stepIndex === total - 1 ? (submitting ? "Building shortlist…" : "See my shortlist") : "Next →"}
         </button>

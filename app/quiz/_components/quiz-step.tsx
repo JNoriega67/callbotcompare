@@ -14,7 +14,7 @@ export function QuizStep({ question, helper, options, value, onSelect }: QuizSte
   return (
     <div className="space-y-5">
       <div className="space-y-1">
-        <h2 className="font-heading text-2xl font-semibold text-slate">{question}</h2>
+        <h2 className="font-heading text-2xl font-semibold text-ink">{question}</h2>
         {helper ? <p className="text-sm text-muted">{helper}</p> : null}
       </div>
       <div className="grid gap-2 sm:grid-cols-2">
@@ -26,14 +26,14 @@ export function QuizStep({ question, helper, options, value, onSelect }: QuizSte
               type="button"
               onClick={() => onSelect(opt.value)}
               className={cn(
-                "rounded-card border bg-surface p-4 text-left transition-colors",
+                "rounded-[var(--radius-card)] border bg-surface p-4 text-left transition-colors",
                 checked
-                  ? "border-teal bg-sage/40"
-                  : "border-border hover:border-teal/60",
+                  ? "border-teal bg-signal-soft/40"
+                  : "border-rule hover:border-teal/60",
               )}
               aria-pressed={checked}
             >
-              <span className="font-heading text-sm font-semibold text-slate">{opt.label}</span>
+              <span className="font-heading text-sm font-semibold text-ink">{opt.label}</span>
               {opt.hint ? <span className="mt-1 block text-xs text-muted">{opt.hint}</span> : null}
             </button>
           );

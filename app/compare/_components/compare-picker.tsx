@@ -72,7 +72,7 @@ export function ComparePicker({ vendors, seededComparisons = [] }: ComparePicker
     <div className="space-y-5">
       <header className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 className="font-heading text-xl font-semibold text-slate">
+          <h2 className="font-heading text-xl font-semibold text-ink">
             Pick up to {MAX_SELECTION} vendors
           </h2>
           <p className="text-sm text-muted">
@@ -92,8 +92,8 @@ export function ComparePicker({ vendors, seededComparisons = [] }: ComparePicker
             <li key={v.slug}>
               <Label
                 htmlFor={`compare-${v.slug}`}
-                className={`flex cursor-pointer items-start justify-between gap-3 rounded-card border bg-surface p-3 transition-colors ${
-                  checked ? "border-teal" : "border-border"
+                className={`flex cursor-pointer items-start justify-between gap-3 rounded-[var(--radius-card)] border bg-surface p-3 transition-colors ${
+                  checked ? "border-teal" : "border-rule"
                 } ${disabled ? "cursor-not-allowed opacity-60" : "hover:border-teal/60"}`}
               >
                 <span className="flex items-start gap-3">
@@ -104,7 +104,7 @@ export function ComparePicker({ vendors, seededComparisons = [] }: ComparePicker
                     disabled={disabled}
                   />
                   <span>
-                    <span className="block font-heading text-sm font-semibold text-slate">
+                    <span className="block font-heading text-sm font-semibold text-ink">
                       {v.name}
                     </span>
                     {v.tagline ? (
@@ -112,7 +112,7 @@ export function ComparePicker({ vendors, seededComparisons = [] }: ComparePicker
                     ) : null}
                   </span>
                 </span>
-                <span className="shrink-0 font-heading text-sm font-bold text-slate">
+                <span className="shrink-0 font-heading text-sm font-bold text-ink">
                   {v.overallScore?.toFixed(1) ?? "—"}
                 </span>
               </Label>
@@ -124,7 +124,7 @@ export function ComparePicker({ vendors, seededComparisons = [] }: ComparePicker
       {matchedSeeded ? (
         <Link
           href={`/compare/${matchedSeeded.slug}`}
-          className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-[color:var(--brand-teal-hover)]"
+          className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-4 py-2.5 text-sm font-semibold text-signal-ink hover:bg-signal-hover"
         >
           View dedicated comparison page →
         </Link>

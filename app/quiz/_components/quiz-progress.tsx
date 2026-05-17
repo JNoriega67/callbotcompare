@@ -21,7 +21,7 @@ export function QuizProgress({ current, total }: QuizProgressProps) {
         aria-valuemax={100}
         aria-valuenow={pct}
       >
-        <div className="h-full bg-primary transition-[width]" style={{ width: `${pct}%` }} />
+        <div className="h-full bg-signal transition-[width]" style={{ width: `${pct}%` }} />
       </div>
     </div>
   );
