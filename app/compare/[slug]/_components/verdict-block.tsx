@@ -6,18 +6,32 @@ type VerdictBlockProps = {
 export function VerdictBlock({ intro, verdict }: VerdictBlockProps) {
   if (!intro && !verdict) return null;
   return (
-    <div className="space-y-6">
-      {intro ? (
-        <p className="text-base text-charcoal/85 md:text-lg md:leading-relaxed">{intro}</p>
-      ) : null}
-      {verdict ? (
-        <div className="rounded-card border border-border bg-sage/50 p-6">
-          <h2 className="font-heading text-sm font-semibold uppercase tracking-[0.18em] text-teal">
-            Quick verdict
-          </h2>
-          <p className="mt-2 text-base text-charcoal/90">{verdict}</p>
-        </div>
-      ) : null}
+    <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
+      <div>
+        <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+          Quick verdict
+        </p>
+        <h2 className="mt-3 font-heading text-2xl font-bold leading-tight text-ink md:text-3xl">
+          Read this first.
+        </h2>
+        <p className="mt-3 text-sm text-ink-soft">
+          The summary version of who each tool actually fits — and the deeper context below if
+          you&apos;re still narrowing it down.
+        </p>
+      </div>
+      <div className="space-y-6 text-base leading-relaxed text-ink-soft md:text-[17px] md:leading-[1.7]">
+        {intro ? <p>{intro}</p> : null}
+        {verdict ? (
+          <div className="border-l-2 border-signal bg-paper-deep/50 px-5 py-4 text-ink">
+            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              Verdict
+            </p>
+            <p className="mt-2 font-heading text-lg font-semibold leading-snug md:text-xl">
+              {verdict}
+            </p>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }
