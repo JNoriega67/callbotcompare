@@ -56,7 +56,7 @@ export default async function VendorsPage({ searchParams }: VendorsPageProps) {
               </p>
               <h1 className="mt-3 font-heading text-[2rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[3.25rem]">
                 AI receptionist vendors,{" "}
-                <span className="font-light text-ink/55">ranked and filterable.</span>
+                <span className="font-light text-ink/70">ranked and filterable.</span>
               </h1>
             </div>
             <p className="text-base text-ink-soft md:text-lg">

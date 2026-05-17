@@ -102,7 +102,7 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
               <h1 className="mt-3 font-heading text-[2.2rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[3.5rem]">
                 <span className="font-bold">{config.headlineLead}</span>{" "}
                 {config.headlineAccent ? (
-                  <span className="font-light text-ink/55">{config.headlineAccent}</span>
+                  <span className="font-light text-ink/70">{config.headlineAccent}</span>
                 ) : null}
               </h1>
               <div className="mt-5">
@@ -166,7 +166,7 @@ export async function CommercialLanding({ config }: CommercialLandingProps) {
                   key={v.id}
                   className="grid grid-cols-[3rem_1fr_auto] items-center gap-4 border-b border-rule py-5 first:border-t md:gap-6 md:py-6"
                 >
-                  <span className="font-heading text-2xl font-bold tabular-nums text-muted-ink/70 md:text-3xl">
+                  <span className="font-heading text-2xl font-bold tabular-nums text-muted-ink md:text-3xl">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div className="min-w-0">

@@ -26,12 +26,16 @@
   --rule-strong:  #B2BFCD;
   --rule-dark:    #3A6190;
 
-  /* ----- Brand teals (from logo) ----- */
-  --signal-deep:  #1A6B72;
-  --signal:       #2E9B97;
-  --signal-hover: #248580;
-  --signal-soft:  #DDEEEC;
-  --signal-ink:   #FFFFFF;
+  /* ----- Brand teals (from logo) -----
+     --signal is the text-safe deep teal (WCAG AA against --paper).
+     --signal-bright is the brighter logo accent for graphic use only —
+     do not use as text on light surfaces; it fails contrast at 3.1:1. */
+  --signal-bright: #2E9B97;
+  --signal:        #1A6B72;
+  --signal-hover:  #0F4046;
+  --signal-deep:   #1A6B72;
+  --signal-soft:   #DDEEEC;
+  --signal-ink:    #FFFFFF;
 
   /* ----- Tiny warm accent (matches logo sparkle) ----- */
   --accent-warm:  #F4A434;
@@ -95,6 +99,7 @@
   --color-rule-dark: var(--rule-dark);
 
   --color-signal: var(--signal);
+  --color-signal-bright: var(--signal-bright);
   --color-signal-deep: var(--signal-deep);
   --color-signal-hover: var(--signal-hover);
   --color-signal-soft: var(--signal-soft);

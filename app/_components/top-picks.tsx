@@ -56,7 +56,7 @@ export async function TopPicks() {
                   key={v.id}
                   className="group grid grid-cols-[3rem_1fr_auto] items-center gap-4 border-b border-rule py-5 first:border-t md:gap-6 md:py-6"
                 >
-                  <span className="font-heading text-2xl font-bold tabular-nums text-muted-ink/70 md:text-3xl">
+                  <span className="font-heading text-2xl font-bold tabular-nums text-muted-ink md:text-3xl">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div className="min-w-0">

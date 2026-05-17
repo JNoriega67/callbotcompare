@@ -102,7 +102,7 @@ export function DirectoryControls({
               placeholder="Vendor name, capability, or industry…"
               defaultValue={filters.q ?? ""}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full border-0 bg-transparent text-base text-ink placeholder:text-muted-ink/70 focus:outline-none"
+              className="w-full border-0 bg-transparent text-base text-ink placeholder:text-muted-ink focus:outline-none"
             />
           </div>
         </label>
@@ -129,7 +129,7 @@ export function DirectoryControls({
         <p className="font-heading text-[12px] font-semibold uppercase tracking-[0.12em] text-ink">
           {resultCount} {resultCount === 1 ? "result" : "results"}
           {active ? <span className="text-muted-ink"> · filtered</span> : null}
-          {pending ? <span className="ml-2 text-muted-ink/70">updating…</span> : null}
+          {pending ? <span className="ml-2 text-muted-ink">updating…</span> : null}
         </p>
         {active ? (
           <div className="flex flex-wrap items-center gap-2">

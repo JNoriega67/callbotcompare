@@ -43,7 +43,7 @@ export default function ServicesPage() {
               </p>
               <h1 className="mt-3 font-heading text-[2.4rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[4rem]">
                 <span className="font-bold">Pick the right tool.</span>{" "}
-                <span className="font-light text-ink/55">Launch it correctly.</span>
+                <span className="font-light text-ink/70">Launch it correctly.</span>
               </h1>
               <div className="mt-5">
                 <EditorialMeta updated="2026-05" sourcingLabel="Disclosure" sourcingHref="/disclosure" />

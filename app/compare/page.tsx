@@ -84,7 +84,7 @@ export default async function CompareHubPage({ searchParams }: CompareHubProps) 
               </p>
               <h1 className="mt-3 font-heading text-[2.25rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[3.5rem]">
                 <span className="font-bold">Build a side-by-side</span>{" "}
-                <span className="font-light text-ink/55">your buying committee can use.</span>
+                <span className="font-light text-ink/70">your buying committee can use.</span>
               </h1>
             </div>
             <div className="flex flex-col justify-end gap-5">

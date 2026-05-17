@@ -69,30 +69,33 @@ export function TrustStrip({ items, variant = "light", className }: TrustStripPr
           </>
         );
         const wrapperClass = "px-2 py-5 md:px-6 md:py-6";
-        return item.href ? (
-          <Link
-            key={item.label}
-            href={item.href}
-            className={
-              wrapperClass +
-              " group block transition-colors " +
-              linkClass
-            }
-          >
-            {inner}
-            <span
-              aria-hidden
-              className={
-                "mt-2 inline-block font-heading text-[10px] font-semibold uppercase tracking-[0.14em] underline-offset-4 group-hover:underline " +
-                (isDark ? "text-signal-soft" : "text-signal")
-              }
-            >
-              View →
-            </span>
-          </Link>
-        ) : (
-          <div key={item.label} className={wrapperClass}>
-            {inner}
+        // dl spec: direct children must be dt/dd/div/script/template.
+        // Always wrap in <div> so the Link is one level deeper.
+        return (
+          <div key={item.label}>
+            {item.href ? (
+              <Link
+                href={item.href}
+                className={
+                  wrapperClass +
+                  " group block transition-colors " +
+                  linkClass
+                }
+              >
+                {inner}
+                <span
+                  aria-hidden
+                  className={
+                    "mt-2 inline-block font-heading text-[10px] font-semibold uppercase tracking-[0.14em] underline-offset-4 group-hover:underline " +
+                    (isDark ? "text-signal-soft" : "text-signal")
+                  }
+                >
+                  View →
+                </span>
+              </Link>
+            ) : (
+              <div className={wrapperClass}>{inner}</div>
+            )}
           </div>
         );
       })}

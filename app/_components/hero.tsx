@@ -39,7 +39,7 @@ export async function Hero() {
           <div>
             <h1 className="font-heading text-[2.4rem] leading-[1.05] tracking-tight text-ink md:text-[4rem]">
               <span className="font-bold">Compare AI receptionist software</span>{" "}
-              <span className="block font-light text-ink/55 md:inline">
+              <span className="block font-light text-ink/70 md:inline">
                 without wasting weeks on demos.
               </span>
             </h1>

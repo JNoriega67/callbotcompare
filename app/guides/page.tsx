@@ -171,7 +171,7 @@ function PathStep({
 }) {
   return (
     <div className="grid grid-cols-[3rem_1fr] gap-4 border-b border-rule pb-5 last:border-b-0 last:pb-0">
-      <span className="font-heading text-2xl font-bold tabular-nums text-muted-ink/70">{step}</span>
+      <span className="font-heading text-2xl font-bold tabular-nums text-muted-ink">{step}</span>
       <div>
         <p className="font-heading text-[11px] font-semibold uppercase tracking-[0.16em] text-signal">
           {label}

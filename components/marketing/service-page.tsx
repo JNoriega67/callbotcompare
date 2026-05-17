@@ -105,7 +105,7 @@ export function ServicePage({ pkg }: ServicePageProps) {
                 key={o.label}
                 className="rounded-[var(--radius-card)] border border-rule bg-surface p-6 shadow-[var(--shadow-card)]"
               >
-                <span className="font-heading text-sm font-bold tabular-nums text-muted-ink/70">
+                <span className="font-heading text-sm font-bold tabular-nums text-muted-ink">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="mt-3 font-heading text-lg font-semibold text-ink">{o.label}</h3>
@@ -182,7 +182,7 @@ export function ServicePage({ pkg }: ServicePageProps) {
                 className="rounded-[var(--radius-card)] border border-rule bg-surface p-6 shadow-[var(--shadow-card)] md:p-7"
               >
                 <div className="flex items-baseline justify-between gap-3">
-                  <span className="font-heading text-sm font-bold tabular-nums text-muted-ink/70">
+                  <span className="font-heading text-sm font-bold tabular-nums text-muted-ink">
                     Step {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-signal">
