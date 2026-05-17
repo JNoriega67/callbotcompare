@@ -735,13 +735,394 @@ export const INTEGRATION_JOBBER: IntegrationPageConfig = {
   ],
 };
 
+export const INTEGRATION_PIPEDRIVE: IntegrationPageConfig = {
+  slug: "ai-receptionist-with-pipedrive",
+  toolName: "Pipedrive",
+  category: "crm",
+  metaTitle: "AI receptionist with Pipedrive integration (2026 buyer's guide)",
+  metaDescription:
+    "AI receptionists that integrate cleanly with Pipedrive — Deal vs Person routing, pipeline stage assignment, activity logging, and which vendors actually support the integration natively.",
+  eyebrow: "Integration · Pipedrive",
+  headlineLead: "AI receptionist for Pipedrive teams:",
+  headlineAccent: "calls land on the right deal, not in a notes field.",
+  intro:
+    "Pipedrive's sales-pipeline-first model is different from HubSpot's contact-first or Salesforce's everything-first. The AI receptionist needs to know whether an inbound call creates a Person, a Deal, or just logs an Activity against an existing record — and the integration depth decides how much of that you get out of the box vs build yourself.",
+  spectrum: [
+    {
+      level: "native",
+      label: "Native Pipedrive integration",
+      body: "Built against Pipedrive's API. Creates Persons + Deals + Activities cleanly, maps to your custom fields, supports your pipeline stages. The cleanest path if you live in Pipedrive day-to-day.",
+    },
+    {
+      level: "webhook",
+      label: "Webhook → Pipedrive API",
+      body: "Vendor fires webhook; you wire it via a connector. Pipedrive's API is approachable, so this is workable for teams with some technical capacity. Watch the API quota at high call volumes.",
+    },
+    {
+      level: "zapier",
+      label: "Zapier (or similar)",
+      body: "Pipedrive has solid Zapier support. Works for simple Person + Activity creation; less flexible for Deal-stage routing or custom field mapping.",
+    },
+    {
+      level: "none",
+      label: "Email summary only",
+      body: "Sales team re-keys into Pipedrive. Works at low volume; breaks down once inbound exceeds ~5 calls/day.",
+    },
+  ],
+  criteria: [
+    {
+      title: "Person vs Deal vs Activity routing",
+      body: "An inbound from a brand-new caller is usually a new Person + new Deal. An existing customer is a new Activity against the existing Person. The AI needs to know which is which and create the right object.",
+    },
+    {
+      title: "Pipeline + stage assignment",
+      body: "If you have multiple pipelines (Sales / Renewals / Customer Success), the AI should be able to route Deal creation to the right one based on call type — not dump everything in 'New Sales'.",
+    },
+    {
+      title: "Custom field mapping",
+      body: "Pipedrive's custom fields are where your team's actual qualification lives. The integration needs to let you map AI-captured fields to your custom fields without scripting.",
+    },
+    {
+      title: "Activity logging with recording link",
+      body: "Reps live in the Activity timeline. A 'Phone Call' activity with the recording URL attached is the right artifact — not a Notes entry buried in a Deal.",
+    },
+  ],
+  buyerNotes: [
+    {
+      title: "Confirm Pipedrive plan API limits",
+      body: "Pipedrive's Essential plan has lower API rate limits than Advanced+. If you have meaningful call volume + an integration, you may need Advanced.",
+    },
+    {
+      title: "Test Deal creation with your specific pipeline",
+      body: "In the demo, ask the vendor to create a Deal on your actual pipeline with your actual custom fields populated. Some integrations only work cleanly with Pipedrive's default pipeline.",
+    },
+    {
+      title: "Be deliberate about dedup",
+      body: "Pipedrive's matching is by email primarily; phone is secondary. If your AI doesn't always capture email, dedup may miss returning customers. Map both.",
+    },
+  ],
+  faqs: [
+    {
+      question: "Does Pipedrive support AI receptionist integrations natively?",
+      answer:
+        "Pipedrive's marketplace lists several integrations. Native depth varies — some vendors do the full Person + Deal + Activity flow, others just push contacts. Always confirm with a live demo against your Pipedrive instance.",
+    },
+    {
+      question: "Will it create Deals or just Contacts?",
+      answer:
+        "Better integrations let you configure: create Person only, create Person + Deal, or create Activity against existing record. Generic integrations default to 'Person only,' which loses the sales-pipeline visibility.",
+    },
+    {
+      question: "Can it route to the right pipeline?",
+      answer:
+        "Native integrations with field mapping usually can — you map call type or qualification answer to pipeline + stage. Webhook setups can do it if you write the routing logic in the connector.",
+    },
+    {
+      question: "What about Pipedrive's automations?",
+      answer:
+        "Deal/Activity creation through the API fires Pipedrive's native workflow automations normally. If you've built Workflow Automations on Deal creation, the AI's inbound will trigger them — which is what you usually want.",
+    },
+  ],
+  relatedSlugs: ["ai-receptionist-with-hubspot", "ai-receptionist-with-zoho"],
+  relatedCommercialSlugs: [
+    "best-ai-phone-agent-with-crm-integration",
+    "best-ai-receptionist-for-contractors",
+  ],
+};
+
+export const INTEGRATION_ZOHO: IntegrationPageConfig = {
+  slug: "ai-receptionist-with-zoho",
+  toolName: "Zoho CRM",
+  category: "crm",
+  metaTitle: "AI receptionist with Zoho CRM integration (2026 buyer's guide)",
+  metaDescription:
+    "AI receptionists that integrate with Zoho CRM and Zoho Bigin — Lead vs Contact handling, blueprint workflow triggers, and which vendors actually support the integration well.",
+  eyebrow: "Integration · Zoho",
+  headlineLead: "AI receptionists for Zoho shops:",
+  headlineAccent: "structured leads, not unstructured noise.",
+  intro:
+    "Zoho's pricing and CRM flexibility make it a default choice for growing SMBs internationally. AI receptionist support for Zoho is real but uneven — most vendors built integrations against US-first CRMs first, and Zoho came later. We rank vendors on whether the Zoho integration is a first-class citizen or an afterthought retrofit.",
+  spectrum: [
+    {
+      level: "native",
+      label: "Native Zoho CRM integration",
+      body: "Built against Zoho's API, supports Lead vs Contact routing, fires Blueprint workflow triggers, maps to custom fields. The right answer if Zoho is your source of truth.",
+    },
+    {
+      level: "webhook",
+      label: "Webhook → Zoho API",
+      body: "Zoho's REST API is well-documented; webhook integrations are common. A few hours of connector setup gets you most of the way.",
+    },
+    {
+      level: "zapier",
+      label: "Zapier",
+      body: "Zoho is well-supported on Zapier. Workable for simple Lead creation; less flexible for Deal-stage logic or custom workflows.",
+    },
+    {
+      level: "none",
+      label: "Email summary",
+      body: "Sales team re-keys into Zoho. Acceptable only at low volume; gets painful past the first few calls per day.",
+    },
+  ],
+  criteria: [
+    {
+      title: "Lead vs Contact routing",
+      body: "Net-new caller becomes a Lead; existing customer becomes an Activity against a Contact. Vendors that get this right save your sales ops from manual conversion.",
+    },
+    {
+      title: "Blueprint + workflow triggers",
+      body: "Zoho's Blueprint automation kicks in on certain field changes. The AI's Lead creation should fire those automations naturally — bypassing them via API tricks breaks the downstream flow.",
+    },
+    {
+      title: "Custom field + module support",
+      body: "Zoho lets you add custom fields and even custom modules. The integration needs to support both — not just the standard Lead and Contact fields.",
+    },
+    {
+      title: "Zoho Bigin compatibility",
+      body: "Bigin (Zoho's lighter SMB CRM) has its own API. If you're on Bigin not full Zoho CRM, confirm specifically — some integrations only work with full Zoho.",
+    },
+  ],
+  buyerNotes: [
+    {
+      title: "Region matters for Zoho",
+      body: "Zoho has US, EU, India, and Australia data centers. Your API endpoint differs by region. Confirm the vendor's integration handles your region correctly.",
+    },
+    {
+      title: "Test the lead-to-contact conversion path",
+      body: "Most teams convert Leads to Contacts at some defined point. The AI's repeat-caller logic should ideally update the converted Contact, not create a duplicate Lead.",
+    },
+    {
+      title: "API call quota",
+      body: "Zoho's API has per-day call limits by plan. High-volume AI receptionist usage can eat into your quota; check before launch.",
+    },
+  ],
+  faqs: [
+    {
+      question: "Does Zoho CRM work with AI receptionists?",
+      answer:
+        "Yes — Zoho has API and Zapier support and a few vendors have native integrations. Quality varies; native is meaningfully better than webhook+connector for Zoho specifically because of Blueprint triggers.",
+    },
+    {
+      question: "Can it create Leads in Zoho Bigin?",
+      answer:
+        "Some vendors support Bigin separately from full Zoho CRM. If you're on Bigin, confirm specifically — don't assume Zoho support means Bigin support.",
+    },
+    {
+      question: "Will Zoho Blueprint automations fire when the AI creates a Lead?",
+      answer:
+        "Yes if the integration creates the Lead the normal way (through the standard API). Vendors that bypass standard creation can skip Blueprint triggers, which usually means downstream automations don't run.",
+    },
+    {
+      question: "What about Zoho Phone / Zoho Voice for voice integration?",
+      answer:
+        "Some vendors integrate with Zoho Voice for unified call logging. If you already use Zoho Voice, ask specifically — having both the AI and Zoho Voice working together avoids duplicate call records.",
+    },
+  ],
+  relatedSlugs: ["ai-receptionist-with-pipedrive", "ai-receptionist-with-hubspot"],
+  relatedCommercialSlugs: ["best-ai-phone-agent-with-crm-integration"],
+};
+
+export const INTEGRATION_ACUITY: IntegrationPageConfig = {
+  slug: "ai-receptionist-with-acuity",
+  toolName: "Acuity Scheduling",
+  category: "calendar",
+  metaTitle: "AI receptionist with Acuity Scheduling — best options (2026)",
+  metaDescription:
+    "AI receptionists that book directly into Acuity Scheduling during the call — appointment types, intake forms, packages, and which vendors do it natively vs via Zapier.",
+  eyebrow: "Integration · Acuity",
+  headlineLead: "Book in Acuity on the call,",
+  headlineAccent: "not 'I'll send you a link.'",
+  intro:
+    "Acuity (Squarespace-owned) is the booking platform of choice for service businesses that need richer scheduling than Calendly — appointment types with intake forms, packages, recurring availability. AI receptionist integration depth varies; the difference between 'native' and 'we send the Acuity link' meaningfully changes conversion.",
+  spectrum: [
+    {
+      level: "native",
+      label: "Native Acuity API integration",
+      body: "Real-time availability read, books on-call against the right appointment type, populates the intake form fields. The whole point of integrating.",
+    },
+    {
+      level: "webhook",
+      label: "Webhook → Acuity API",
+      body: "Acuity's API is straightforward; webhook integrations are workable. Worth it for teams with multiple appointment types or unusual scheduling logic.",
+    },
+    {
+      level: "zapier",
+      label: "Zapier",
+      body: "Acuity-on-Zapier works but books after the call ends — caller has already hung up. OK for low-volume use cases.",
+    },
+    {
+      level: "none",
+      label: "SMS the Acuity link",
+      body: "The AI texts the caller an Acuity booking link mid-call. Conversion drops significantly vs booking on-call.",
+    },
+  ],
+  criteria: [
+    {
+      title: "Right appointment type per call",
+      body: "Acuity's strength is structured appointment types (consult, full service, follow-up). The AI needs to route the right type per call, not default to one generic block.",
+    },
+    {
+      title: "Intake form population",
+      body: "Acuity's intake forms ask qualification questions per appointment type. The AI should populate them automatically from the call — not leave them blank for the customer to fill out later.",
+    },
+    {
+      title: "Package + membership handling",
+      body: "If your customers have purchased packages or memberships, the AI should recognize them (by phone lookup) and book against the right package — not create a new paid appointment.",
+    },
+    {
+      title: "Calendar buffer + travel time",
+      body: "Acuity respects buffer time and travel between locations. The AI's booking should honor those — otherwise you'll get back-to-back bookings that break your schedule.",
+    },
+  ],
+  buyerNotes: [
+    {
+      title: "Test against all your appointment types",
+      body: "In the demo, ask the vendor to book each of your real appointment types — not a generic one. The intake form population is where mismatches show up.",
+    },
+    {
+      title: "Confirm package-aware booking",
+      body: "If you sell packages, the AI booking flow needs to know about them. Some integrations create new paid appointments instead of decrementing the customer's package balance.",
+    },
+    {
+      title: "Squarespace-Acuity merge nuances",
+      body: "Acuity's Squarespace acquisition continues to evolve. Some older integrations break when Acuity changes API surface; confirm the vendor maintains the integration actively.",
+    },
+  ],
+  faqs: [
+    {
+      question: "Can AI receptionists book directly into Acuity?",
+      answer:
+        "Yes — native integrations read availability in real time and create the booking before the caller hangs up. Watch for vendors that pitch 'Acuity integration' but actually SMS the booking link.",
+    },
+    {
+      question: "Will it know which appointment type to book?",
+      answer:
+        "Better vendors let you map the AI's call type to the Acuity appointment type. Generic integrations default to a single type, which breaks the whole point of using Acuity's structured types.",
+    },
+    {
+      question: "What about intake form fields?",
+      answer:
+        "Native integrations can populate intake form fields from the call. Webhook setups can if you write the mapping. Zapier setups usually can't.",
+    },
+    {
+      question: "Does it handle package-based booking?",
+      answer:
+        "Some vendors do. Test specifically if your business runs on packages — the lookup-by-phone-then-find-active-package flow is non-trivial and not universal.",
+    },
+  ],
+  relatedSlugs: ["ai-receptionist-with-calendly", "ai-receptionist-with-jobber"],
+  relatedCommercialSlugs: [
+    "best-ai-answering-service-for-appointment-booking",
+    "best-ai-receptionist-for-medical-offices",
+  ],
+};
+
+export const INTEGRATION_HOUSECALL_PRO: IntegrationPageConfig = {
+  slug: "ai-receptionist-with-housecall-pro",
+  toolName: "Housecall Pro",
+  category: "fsm",
+  metaTitle: "AI receptionist with Housecall Pro integration (HVAC, plumbing, electrical)",
+  metaDescription:
+    "AI receptionists that integrate with Housecall Pro — job booking on the dispatch board, customer lookup, recurring service handling, and which vendors actually do it well.",
+  eyebrow: "Integration · Housecall Pro",
+  headlineLead: "AI receptionist for Housecall Pro shops:",
+  headlineAccent: "dispatch the job, don't take a message.",
+  intro:
+    "Housecall Pro is the home-service tool of choice for smaller HVAC, plumbing, electrical, and cleaning operations — easier setup than ServiceTitan, less enterprise overhead. An AI receptionist that integrates with Housecall Pro should land jobs on the dispatch board, lookup repeat customers automatically, and respect your employee schedule — not dump everything into 'New Job' for the office manager to sort out.",
+  spectrum: [
+    {
+      level: "native",
+      label: "Native Housecall Pro integration",
+      body: "Reads customer history, books on the dispatch board with the right job type, respects technician availability. The path that eliminates the dispatcher re-entry tax.",
+    },
+    {
+      level: "webhook",
+      label: "Webhook → Housecall Pro API",
+      body: "Workable if Housecall Pro API access is enabled on your plan. Most office managers won't run this themselves — needs someone technical.",
+    },
+    {
+      level: "zapier",
+      label: "Zapier",
+      body: "Housecall Pro has limited Zapier support compared to general CRMs. Workable for simple customer creation; falls short on dispatch logic.",
+    },
+    {
+      level: "none",
+      label: "Email summary to dispatcher",
+      body: "Office manager reads the email, opens Housecall Pro, re-creates the job. The most common 'simple AI' failure mode for home-service shops.",
+    },
+  ],
+  criteria: [
+    {
+      title: "Job creation on the dispatch board",
+      body: "The dispatch board is the source of truth in Housecall Pro. AI should create the job there, in the right job type, in a slot that respects employee availability — not email-then-reentry.",
+    },
+    {
+      title: "Customer lookup by phone",
+      body: "Returning customers shouldn't have to re-give their address. Native integrations look up by phone and load the existing customer record, including service history.",
+    },
+    {
+      title: "Service-area gating",
+      body: "Calls from outside your service area should be politely declined or referred. Native integration usually handles this via the customer's address; webhook setups need manual config.",
+    },
+    {
+      title: "Right employee / job type",
+      body: "Plumbing call shouldn't go to the electrician. The AI should respect employee skills + availability in Housecall Pro — not just check 'is this slot free.'",
+    },
+  ],
+  buyerNotes: [
+    {
+      title: "Confirm Housecall Pro plan supports API access",
+      body: "Not every Housecall Pro tier includes API access. Confirm with both the AI vendor and Housecall Pro before assuming the integration will work.",
+    },
+    {
+      title: "Test against your actual job types",
+      body: "Your job types are specific (Standard Service Call, Membership Service, Maintenance, Estimate). The AI should know which is which and book accordingly. Test all of yours, not the vendor's defaults.",
+    },
+    {
+      title: "Plan for memberships",
+      body: "If you sell maintenance memberships, the AI should recognize members and prioritize/schedule accordingly. This is where generic FSM integrations usually fall short.",
+    },
+  ],
+  faqs: [
+    {
+      question: "Do AI receptionists integrate with Housecall Pro?",
+      answer:
+        "A growing set do. Native integrations are less common than CRM integrations (HubSpot etc.) but more common than they were a year ago. Always confirm with a live demo against your Housecall Pro setup.",
+    },
+    {
+      question: "Will it create jobs on the dispatch board?",
+      answer:
+        "Native integrations: yes, with right job type + employee assignment. Webhook-based: yes if wired. Email-only: no, dispatch re-enters. Native is materially better for daily operations.",
+    },
+    {
+      question: "Can it look up repeat customers?",
+      answer:
+        "Native integrations look up by phone and load the existing customer with their service history. Without that, you'll re-take address every call from existing customers — a meaningful friction at scale.",
+    },
+    {
+      question: "What about recurring / maintenance services?",
+      answer:
+        "If a customer calls about an existing recurring service (quarterly maintenance, annual inspection), the AI should book against that service, not create a new one. Native integrations handle this; generic ones don't.",
+    },
+  ],
+  relatedSlugs: ["ai-receptionist-with-servicetitan", "ai-receptionist-with-jobber"],
+  relatedCommercialSlugs: [
+    "best-ai-receptionist-for-home-services",
+    "best-ai-receptionist-for-contractors",
+  ],
+};
+
 /** Lookup by slug for related-pages blocks. */
 export const INTEGRATION_PAGES: Record<string, IntegrationPageConfig> = {
   [INTEGRATION_HUBSPOT.slug]: INTEGRATION_HUBSPOT,
   [INTEGRATION_SALESFORCE.slug]: INTEGRATION_SALESFORCE,
   [INTEGRATION_GOHIGHLEVEL.slug]: INTEGRATION_GOHIGHLEVEL,
+  [INTEGRATION_PIPEDRIVE.slug]: INTEGRATION_PIPEDRIVE,
+  [INTEGRATION_ZOHO.slug]: INTEGRATION_ZOHO,
   [INTEGRATION_CALENDLY.slug]: INTEGRATION_CALENDLY,
+  [INTEGRATION_ACUITY.slug]: INTEGRATION_ACUITY,
   [INTEGRATION_SERVICETITAN.slug]: INTEGRATION_SERVICETITAN,
+  [INTEGRATION_HOUSECALL_PRO.slug]: INTEGRATION_HOUSECALL_PRO,
   [INTEGRATION_CLIO.slug]: INTEGRATION_CLIO,
   [INTEGRATION_JOBBER.slug]: INTEGRATION_JOBBER,
 };

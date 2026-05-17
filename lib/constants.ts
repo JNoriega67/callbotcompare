@@ -47,9 +47,13 @@ export const FOOTER_LINKS = [
     links: [
       { label: "HubSpot", href: "/ai-receptionist-with-hubspot" },
       { label: "Salesforce", href: "/ai-receptionist-with-salesforce" },
+      { label: "Pipedrive", href: "/ai-receptionist-with-pipedrive" },
+      { label: "Zoho CRM", href: "/ai-receptionist-with-zoho" },
       { label: "GoHighLevel", href: "/ai-receptionist-with-gohighlevel" },
       { label: "Calendly", href: "/ai-receptionist-with-calendly" },
+      { label: "Acuity", href: "/ai-receptionist-with-acuity" },
       { label: "ServiceTitan", href: "/ai-receptionist-with-servicetitan" },
+      { label: "Housecall Pro", href: "/ai-receptionist-with-housecall-pro" },
       { label: "Clio", href: "/ai-receptionist-with-clio" },
       { label: "Jobber", href: "/ai-receptionist-with-jobber" },
     ],
