@@ -5,9 +5,11 @@ import { cn } from "@/lib/utils";
 type WordmarkProps = {
   className?: string;
   /**
-   * Light-on-dark variant. Kept on the props API for back-compat with
-   * existing callers; the brand image is transparent so there's no
-   * surface treatment to flip.
+   * Light-on-dark variant. Flattens the multi-color brand image into a
+   * pure white silhouette so it reads cleanly on the dark navy footer.
+   * `brightness-0` collapses all RGB to black; `invert` then flips
+   * black to white. Alpha is preserved by both filters, so the
+   * transparent backdrop stays transparent.
    */
   invert?: boolean;
 };
@@ -15,10 +17,10 @@ type WordmarkProps = {
 /**
  * CallTreo wordmark — renders the brand image (public/calltreo-logo.png)
  * which contains both the icon mark and the wordmark text on a
- * transparent background. The same image is used for both light and
- * dark surfaces.
+ * transparent background. Same image for both surfaces; the dark
+ * variant is produced at render time via CSS filters.
  */
-export function Wordmark({ className, invert: _invert = false }: WordmarkProps) {
+export function Wordmark({ className, invert = false }: WordmarkProps) {
   return (
     <span
       className={cn("inline-flex select-none items-center", className)}
@@ -30,7 +32,10 @@ export function Wordmark({ className, invert: _invert = false }: WordmarkProps) 
         width={1180}
         height={460}
         priority
-        className="h-14 w-auto md:h-16"
+        className={cn(
+          "h-14 w-auto md:h-16",
+          invert && "brightness-0 invert",
+        )}
       />
     </span>
   );
