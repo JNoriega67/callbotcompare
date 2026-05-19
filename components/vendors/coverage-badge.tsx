@@ -32,6 +32,32 @@ export function CoverageBadge({ size = "sm" }: { size?: Size }) {
 }
 
 /**
+ * Visual signal that a vendor doesn't publish a starting price publicly.
+ * Same shape as <CoverageBadge /> for visual consistency, but a neutral
+ * slate tone instead of amber — this isn't a coverage gap on our side,
+ * it's a vendor-side fact (most enterprise voice-AI platforms gate
+ * pricing behind a sales call).
+ *
+ * Render when the vendor has been reviewed (overallScore != null) but
+ * pricingFromUsd is null. On unscored vendors, the CoverageBadge
+ * already covers the broader gap and we don't want to stack badges.
+ */
+export function PricingTag({ size = "sm" }: { size?: Size }) {
+  return (
+    <span
+      className={
+        "inline-flex items-center gap-1.5 rounded-full border border-rule bg-paper-deep font-heading font-semibold text-muted-ink " +
+        SIZE_CLASS[size]
+      }
+      title="The vendor doesn't publish a starting price on their marketing site; talk to sales for a quote."
+    >
+      <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-muted-ink" />
+      Pricing not published
+    </span>
+  );
+}
+
+/**
  * Larger, paragraph-form variant rendered on the vendor detail page
  * above the scorecard when there's no score yet. Includes a link to the
  * methodology so the reader knows what's coming and why.

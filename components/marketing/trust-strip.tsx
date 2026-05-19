@@ -47,7 +47,9 @@ export function TrustStrip({ items, variant = "light", className }: TrustStripPr
           ? "md:grid-cols-2 md:divide-x "
           : items.length === 3
             ? "md:grid-cols-3 md:divide-x "
-            : "md:grid-cols-4 md:divide-x ") +
+            : items.length === 4
+              ? "md:grid-cols-4 md:divide-x "
+              : "md:grid-cols-5 md:divide-x ") +
         dividerClass +
         " " +
         (className ?? "")

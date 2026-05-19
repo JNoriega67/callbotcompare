@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { CoverageBadge } from "@/components/vendors/coverage-badge";
+import { CoverageBadge, PricingTag } from "@/components/vendors/coverage-badge";
 import { VendorBadgeRow } from "@/components/vendors/vendor-badge-row";
 import { formatPricing, formatScore } from "@/lib/scoring";
 
@@ -24,6 +24,10 @@ type VendorCardProps = {
 
 export function VendorCard({ vendor }: VendorCardProps) {
   const unscored = vendor.overallScore == null;
+  // Show the pricing tag for scored vendors whose pricing is gated.
+  // For unscored vendors the CoverageBadge already signals incomplete
+  // data, so a second badge would double up.
+  const showPricingTag = !unscored && vendor.pricingFromUsd == null;
   return (
     <article className="group relative flex h-full flex-col gap-4 rounded-[var(--radius-card)] border border-rule bg-surface p-6 shadow-[var(--shadow-card)] transition-all hover:-translate-y-0.5 hover:border-signal/40 hover:shadow-[var(--shadow-card-hover)]">
       <header className="flex items-start justify-between gap-3">
@@ -69,9 +73,13 @@ export function VendorCard({ vendor }: VendorCardProps) {
       ) : null}
       <VendorBadgeRow vendor={vendor} />
       <footer className="mt-auto flex items-center justify-between gap-3 border-t border-rule pt-3">
-        <span className="font-heading text-[11px] font-semibold text-muted-ink">
-          {formatPricing(vendor.pricingFromUsd, vendor.pricingModel)}
-        </span>
+        {showPricingTag ? (
+          <PricingTag />
+        ) : (
+          <span className="font-heading text-[11px] font-semibold text-muted-ink">
+            {formatPricing(vendor.pricingFromUsd, vendor.pricingModel)}
+          </span>
+        )}
         <Link
           href={`/vendors/${vendor.slug}`}
           className="font-heading text-[11px] font-semibold text-signal underline-offset-4 hover:underline"

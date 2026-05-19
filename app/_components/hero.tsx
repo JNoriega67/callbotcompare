@@ -11,8 +11,12 @@ import { WEIGHTS } from "@/lib/scoring";
 
 export async function Hero() {
   // Dynamic stats — drive from registries + the live vendor pool so the
-  // hero stays current as the site grows.
-  const vendorCount = await prisma.vendor.count({ where: { isPublished: true } });
+  // hero stays current as the site grows. Both counts run in parallel
+  // to keep TTFB tight.
+  const [vendorCount, comparisonCount] = await Promise.all([
+    prisma.vendor.count({ where: { isPublished: true } }),
+    prisma.comparisonPage.count({ where: { status: "PUBLISHED" } }),
+  ]);
   const integrationCount = Object.keys(INTEGRATION_PAGES).length;
   const segmentCount = Object.keys(COMMERCIAL_PAGES).length;
   const guideCount = Object.keys(GUIDES).length;
@@ -79,6 +83,7 @@ export async function Hero() {
           <TrustStrip
             items={[
               { label: "Vendors scored", value: String(vendorCount), href: "/vendors" },
+              { label: "Side-by-side comparisons", value: String(comparisonCount), href: "/compare" },
               { label: "Buyer segments", value: String(segmentCount), href: "/best-ai-receptionist-software" },
               { label: "Integrations covered", value: String(integrationCount), href: "/ai-receptionist-with-hubspot" },
               { label: "Implementation guides", value: String(guideCount), href: "/guides" },

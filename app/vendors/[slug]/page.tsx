@@ -15,7 +15,7 @@ import { VendorBadgeRow } from "@/components/vendors/vendor-badge-row";
 import { Alternatives } from "@/app/vendors/[slug]/_components/alternatives";
 import { ProsCons } from "@/app/vendors/[slug]/_components/pros-cons";
 import { ScoreBreakdown } from "@/app/vendors/[slug]/_components/score-breakdown";
-import { CoverageBadge, CoverageNotice } from "@/components/vendors/coverage-badge";
+import { CoverageBadge, CoverageNotice, PricingTag } from "@/components/vendors/coverage-badge";
 import { prisma } from "@/lib/db";
 import { relatedGuidesForVendor } from "@/lib/related-for-vendor";
 import { formatPricing, formatScore, formatSetupComplexity } from "@/lib/scoring";
@@ -152,6 +152,11 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
                   <dd className="mt-1 font-heading text-base font-semibold text-ink">
                     {formatPricing(vendor.pricingFromUsd, vendor.pricingModel)}
                   </dd>
+                  {vendor.overallScore != null && vendor.pricingFromUsd == null ? (
+                    <div className="mt-2">
+                      <PricingTag />
+                    </div>
+                  ) : null}
                 </div>
                 <div>
                   <dt className="font-heading text-[10px] font-semibold text-muted-ink">
