@@ -68,6 +68,18 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
     select: { slug: true, name: true, tagline: true, overallScore: true },
   });
 
+  // Comparison pages this vendor appears in — surfaces internal links to
+  // editorial side-by-sides without requiring config-time wiring per vendor.
+  const featuringComparisons = await prisma.comparisonPage.findMany({
+    where: {
+      status: "PUBLISHED",
+      vendors: { some: { vendor: { slug: vendor.slug } } },
+    },
+    select: { slug: true, title: true, metaDescription: true },
+    orderBy: { updatedAt: "desc" },
+    take: 4,
+  });
+
   const hasOutbound = Boolean(vendor.affiliateUrl ?? vendor.websiteUrl);
   const isReferral = Boolean(vendor.affiliateUrl);
 
@@ -280,6 +292,45 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
             </div>
             <Alternatives items={alternatives} />
           </div>
+
+          {/* Side-by-side comparisons that feature this vendor */}
+          {featuringComparisons.length ? (
+            <div>
+              <p className="font-heading text-[10px] font-semibold text-signal">
+                Side-by-side comparisons
+              </p>
+              <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
+                {vendor.name} vs other vendors.
+              </h2>
+              <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                {featuringComparisons.map((c) => (
+                  <li key={c.slug}>
+                    <Link
+                      href={`/compare/${c.slug}`}
+                      className="group flex h-full flex-col justify-between rounded-[var(--radius-card)] border border-rule bg-surface p-4 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)]"
+                    >
+                      <div>
+                        <p className="font-heading text-[10px] font-semibold text-muted-ink">
+                          Comparison
+                        </p>
+                        <p className="mt-2 font-heading text-base font-semibold text-ink group-hover:text-signal">
+                          {c.title}
+                        </p>
+                        {c.metaDescription ? (
+                          <p className="mt-2 line-clamp-2 text-sm text-ink-soft">
+                            {c.metaDescription}
+                          </p>
+                        ) : null}
+                      </div>
+                      <p className="mt-3 font-heading text-[11px] font-semibold text-signal group-hover:underline">
+                        Read the comparison →
+                      </p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
 
           {/* Related editorial guides (cross-cluster internal linking) */}
           {relatedGuides.length ? (
