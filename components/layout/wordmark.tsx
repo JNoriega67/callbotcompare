@@ -35,10 +35,10 @@ export function Wordmark({ className, invert = false }: WordmarkProps) {
       <Image
         src="/calltreo-logo.png"
         alt="CallTreo"
-        width={144}
-        height={108}
+        width={860}
+        height={380}
         priority
-        className="h-8 w-auto md:h-9"
+        className="h-14 w-auto md:h-16"
       />
     </span>
   );

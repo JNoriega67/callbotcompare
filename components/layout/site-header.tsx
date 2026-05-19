@@ -44,7 +44,7 @@ export function SiteHeader() {
         scrolled ? "shadow-[0_1px_0_var(--rule)]" : "shadow-none",
       )}
     >
-      <Container className="flex h-16 items-center justify-between gap-6">
+      <Container className="flex h-20 items-center justify-between gap-6">
         <Link href="/" className="text-base">
           <Wordmark />
         </Link>
