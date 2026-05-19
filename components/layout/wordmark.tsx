@@ -5,38 +5,30 @@ import { cn } from "@/lib/utils";
 type WordmarkProps = {
   className?: string;
   /**
-   * Light-on-dark variant. The brand image carries dark navy + teal
-   * elements that disappear on the navy footer; we wrap it in a soft
-   * paper pill so the logo stays legible without redrawing it for dark.
+   * Light-on-dark variant. Kept on the props API for back-compat with
+   * existing callers; the brand image is transparent so there's no
+   * surface treatment to flip.
    */
   invert?: boolean;
 };
 
 /**
- * CallTreo wordmark. Renders the brand image (public/calltreo-logo.png).
- * The file contains both the mark and the wordmark text — text is no
- * longer split between SVG + DOM characters, so changes to brand color
- * tokens won't shift the visible logo.
- *
- * Width:height comes from the image's natural 1448:1086 aspect (~4:3).
- * Header callers typically render at ~36px tall; the inline width lets
- * the layout reserve the right space without CLS.
+ * CallTreo wordmark — renders the brand image (public/calltreo-logo.png)
+ * which contains both the icon mark and the wordmark text on a
+ * transparent background. The same image is used for both light and
+ * dark surfaces.
  */
-export function Wordmark({ className, invert = false }: WordmarkProps) {
+export function Wordmark({ className, invert: _invert = false }: WordmarkProps) {
   return (
     <span
-      className={cn(
-        "inline-flex select-none items-center",
-        invert && "rounded-md bg-paper/95 px-2 py-1",
-        className,
-      )}
+      className={cn("inline-flex select-none items-center", className)}
       aria-label="CallTreo"
     >
       <Image
         src="/calltreo-logo.png"
         alt="CallTreo"
-        width={860}
-        height={380}
+        width={1180}
+        height={460}
         priority
         className="h-14 w-auto md:h-16"
       />
@@ -45,7 +37,7 @@ export function Wordmark({ className, invert = false }: WordmarkProps) {
 }
 
 /**
- * Icon-only re-export. We no longer ship a separate mark — every surface
- * uses the full wordmark image. Kept so any old import doesn't break.
+ * Kept as an alias of Wordmark so any older imports keep working.
+ * We no longer ship a separate mark-only component.
  */
 export const BrandMark = Wordmark;
