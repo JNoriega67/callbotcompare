@@ -14,9 +14,10 @@ import sharp from "../node_modules/.pnpm/sharp@0.34.5/node_modules/sharp/lib/ind
 
 const SRC = "/tmp/calltreo-logo-original.png";
 
-// Tight crops on the source asset (1448 x 1086) that include both the
-// icon mark and the wordmark text without the surrounding whitespace.
-const FULL_BOX = { left: 100, top: 320, width: 1180, height: 460 };
+// Crops on the source asset (1448 x 1086). FULL_BOX is intentionally
+// generous on the right edge + bottom so the trailing "o" in "Treo"
+// and the macron on the "ē" don't clip at smaller render sizes.
+const FULL_BOX = { left: 80, top: 280, width: 1340, height: 540 };
 const ICON_BOX = { left: 150, top: 350, width: 420, height: 420 };
 
 /**
