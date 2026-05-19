@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { Toaster } from "@/components/ui/sonner";
@@ -46,6 +47,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <SiteFooter />
         <Toaster position="top-right" richColors closeButton />
+        <GoogleAnalytics />
       </body>
     </html>
   );

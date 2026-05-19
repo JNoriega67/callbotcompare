@@ -7,6 +7,7 @@ import { toast } from "sonner";
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { trackEvent } from "@/lib/analytics";
 import { LeadSchema, type LeadInput } from "@/lib/leads";
 
 type LeadFormProps = {
@@ -49,6 +50,7 @@ export function LeadForm({
         const data = await response.json().catch(() => ({}));
         throw new Error(data?.error ?? "Submission failed");
       }
+      trackEvent("lead_submit", { source: hidden.source });
       toast.success("Got it. We'll be in touch shortly.");
       reset();
       setSubmitted(true);

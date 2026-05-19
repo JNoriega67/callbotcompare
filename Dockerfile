@@ -26,6 +26,8 @@ RUN corepack enable && corepack prepare pnpm@11.1.2 --activate
 # NEXT_PUBLIC_* values are baked into the client bundle at build time.
 ARG NEXT_PUBLIC_SITE_URL=https://callbotcompare.com
 ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
+ARG NEXT_PUBLIC_GA_MEASUREMENT_ID
+ENV NEXT_PUBLIC_GA_MEASUREMENT_ID=${NEXT_PUBLIC_GA_MEASUREMENT_ID}
 
 # Prisma schema validation needs syntactically-valid URLs; the build
 # itself never connects (all DB-querying pages are dynamic).

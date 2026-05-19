@@ -7,6 +7,7 @@ import { toast } from "sonner";
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { trackEvent } from "@/lib/analytics";
 import {
   INTENT_LABELS,
   INTENT_VALUES,
@@ -71,6 +72,7 @@ export function ContactForm() {
         const data = await response.json().catch(() => ({}));
         throw new Error(data?.error ?? "Submission failed");
       }
+      trackEvent("lead_submit", { source: "contact", intent: values.intent ?? "comparing" });
       toast.success("Got it — we'll be in touch shortly.");
       reset();
       setSubmitted(true);

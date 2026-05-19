@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { QuizProgress } from "@/app/quiz/_components/quiz-progress";
 import { QuizResults } from "@/app/quiz/_components/quiz-results";
 import { QuizStep, type QuizOption } from "@/app/quiz/_components/quiz-step";
+import { trackEvent } from "@/lib/analytics";
 
 type StepKey = "industry" | "volume" | "needs" | "integrations" | "budget";
 
@@ -143,6 +144,11 @@ export function QuizStepper({ publishedVendors }: QuizStepperProps) {
       }
       const data = (await response.json()) as { recommendedVendors?: string[] };
       setRecommended(data.recommendedVendors ?? []);
+      trackEvent("quiz_complete", {
+        industry: answers.industry ?? "unspecified",
+        volume: answers.volume ?? "unspecified",
+        recommended_count: data.recommendedVendors?.length ?? 0,
+      });
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Quiz submission failed");
     } finally {
