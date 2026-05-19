@@ -13,6 +13,12 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  // Track which pathname we opened the menu under. Comparing it inline
+  // lets us auto-close on route change without an effect-driven setState
+  // (which triggers react-hooks/set-state-in-effect — see React 19 docs
+  // on storing derived state during render).
+  const [openedFor, setOpenedFor] = useState<string | null>(null);
+  const isOpen = open && openedFor === pathname;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 4);
@@ -21,9 +27,15 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  function toggle() {
+    if (isOpen) {
+      setOpen(false);
+      setOpenedFor(null);
+    } else {
+      setOpen(true);
+      setOpenedFor(pathname);
+    }
+  }
 
   return (
     <header
@@ -71,8 +83,8 @@ export function SiteHeader() {
           type="button"
           className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-rule text-ink md:hidden"
           aria-label="Toggle navigation"
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
+          aria-expanded={isOpen}
+          onClick={toggle}
         >
           <span className="sr-only">Toggle navigation</span>
           <svg
@@ -84,7 +96,7 @@ export function SiteHeader() {
             className="h-4 w-4"
             aria-hidden
           >
-            {open ? (
+            {isOpen ? (
               <>
                 <line x1="18" y1="6" x2="6" y2="18" />
                 <line x1="6" y1="6" x2="18" y2="18" />
@@ -98,7 +110,7 @@ export function SiteHeader() {
           </svg>
         </button>
       </Container>
-      {open ? (
+      {isOpen ? (
         <div className="border-t border-rule bg-paper md:hidden">
           <Container className="flex flex-col gap-1 py-3">
             {NAV_ITEMS.map((item) => (

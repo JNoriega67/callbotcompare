@@ -61,7 +61,7 @@ async function main() {
     })
   }
 
-  for (const vendor of seedVendors as any[]) {
+  for (const vendor of seedVendors as Array<Record<string, unknown>>) {
     const created = await prisma.vendor.upsert({
       where: { slug: vendor.slug },
       update: {

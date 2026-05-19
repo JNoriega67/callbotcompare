@@ -9,7 +9,6 @@ export function trackEvent(name: string, props?: Record<string, unknown>) {
   }
   // Stub: no-op in the browser for MVP. Wire window.plausible / window.posthog later.
   if (process.env.NODE_ENV !== "production") {
-    // eslint-disable-next-line no-console
     console.log(`[event] ${name}`, props ?? {});
   }
 }

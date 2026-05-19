@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
@@ -121,12 +122,12 @@ export default async function VendorsPage({ searchParams }: VendorsPageProps) {
                 {hasActiveFilters(filters) ? (
                   <p className="text-center text-sm text-muted-ink">
                     Filtered to {vendors.length} of {totalPublished}.{" "}
-                    <a
+                    <Link
                       href="/vendors"
                       className="text-ink underline underline-offset-4 hover:text-signal"
                     >
                       Reset filters
-                    </a>
+                    </Link>
                   </p>
                 ) : null}
               </>

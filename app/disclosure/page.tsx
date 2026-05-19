@@ -50,7 +50,7 @@ export default function DisclosurePage() {
           </div>
 
           <div>
-            <h2 className="font-heading text-2xl font-bold text-ink">What's monetized.</h2>
+            <h2 className="font-heading text-2xl font-bold text-ink">What&apos;s monetized.</h2>
             <p className="mt-3">CallTreo earns money in two ways:</p>
             <ul className="mt-3 space-y-2">
               <li>
@@ -58,8 +58,8 @@ export default function DisclosurePage() {
                 when a buyer signs up after clicking a CallTreo outbound link. On any vendor page
                 where a referral relationship exists, we render a short disclosure next to the
                 outbound button and apply{" "}
-                <code className="rounded bg-paper-deep px-1.5 py-0.5 text-sm">rel="sponsored"</code>{" "}
-                to the link (per Google's webmaster guidance).
+                <code className="rounded bg-paper-deep px-1.5 py-0.5 text-sm">rel=&quot;sponsored&quot;</code>{" "}
+                to the link (per Google&apos;s webmaster guidance).
               </li>
               <li>
                 <span className="font-semibold text-ink">Implementation services</span> — we charge
@@ -74,7 +74,7 @@ export default function DisclosurePage() {
           </div>
 
           <div>
-            <h2 className="font-heading text-2xl font-bold text-ink">What's never monetized.</h2>
+            <h2 className="font-heading text-2xl font-bold text-ink">What&apos;s never monetized.</h2>
             <ul className="mt-3 space-y-2">
               <li>The overall editor score, sub-scores, and the order vendors appear in the directory.</li>
               <li>The text of vendor summaries, pros, cons, and editor verdicts.</li>
@@ -85,7 +85,7 @@ export default function DisclosurePage() {
           <div>
             <h2 className="font-heading text-2xl font-bold text-ink">If we get something wrong.</h2>
             <p className="mt-3">
-              We make a deliberate effort not to fabricate vendor claims. Fields we haven't
+              We make a deliberate effort not to fabricate vendor claims. Fields we haven&apos;t
               independently verified are rendered as &ldquo;research needed&rdquo; or em-dashed
               rather than guessed at. If you spot something incorrect on a vendor page, email us at{" "}
               <a

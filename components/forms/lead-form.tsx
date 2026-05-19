@@ -64,8 +64,8 @@ export function LeadForm({
       <div className="rounded-[var(--radius-card)] border border-rule bg-signal-soft/50 p-6">
         <h3 className="font-heading text-lg font-semibold text-ink">Thanks — we got it.</h3>
         <p className="mt-1 text-sm text-ink-soft/85">
-          Expect a response within one business day. If it's urgent, reply to our email with
-          "urgent" in the subject.
+          Expect a response within one business day. If it&apos;s urgent, reply to our email with
+          &quot;urgent&quot; in the subject.
         </p>
         <button
           type="button"

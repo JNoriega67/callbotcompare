@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
@@ -56,36 +57,36 @@ export default function ContactPage() {
               </p>
               <p className="mt-2">
                 Take{" "}
-                <a href="/quiz" className="text-signal underline-offset-2 hover:underline">
+                <Link href="/quiz" className="text-signal underline-offset-2 hover:underline">
                   the quiz
-                </a>{" "}
+                </Link>{" "}
                 for an automated shortlist, browse the{" "}
-                <a href="/vendors" className="text-signal underline-offset-2 hover:underline">
+                <Link href="/vendors" className="text-signal underline-offset-2 hover:underline">
                   vendor directory
-                </a>
+                </Link>
                 , or read the{" "}
-                <a href="/guides" className="text-signal underline-offset-2 hover:underline">
+                <Link href="/guides" className="text-signal underline-offset-2 hover:underline">
                   implementation guides
-                </a>
+                </Link>
                 .
               </p>
             </div>
             <div className="border-t border-rule pt-5 text-xs leading-relaxed text-muted-ink">
               <p>
                 Our{" "}
-                <a
+                <Link
                   href="/methodology"
                   className="text-ink underline underline-offset-2 hover:text-signal"
                 >
                   methodology
-                </a>{" "}
+                </Link>{" "}
                 and{" "}
-                <a
+                <Link
                   href="/disclosure"
                   className="text-ink underline underline-offset-2 hover:text-signal"
                 >
                   referral disclosure
-                </a>{" "}
+                </Link>{" "}
                 are public. We don&apos;t take retainers and won&apos;t recommend a tool we
                 wouldn&apos;t use ourselves.
               </p>
