@@ -71,6 +71,42 @@ const COMPARISONS: ComparisonSeed[] = [
       "Abby Connect tends to win on caller-experience consistency and the warmth of the receptionist interaction; smaller teams report a tighter feedback loop on script tweaks. AnswerConnect wins on after-hours coverage breadth, broader integration list, and slightly more aggressive pricing at higher volumes. The decision usually comes down to whether you weight caller experience (Abby) or coverage breadth + integration (AnswerConnect) more heavily — both are credible.",
     vendorSlugs: ["abby-connect", "answerconnect"],
   },
+  {
+    slug: "synthflow-vs-bland-ai",
+    title: "Synthflow vs Bland AI: no-code builder vs developer platform",
+    metaTitle: "Synthflow vs Bland AI — comparison (2026)",
+    metaDescription:
+      "Synthflow vs Bland AI compared: no-code voice agent builder vs developer-focused AI phone platform. Pricing model, compliance, integrations, who each fits.",
+    intro:
+      "Synthflow and Bland AI both build AI voice agents and both publish a serious compliance posture (SOC 2, HIPAA, PCI, GDPR), but they target opposite ends of the buying audience. Synthflow leads with a no-code builder for agencies and SMB-to-mid-market teams. Bland leads with a programmable platform marketed at engineering-led enterprises. Same underlying technology category, very different go-to-market — and the right choice almost always comes down to who's going to configure it.",
+    verdict:
+      "Pick Synthflow if you don't have engineers on the build (or you're an agency standing up agents for clients) — the no-code path plus integrations with HubSpot, Salesforce, GoHighLevel, and Cal.com is genuinely faster to live. Pick Bland AI if you have an engineering team and want per-minute pricing across a unified LLM + STT + TTS + telephony stack with 40+ language support, and you're willing to wire the integrations yourself. Both are credible technical platforms; the wrong fit is buying Bland if your team can't write code, or buying Synthflow if you actually need custom call-graph logic at the API level.",
+    vendorSlugs: ["synthflow", "bland-ai"],
+  },
+  {
+    slug: "vapi-vs-bland-ai",
+    title: "Vapi vs Bland AI: voice AI infrastructure compared",
+    metaTitle: "Vapi vs Bland AI — comparison (2026)",
+    metaDescription:
+      "Vapi vs Bland AI side-by-side: both are developer-focused voice AI platforms with SOC 2 + HIPAA + PCI. Pricing model, language support, infrastructure approach.",
+    intro:
+      "Vapi and Bland AI are the two best-known developer-focused voice AI platforms. Both market 'API-first' or 'programmable' positioning, both publish SOC 2 + HIPAA + PCI posture, and both are used by serious enterprises (Vapi cites Ring, GoHealth, Instawork, Kavak; Bland cites 250+ enterprise customers across healthcare, finance, and insurance). The decision rarely comes down to whether the platform is good — both are — it comes down to pricing model, language depth, and how much of the call-graph you want to control yourself.",
+    verdict:
+      "Bland AI is the easier default if you want a single per-minute rate that covers everything (LLM + STT + TTS + telephony) and you need 40+ languages with real-time translation in 23 of them — they publish a broad integration list (Salesforce, HubSpot, Twilio, Zapier, Calendly, Genesys, Five9, NICE, Talkdesk, Amazon Connect, SIP) and a packaged 'handoff with context' for humans. Vapi is the better fit if you want a managed voice AI platform you can plug your own models into (the 'API-first by design' angle), and you're comfortable building your own integration + handoff layer. If you don't already know which philosophy fits your team, default to Bland — the packaged stack is one fewer thing to assemble.",
+    vendorSlugs: ["vapi", "bland-ai"],
+  },
+  {
+    slug: "synthflow-vs-vapi",
+    title: "Synthflow vs Vapi: no-code builder vs API platform",
+    metaTitle: "Synthflow vs Vapi — comparison (2026)",
+    metaDescription:
+      "Synthflow vs Vapi compared: no-code voice agent builder vs API-first developer platform. Audience fit, integrations, compliance, pricing model.",
+    intro:
+      "Synthflow and Vapi both build AI voice agents and both publish HIPAA + SOC 2 + PCI compliance posture, but they sit at opposite ends of the build-vs-buy spectrum. Synthflow ships a no-code builder marketed at agencies and SMB-to-mid-market teams. Vapi ships an 'API-first' platform marketed at developers and Fortune 100 engineering teams. They're rarely shortlisted together by the same buyer — but when they are, the question is usually whether you want to drag-and-drop or whether you want to write code.",
+    verdict:
+      "Pick Synthflow if the team that will own the agent doesn't write code, and you want named integrations with HubSpot, Salesforce, GoHighLevel, and Cal.com out of the box — pay-as-you-go pricing lets you keep usage costs proportional to actual call volume. Pick Vapi if you have engineering capacity, you want to bring your own LLM or stitch in custom call-flow logic at the API level, and you value the broader 'platform' framing where voice is one of several capabilities you'll build on top of. Neither is wrong; they just answer different questions.",
+    vendorSlugs: ["synthflow", "vapi"],
+  },
 ];
 
 export async function seedComparisons(prisma: PrismaClient) {

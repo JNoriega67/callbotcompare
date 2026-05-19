@@ -182,29 +182,87 @@ const ADDITIONAL_VENDORS: ReadonlyArray<VendorSeed> = [
     slug: "vapi",
     name: "VAPI",
     websiteUrl: "https://vapi.ai",
-    tagline: "Voice AI infrastructure for developers",
+    tagline: "API-first voice AI platform for developers (SOC 2 + HIPAA + PCI)",
     summary:
-      "Developer infrastructure for voice AI applications. Similar layer to other voice AI platforms — a building block, not a turnkey receptionist product.",
+      "Voice AI infrastructure that markets itself as 'API-first by design' with 750K+ developers and Fortune 100 customers (Ring/Amazon, GoHealth, Instawork, Kavak). Vapi handles the underlying voice infrastructure so engineering teams can build custom agents on top. Compliance posture stated: SOC 2, HIPAA, and PCI compliant. Multilingual support and appointment scheduling are called out as supported use cases.",
     bestFor:
-      "Engineering teams building custom voice AI experiences, including bespoke receptionist flows.",
+      "Engineering teams that want a managed voice AI platform — phone, models, telephony — without building it from scratch. Not a turnkey SMB receptionist.",
     editorVerdict:
-      "Coverage in progress. Infrastructure-layer product — best to treat as a 'build vs buy' option alongside the turnkey receptionists in this directory.",
+      "Strong developer infrastructure with serious compliance posture. Not the right pick for a small business buyer who wants a packaged receptionist; better treated as a 'build it yourself' option for teams already building custom voice experiences. Per-minute or platform pricing not published on the marketing site at the time of review.",
     pricingModel: "CUSTOM_QUOTE",
+    pricingNotes:
+      "Pricing not published publicly on vapi.ai. Platform pricing model — talk to sales.",
+    setupComplexity: 4,
+    capabilities: {
+      hipaaFriendly: true,
+      hasAppointmentBooking: true,
+      hasMultilingual: true,
+    },
+    scores: {
+      overall: 6.8,
+      callHandling: 7.5,
+      integrations: 7.5,
+      automation: 8.5,
+      easeOfSetup: 4.0,
+      pricingValue: 6.5,
+      verticalFit: 5.5,
+      handoff: 5.5,
+      reporting: 6.5,
+      support: 7.5,
+    },
+    featureSlugs: ["appointment-booking", "multilingual-support", "hipaa-friendly"],
   },
   {
     slug: "numa",
     name: "Numa",
     websiteUrl: "https://numa.com",
-    tagline: "AI customer communications for service businesses",
+    tagline: "Always-on AI for auto dealerships — voice + text in one inbox",
     summary:
-      "Started with auto dealerships and has expanded into broader service businesses. Combines voice and messaging workflows in a single product.",
+      "Vertical-specialist AI platform for auto dealerships. Combines voice and SMS workflows in a single Smart Inbox with deep DMS integrations: CDK, Reynolds & Reynolds, XTime, Tekion, VinSolutions, WiAdvisor, ELead, PBS, DealerBuilt, DealerTrack, DealerVault, DealerFX. Operator feature 'routes with context' for human handoff. Marketing leads with 'always-on AI' and dealership-specific outcomes ('convert 31% of cold messages into booked appointments').",
     bestFor:
-      "Multi-location service businesses (especially auto and franchise) that need both inbound voice and SMS in one tool.",
+      "Single-location and multi-location auto dealerships that need both inbound voice and SMS qualification, plus integration into their existing DMS / CRM stack.",
     editorVerdict:
-      "Coverage in progress. Strongest fit historically for auto dealership networks; verify positioning against your specific vertical before shortlisting.",
+      "Best-in-class fit if you're an auto dealership — the DMS integration list is genuinely deeper than any general-purpose AI receptionist. Narrow elsewhere: if you're not in automotive, this is a stretch even though the underlying tech would work. No HIPAA / SOC 2 / multilingual / 24x7-explicit claims on the marketing site at time of review (capabilities may exist but aren't documented publicly).",
     pricingModel: "CUSTOM_QUOTE",
+    pricingNotes:
+      "Pricing not published publicly on numa.com — dealership-direct sales motion.",
+    setupComplexity: 3,
+    capabilities: {
+      hasAppointmentBooking: true,
+      hasCrmIntegration: true,
+      hasHumanHandoff: true,
+      has24x7: true,
+    },
+    scores: {
+      overall: 7.3,
+      callHandling: 7.5,
+      integrations: 9.0,
+      automation: 7.5,
+      easeOfSetup: 7.0,
+      pricingValue: 6.5,
+      verticalFit: 6.0,
+      handoff: 7.0,
+      reporting: 7.0,
+      support: 7.0,
+    },
+    verticalSlugs: ["auto-dealers"],
+    featureSlugs: [
+      "crm-integration",
+      "appointment-booking",
+      "human-handoff",
+      "after-hours-coverage",
+      "lead-qualification",
+      "sms-follow-up",
+    ],
   },
 ];
+
+// Vertical slugs the additional vendors reference. If a slug isn't
+// already in the DB (e.g. older prod data predates a new vertical),
+// upsert it with a humanized name so the join can succeed.
+const VERTICAL_FALLBACK_NAMES: Record<string, string> = {
+  "auto-dealers": "Auto Dealerships",
+};
 
 function buildPatch(existing: { [k: string]: unknown }, v: VendorSeed): Record<string, unknown> {
   const patch: Record<string, unknown> = {};
@@ -251,8 +309,22 @@ function buildPatch(existing: { [k: string]: unknown }, v: VendorSeed): Record<s
 async function syncJoinTables(vendorId: string, v: VendorSeed) {
   if (v.verticalSlugs?.length) {
     for (const slug of v.verticalSlugs) {
-      const vertical = await prisma.vertical.findUnique({ where: { slug } });
-      if (!vertical) continue;
+      // Upsert the vertical itself in case prod predates a newly-added
+      // taxonomy entry (e.g. auto-dealers). Falls back to titleizing
+      // the slug if we don't have an explicit display name.
+      const vertical = await prisma.vertical.upsert({
+        where: { slug },
+        update: {},
+        create: {
+          slug,
+          name:
+            VERTICAL_FALLBACK_NAMES[slug] ??
+            slug
+              .split("-")
+              .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+              .join(" "),
+        },
+      });
       await prisma.vendorVertical.upsert({
         where: { vendorId_verticalId: { vendorId, verticalId: vertical.id } },
         update: {},

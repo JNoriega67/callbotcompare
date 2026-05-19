@@ -14,6 +14,7 @@ const verticals = [
   { slug: "contractors", name: "Contractors" },
   { slug: "small-business", name: "Small Business" },
   { slug: "msp-agency", name: "MSP / Agency" },
+  { slug: "auto-dealers", name: "Auto Dealerships" },
 ];
 
 const features = [
