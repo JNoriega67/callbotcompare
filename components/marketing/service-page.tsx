@@ -45,7 +45,7 @@ export function ServicePage({ pkg }: ServicePageProps) {
           />
           <div className="grid gap-10 md:grid-cols-[7fr_5fr] md:items-end md:gap-14">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 {pkg.eyebrow}
               </p>
               <h1 className="mt-3 font-heading text-[2.25rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[3.5rem]">
@@ -59,7 +59,7 @@ export function ServicePage({ pkg }: ServicePageProps) {
               </p>
             </div>
             <aside className="rounded-[var(--radius-card)] border border-rule bg-surface p-6 shadow-[var(--shadow-card)] md:p-7">
-              <p className="font-heading text-[11px] font-semibold uppercase tracking-[0.16em] text-signal">
+              <p className="font-heading text-[11px] font-semibold text-signal">
                 Engagement
               </p>
               <p className="mt-3 font-heading text-3xl font-bold leading-none text-ink">
@@ -69,13 +69,13 @@ export function ServicePage({ pkg }: ServicePageProps) {
               <div className="mt-5 flex flex-wrap gap-2">
                 <Link
                   href={`/contact?source=services-${pkg.slug}`}
-                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-4 py-2.5 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-signal-ink transition-colors hover:bg-signal-hover"
+                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-4 py-2.5 font-heading text-[12px] font-semibold text-signal-ink transition-colors hover:bg-signal-hover"
                 >
                   Start this engagement
                 </Link>
                 <Link
                   href="/quiz"
-                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 px-4 py-2.5 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-ink transition-colors hover:border-signal hover:text-signal"
+                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 px-4 py-2.5 font-heading text-[12px] font-semibold text-ink transition-colors hover:border-signal hover:text-signal"
                 >
                   Not sure? Take the quiz
                 </Link>
@@ -92,7 +92,7 @@ export function ServicePage({ pkg }: ServicePageProps) {
       <Section tone="deep" className="py-14 md:py-20">
         <Container>
           <div className="max-w-3xl">
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               Outcomes
             </p>
             <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -120,7 +120,7 @@ export function ServicePage({ pkg }: ServicePageProps) {
       <Section tone="paper" className="py-14 md:py-20">
         <Container className="grid gap-14 md:grid-cols-2 md:gap-16">
           <div>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               What&apos;s included
             </p>
             <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -141,7 +141,7 @@ export function ServicePage({ pkg }: ServicePageProps) {
             </ul>
           </div>
           <div>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-ink">
+            <p className="font-heading text-[10px] font-semibold text-muted-ink">
               Not included this engagement
             </p>
             <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -168,7 +168,7 @@ export function ServicePage({ pkg }: ServicePageProps) {
       <Section tone="deep" className="py-14 md:py-20">
         <Container>
           <div className="max-w-3xl">
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               Process
             </p>
             <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -185,7 +185,7 @@ export function ServicePage({ pkg }: ServicePageProps) {
                   <span className="font-heading text-sm font-bold tabular-nums text-muted-ink">
                     Step {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-signal">
+                  <span className="font-heading text-[10px] font-semibold text-signal">
                     {p.duration}
                   </span>
                 </div>
@@ -201,7 +201,7 @@ export function ServicePage({ pkg }: ServicePageProps) {
       <Section tone="tint" className="py-14 md:py-20">
         <Container className="grid gap-14 md:grid-cols-2 md:gap-16">
           <div>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               Who this is for
             </p>
             <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -216,7 +216,7 @@ export function ServicePage({ pkg }: ServicePageProps) {
             </ul>
           </div>
           <div>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-ink">
+            <p className="font-heading text-[10px] font-semibold text-muted-ink">
               Who this isn&apos;t for
             </p>
             <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -238,7 +238,7 @@ export function ServicePage({ pkg }: ServicePageProps) {
         <Container>
           <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Pricing
               </p>
               <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -247,7 +247,7 @@ export function ServicePage({ pkg }: ServicePageProps) {
               <p className="mt-3 text-ink-soft">{pkg.pricingNotes}</p>
             </div>
             <div>
-              <p className="font-heading text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-ink">
+              <p className="font-heading text-[11px] font-semibold text-muted-ink">
                 What moves the price up
               </p>
               <ul className="mt-3 space-y-3">
@@ -273,7 +273,7 @@ export function ServicePage({ pkg }: ServicePageProps) {
         <Container>
           <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 FAQ
               </p>
               <h2 className="mt-3 font-heading text-3xl font-bold text-ink md:text-4xl">
@@ -291,7 +291,7 @@ export function ServicePage({ pkg }: ServicePageProps) {
       {related.length ? (
         <Section tone="paper" className="border-t border-rule pt-12 pb-12 md:pt-16 md:pb-14">
           <Container>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               Related engagements
             </p>
             <h2 className="mt-2 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -304,14 +304,14 @@ export function ServicePage({ pkg }: ServicePageProps) {
                     href={`/services/${r.slug}`}
                     className="group block h-full rounded-[var(--radius-card)] border border-rule bg-surface p-5 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)]"
                   >
-                    <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+                    <p className="font-heading text-[10px] font-semibold text-muted-ink">
                       {r.eyebrow}
                     </p>
                     <p className="mt-2 font-heading text-lg font-semibold text-ink group-hover:text-signal">
                       {r.title}
                     </p>
                     <p className="mt-2 text-sm leading-relaxed text-ink-soft">{r.tagline}</p>
-                    <p className="mt-3 font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-signal">
+                    <p className="mt-3 font-heading text-[11px] font-semibold text-signal">
                       {r.pricingFrom} →
                     </p>
                   </Link>

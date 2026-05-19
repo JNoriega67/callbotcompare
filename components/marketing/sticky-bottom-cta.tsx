@@ -43,7 +43,7 @@ export function StickyBottomCTA({ primary, secondary, context, className }: Stic
       )}
     >
       {context ? (
-        <p className="mb-2 text-center font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+        <p className="mb-2 text-center font-heading text-[10px] font-semibold text-muted-ink">
           {context}
         </p>
       ) : null}
@@ -52,7 +52,7 @@ export function StickyBottomCTA({ primary, secondary, context, className }: Stic
           href={primary.href}
           rel={primary.rel}
           target={primary.target}
-          className="inline-flex flex-1 items-center justify-center gap-2 rounded-[var(--radius-button)] bg-signal px-4 py-3 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-signal-ink transition-colors hover:bg-signal-hover"
+          className="inline-flex flex-1 items-center justify-center gap-2 rounded-[var(--radius-button)] bg-signal px-4 py-3 font-heading text-[12px] font-semibold text-signal-ink transition-colors hover:bg-signal-hover"
         >
           {primary.label}
           <span aria-hidden>→</span>
@@ -60,7 +60,7 @@ export function StickyBottomCTA({ primary, secondary, context, className }: Stic
         {secondary ? (
           <Link
             href={secondary.href}
-            className="inline-flex items-center justify-center gap-2 rounded-[var(--radius-button)] border border-ink/20 bg-surface px-4 py-3 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-ink transition-colors hover:border-signal hover:text-signal"
+            className="inline-flex items-center justify-center gap-2 rounded-[var(--radius-button)] border border-ink/20 bg-surface px-4 py-3 font-heading text-[12px] font-semibold text-ink transition-colors hover:border-signal hover:text-signal"
           >
             {secondary.label}
           </Link>

@@ -31,7 +31,7 @@ export function ComparisonTable({ vendors, className }: ComparisonTableProps) {
   return (
     <div className={cn("overflow-hidden rounded-[var(--radius-card)] border border-rule bg-surface", className)}>
       <table className="w-full text-sm">
-        <thead className="sticky top-0 bg-paper-deep font-heading text-[10px] uppercase tracking-[0.14em] text-muted-ink">
+        <thead className="sticky top-0 bg-paper-deep font-heading text-[10px] text-muted-ink">
           <tr>
             <th scope="col" className="px-4 py-3 text-left font-semibold">Vendor</th>
             <th scope="col" className="px-4 py-3 text-left font-semibold">Best for</th>
@@ -69,7 +69,7 @@ export function ComparisonTable({ vendors, className }: ComparisonTableProps) {
               <td className="px-4 py-4 align-top text-right">
                 <Link
                   href={`/vendors/${v.slug}`}
-                  className="inline-block rounded-[var(--radius-button)] border border-ink/15 px-3 py-1.5 font-heading text-[11px] font-semibold uppercase tracking-[0.12em] text-ink hover:border-signal hover:text-signal"
+                  className="inline-block rounded-[var(--radius-button)] border border-ink/15 px-3 py-1.5 font-heading text-[11px] font-semibold text-ink hover:border-signal hover:text-signal"
                 >
                   View
                 </Link>

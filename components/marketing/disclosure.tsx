@@ -24,7 +24,7 @@ export function Disclosure({ variant = "inline", className }: DisclosureProps) {
           className,
         )}
       >
-        <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-signal">
+        <p className="font-heading text-[10px] font-semibold text-signal">
           Disclosure
         </p>
         <p className="mt-1.5 leading-relaxed">
@@ -50,7 +50,7 @@ export function Disclosure({ variant = "inline", className }: DisclosureProps) {
         className,
       )}
     >
-      <span className="font-heading font-semibold uppercase tracking-[0.16em] text-signal">
+      <span className="font-heading font-semibold text-signal">
         Disclosure ·
       </span>{" "}
       We may earn a referral from this link.{" "}
@@ -72,7 +72,7 @@ export function SponsoredBadge({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-[var(--radius-button)] border border-signal/40 bg-signal-soft/60 px-2 py-0.5 font-heading text-[10px] font-semibold uppercase tracking-[0.16em] text-signal",
+        "inline-flex items-center rounded-[var(--radius-button)] border border-signal/40 bg-signal-soft/60 px-2 py-0.5 font-heading text-[10px] font-semibold text-signal",
         className,
       )}
     >

@@ -24,7 +24,7 @@ export function MobileFilterSheet({ verticals, features }: MobileFilterSheetProp
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-3.5 py-2 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-ink transition-colors hover:border-signal hover:text-signal md:hidden">
+      <SheetTrigger className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-3.5 py-2 font-heading text-[12px] font-semibold text-ink transition-colors hover:border-signal hover:text-signal md:hidden">
         <svg
           viewBox="0 0 24 24"
           fill="none"

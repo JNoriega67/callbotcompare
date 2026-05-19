@@ -22,7 +22,7 @@ export async function Hero() {
     <Section tone="paper" className="pt-16 pb-20 md:pt-24 md:pb-24">
       <Container>
         {/* Editorial masthead row */}
-        <div className="flex items-baseline justify-between border-b border-rule pb-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-ink">
+        <div className="flex items-baseline justify-between border-b border-rule pb-3 text-[10px] font-semibold text-muted-ink">
           <span className="text-signal">CallTreo · Buyer Guide</span>
           <span className="flex items-center gap-4">
             <Link
@@ -53,20 +53,20 @@ export async function Hero() {
             <div className="flex flex-wrap items-center gap-3">
               <Link
                 href="/compare"
-                className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-signal-ink transition-colors hover:bg-signal-hover"
+                className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold text-signal-ink transition-colors hover:bg-signal-hover"
               >
                 Compare tools
                 <span aria-hidden>→</span>
               </Link>
               <Link
                 href="/quiz"
-                className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-ink transition-colors hover:border-signal hover:text-signal"
+                className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-5 py-3 font-heading text-[13px] font-semibold text-ink transition-colors hover:border-signal hover:text-signal"
               >
                 Take the quiz
               </Link>
               <Link
                 href="/contact"
-                className="ml-1 font-heading text-[12px] font-semibold uppercase tracking-[0.14em] text-muted-ink underline-offset-4 hover:text-signal hover:underline"
+                className="ml-1 font-heading text-[12px] font-semibold text-muted-ink underline-offset-4 hover:text-signal hover:underline"
               >
                 or talk to us
               </Link>

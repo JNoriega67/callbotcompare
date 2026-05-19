@@ -51,7 +51,7 @@ export default async function VendorsPage({ searchParams }: VendorsPageProps) {
           <Breadcrumbs trail={[{ label: "Home", href: "/" }, { label: "Vendors", href: "/vendors" }]} />
           <div className="grid gap-6 md:grid-cols-[7fr_5fr] md:items-end md:gap-14">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Directory
               </p>
               <h1 className="mt-3 font-heading text-[2rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[3.25rem]">
@@ -99,7 +99,7 @@ export default async function VendorsPage({ searchParams }: VendorsPageProps) {
                 <div className="mt-6 flex flex-wrap justify-center gap-3">
                   <a
                     href="/quiz"
-                    className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-signal-ink transition-colors hover:bg-signal-hover"
+                    className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold text-signal-ink transition-colors hover:bg-signal-hover"
                   >
                     Take the quiz
                   </a>

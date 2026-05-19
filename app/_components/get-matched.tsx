@@ -15,7 +15,7 @@ export function GetMatched() {
         <div className="rounded-[var(--radius-card)] border border-rule bg-signal-soft/60 p-8 md:p-12">
           <div className="grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-center md:gap-12">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Get matched
               </p>
               <h2 className="mt-3 font-heading text-2xl font-bold leading-tight text-ink md:text-[2rem]">
@@ -30,12 +30,12 @@ export function GetMatched() {
             <div className="flex flex-col items-start gap-3 md:items-end">
               <Link
                 href="/quiz"
-                className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-signal-ink transition-colors hover:bg-signal-hover"
+                className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold text-signal-ink transition-colors hover:bg-signal-hover"
               >
                 Take the quiz
                 <span aria-hidden>→</span>
               </Link>
-              <p className="font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+              <p className="font-heading text-[11px] font-semibold text-muted-ink">
                 ~2 minutes · No email required
               </p>
             </div>

@@ -32,7 +32,7 @@ export function SiteFooter() {
         </div>
         {FOOTER_LINKS.map((column) => (
           <div key={column.heading}>
-            <h3 className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal-soft">
+            <h3 className="font-heading text-[10px] font-semibold text-signal-soft">
               {column.heading}
             </h3>
             <ul className="mt-3 space-y-2 text-sm text-paper">

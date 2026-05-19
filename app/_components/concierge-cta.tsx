@@ -9,7 +9,7 @@ export function ConciergeCTA() {
       <Container>
         <div className="grid gap-10 md:grid-cols-[7fr_5fr] md:items-end md:gap-16">
           <div>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-paper">
+            <p className="font-heading text-[10px] font-semibold text-paper">
               Want help choosing?
             </p>
             <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-paper md:text-[2.75rem]">
@@ -24,14 +24,14 @@ export function ConciergeCTA() {
           <div className="flex flex-col items-start gap-3 md:items-end">
             <Link
               href="/quiz"
-              className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-signal-ink transition-colors hover:bg-signal-hover"
+              className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold text-signal-ink transition-colors hover:bg-signal-hover"
             >
               Take the quiz
               <span aria-hidden>→</span>
             </Link>
             <Link
               href="/contact"
-              className="font-heading text-[12px] font-semibold uppercase tracking-[0.14em] text-paper underline-offset-4 hover:text-paper hover:underline"
+              className="font-heading text-[12px] font-semibold text-paper underline-offset-4 hover:text-paper hover:underline"
             >
               or talk to us
             </Link>

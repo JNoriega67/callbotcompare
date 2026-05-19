@@ -36,7 +36,7 @@ export function SiteHeader() {
         <Link href="/" className="text-base">
           <Wordmark />
         </Link>
-        <nav className="hidden items-center gap-7 font-heading text-[12px] font-semibold uppercase tracking-[0.12em] md:flex">
+        <nav className="hidden items-center gap-7 font-heading text-[12px] font-semibold md:flex">
           {NAV_ITEMS.map((item) => {
             const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
             return (
@@ -62,7 +62,7 @@ export function SiteHeader() {
         <div className="hidden items-center gap-3 md:flex">
           <Link
             href="/contact"
-            className="rounded-[var(--radius-button)] bg-signal px-3.5 py-1.5 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-signal-ink transition-colors hover:bg-signal-hover"
+            className="rounded-[var(--radius-button)] bg-signal px-3.5 py-1.5 font-heading text-[12px] font-semibold text-signal-ink transition-colors hover:bg-signal-hover"
           >
             Talk to us
           </Link>
@@ -105,14 +105,14 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-md px-2 py-2 font-heading text-sm font-semibold uppercase tracking-[0.1em] text-ink hover:bg-paper-deep"
+                className="rounded-md px-2 py-2 font-heading text-sm font-semibold text-ink hover:bg-paper-deep"
               >
                 {item.label}
               </Link>
             ))}
             <Link
               href="/contact"
-              className="mt-2 rounded-[var(--radius-button)] bg-ink px-4 py-2 text-center font-heading text-sm font-semibold uppercase tracking-[0.1em] text-paper"
+              className="mt-2 rounded-[var(--radius-button)] bg-ink px-4 py-2 text-center font-heading text-sm font-semibold text-paper"
             >
               Talk to us
             </Link>

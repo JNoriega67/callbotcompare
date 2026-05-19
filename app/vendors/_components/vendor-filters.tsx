@@ -85,14 +85,14 @@ export function VendorFilters({ verticals, features, layout = "sidebar" }: Vendo
       >
         <div className="space-y-6 p-5">
           <div className="flex items-baseline justify-between">
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               Refine
             </p>
             {hasActiveFilters(filters) ? (
               <button
                 type="button"
                 onClick={clearAll}
-                className="font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-signal underline-offset-4 hover:underline"
+                className="font-heading text-[11px] font-semibold text-signal underline-offset-4 hover:underline"
               >
                 Clear all
               </button>
@@ -143,7 +143,7 @@ export function VendorFilters({ verticals, features, layout = "sidebar" }: Vendo
 function FilterGroup({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="space-y-2.5 border-t border-rule pt-5 first-of-type:border-t-0 first-of-type:pt-0">
-      <h3 className="font-heading text-[11px] font-semibold uppercase tracking-[0.16em] text-ink">
+      <h3 className="font-heading text-[11px] font-semibold text-ink">
         {title}
       </h3>
       <div className="space-y-2">{children}</div>

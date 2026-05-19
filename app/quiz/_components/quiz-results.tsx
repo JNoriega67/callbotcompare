@@ -19,7 +19,7 @@ export function QuizResults({ vendors, recommendedSlugs }: QuizResultsProps) {
   return (
     <div className="space-y-10">
       <div className="space-y-3">
-        <p className="font-heading text-[11px] font-semibold uppercase tracking-[0.18em] text-signal">
+        <p className="font-heading text-[11px] font-semibold text-signal">
           Your shortlist
         </p>
         <h2 className="font-heading text-3xl font-bold text-ink">
@@ -56,7 +56,7 @@ export function QuizResults({ vendors, recommendedSlugs }: QuizResultsProps) {
               <p className="font-heading text-xl font-bold text-ink">
                 {v.overallScore?.toFixed(1) ?? "—"}
               </p>
-              <p className="font-heading text-[10px] uppercase tracking-[0.14em] text-muted-ink">
+              <p className="font-heading text-[10px] text-muted-ink">
                 Editor score
               </p>
             </div>
@@ -82,7 +82,7 @@ export function QuizResults({ vendors, recommendedSlugs }: QuizResultsProps) {
 
       {/* High-intent setup CTA — natural moment to surface paid help. */}
       <div className="rounded-[var(--radius-card)] border border-rule bg-surface p-6 shadow-[var(--shadow-card)] md:p-8">
-        <p className="font-heading text-[11px] font-semibold uppercase tracking-[0.18em] text-signal">
+        <p className="font-heading text-[11px] font-semibold text-signal">
           Want this done for you
         </p>
         <h3 className="mt-2 font-heading text-xl font-semibold text-ink">
@@ -95,7 +95,7 @@ export function QuizResults({ vendors, recommendedSlugs }: QuizResultsProps) {
         <div className="mt-5">
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-4 py-2.5 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-signal-ink transition-colors hover:bg-signal-hover"
+            className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-4 py-2.5 font-heading text-[12px] font-semibold text-signal-ink transition-colors hover:bg-signal-hover"
           >
             See setup packages →
           </Link>

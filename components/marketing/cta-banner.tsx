@@ -75,7 +75,7 @@ export function CtaBanner({ variant, tone = "deep", className }: CtaBannerProps)
         <div>
           <p
             className={cn(
-              "font-heading text-[10px] font-semibold uppercase tracking-[0.22em]",
+              "font-heading text-[10px] font-semibold ",
               isDark ? "text-signal-soft" : "text-signal",
             )}
           >
@@ -97,7 +97,7 @@ export function CtaBanner({ variant, tone = "deep", className }: CtaBannerProps)
           <Link
             href={copy.href}
             className={cn(
-              "inline-flex items-center gap-2 rounded-[var(--radius-button)] px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] transition-colors",
+              "inline-flex items-center gap-2 rounded-[var(--radius-button)] px-5 py-3 font-heading text-[13px] font-semibold transition-colors",
               isDark
                 ? "bg-signal text-signal-ink hover:bg-signal-hover"
                 : "bg-signal text-signal-ink hover:bg-signal-hover",

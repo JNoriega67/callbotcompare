@@ -46,7 +46,7 @@ export function OutboundVendorCTA({
         data-event="vendor_outbound"
         data-slug={vendor.slug}
         data-referral={isReferral ? "true" : "false"}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-signal-ink transition-colors hover:bg-signal-hover"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold text-signal-ink transition-colors hover:bg-signal-hover"
       >
         Visit {vendor.name}
         <span aria-hidden>↗</span>

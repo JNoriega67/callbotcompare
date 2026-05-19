@@ -39,7 +39,7 @@ export function VendorCard({ vendor }: VendorCardProps) {
           <p className="font-heading text-3xl font-bold leading-none tabular-nums text-ink">
             {formatScore(vendor.overallScore)}
           </p>
-          <p className="mt-1 font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-ink">
+          <p className="mt-1 font-heading text-[10px] font-semibold text-muted-ink">
             Score
           </p>
         </div>
@@ -49,12 +49,12 @@ export function VendorCard({ vendor }: VendorCardProps) {
       ) : null}
       <VendorBadgeRow vendor={vendor} />
       <footer className="mt-auto flex items-center justify-between gap-3 border-t border-rule pt-3">
-        <span className="font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+        <span className="font-heading text-[11px] font-semibold text-muted-ink">
           {formatPricing(vendor.pricingFromUsd, vendor.pricingModel)}
         </span>
         <Link
           href={`/vendors/${vendor.slug}`}
-          className="font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-signal underline-offset-4 hover:underline"
+          className="font-heading text-[11px] font-semibold text-signal underline-offset-4 hover:underline"
         >
           Read review →
         </Link>

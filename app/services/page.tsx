@@ -38,7 +38,7 @@ export default function ServicesPage() {
           />
           <div className="grid gap-10 md:grid-cols-[7fr_5fr] md:gap-14">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Implementation services
               </p>
               <h1 className="mt-3 font-heading text-[2.4rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[4rem]">
@@ -59,14 +59,14 @@ export default function ServicesPage() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-signal-ink transition-colors hover:bg-signal-hover"
+                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold text-signal-ink transition-colors hover:bg-signal-hover"
                 >
                   Talk to us about a project
                   <span aria-hidden>→</span>
                 </Link>
                 <Link
                   href="/quiz"
-                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-ink transition-colors hover:border-signal hover:text-signal"
+                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-5 py-3 font-heading text-[13px] font-semibold text-ink transition-colors hover:border-signal hover:text-signal"
                 >
                   Not sure where to start? Take the quiz
                 </Link>
@@ -87,7 +87,7 @@ export default function ServicesPage() {
                   className="group flex h-full flex-col justify-between rounded-[var(--radius-card)] border border-rule bg-surface p-7 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)] md:p-8"
                 >
                   <div>
-                    <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-signal">
+                    <p className="font-heading text-[10px] font-semibold text-signal">
                       {pkg.eyebrow}
                     </p>
                     <h2 className="mt-2 font-heading text-2xl font-bold text-ink group-hover:text-signal md:text-3xl">
@@ -99,7 +99,7 @@ export default function ServicesPage() {
                   </div>
                   <div className="mt-6 flex items-baseline justify-between gap-3 border-t border-rule pt-4">
                     <span className="font-heading text-base font-bold text-ink">{pkg.pricingFrom}</span>
-                    <span className="font-heading text-[12px] font-semibold uppercase tracking-[0.14em] text-signal group-hover:underline">
+                    <span className="font-heading text-[12px] font-semibold text-signal group-hover:underline">
                       See package details →
                     </span>
                   </div>
@@ -114,7 +114,7 @@ export default function ServicesPage() {
       <Section tone="tint" className="py-14 md:py-20">
         <Container>
           <div className="max-w-3xl">
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               How we work
             </p>
             <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -162,7 +162,7 @@ export default function ServicesPage() {
         <Container>
           <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Pricing
               </p>
               <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -185,7 +185,7 @@ export default function ServicesPage() {
                   </span>
                   <Link
                     href={`/services/${pkg.slug}`}
-                    className="font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-signal underline-offset-4 hover:underline"
+                    className="font-heading text-[11px] font-semibold text-signal underline-offset-4 hover:underline"
                   >
                     Details →
                   </Link>
@@ -202,7 +202,7 @@ export default function ServicesPage() {
       {/* EDITORIAL NOTE */}
       <Section tone="paper" className="border-t border-rule pt-12 pb-16 md:pt-16 md:pb-20">
         <Container className="max-w-3xl">
-          <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+          <p className="font-heading text-[10px] font-semibold text-signal">
             Editorial note
           </p>
           <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">

@@ -29,7 +29,7 @@ export function ImplementationHelp() {
       <Container>
         <div className="grid gap-12 md:grid-cols-[5fr_7fr] md:gap-16">
           <div>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               Implementation
             </p>
             <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -43,14 +43,14 @@ export function ImplementationHelp() {
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-signal-ink transition-colors hover:bg-signal-hover"
+                className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold text-signal-ink transition-colors hover:bg-signal-hover"
               >
                 Talk to us about setup
                 <span aria-hidden>→</span>
               </Link>
               <Link
                 href="/best-ai-receptionist-software"
-                className="inline-flex items-center font-heading text-[12px] font-semibold uppercase tracking-[0.14em] text-muted-ink underline-offset-4 hover:text-ink hover:underline"
+                className="inline-flex items-center font-heading text-[12px] font-semibold text-muted-ink underline-offset-4 hover:text-ink hover:underline"
               >
                 or read our methodology
               </Link>
@@ -62,7 +62,7 @@ export function ImplementationHelp() {
                 key={d.title}
                 className="rounded-[var(--radius-card)] border border-rule bg-surface p-5"
               >
-                <div className="font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-signal">
+                <div className="font-heading text-[10px] font-semibold text-signal">
                   {String(i + 1).padStart(2, "0")}
                 </div>
                 <h3 className="mt-2 font-heading text-base font-semibold text-ink">{d.title}</h3>

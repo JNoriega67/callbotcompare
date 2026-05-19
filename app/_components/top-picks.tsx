@@ -17,7 +17,7 @@ export async function TopPicks() {
       <Container>
         <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
           <div>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               Top picks
             </p>
             <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -27,7 +27,7 @@ export async function TopPicks() {
               Start here, then narrow by use case, budget, and workflow complexity. Each rank is the
               editor&apos;s overall score out of 10 against our published rubric.
             </p>
-            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 font-heading text-[12px] font-semibold uppercase tracking-[0.12em]">
+            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 font-heading text-[12px] font-semibold ">
               <Link
                 href="/vendors"
                 className="inline-flex items-center gap-1 text-ink underline-offset-4 hover:text-signal hover:underline"
@@ -69,7 +69,7 @@ export async function TopPicks() {
                     {v.tagline ? (
                       <p className="mt-1 truncate text-sm text-ink-soft">{v.tagline}</p>
                     ) : null}
-                    <p className="mt-1 font-heading text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-ink">
+                    <p className="mt-1 font-heading text-[10px] font-semibold text-muted-ink">
                       {formatPricing(v.pricingFromUsd, v.pricingModel)}
                     </p>
                   </div>
@@ -79,7 +79,7 @@ export async function TopPicks() {
                     </p>
                     <Link
                       href={`/vendors/${v.slug}`}
-                      className="mt-2 inline-block font-heading text-[10px] font-semibold uppercase tracking-[0.16em] text-signal underline-offset-4 hover:underline"
+                      className="mt-2 inline-block font-heading text-[10px] font-semibold text-signal underline-offset-4 hover:underline"
                     >
                       Read review →
                     </Link>

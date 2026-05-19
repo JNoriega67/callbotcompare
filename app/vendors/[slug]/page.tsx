@@ -93,7 +93,7 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
           <div className="grid gap-10 md:grid-cols-[1.5fr_1fr] md:items-start">
             <div className="space-y-5">
               <div>
-                <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+                <p className="font-heading text-[10px] font-semibold text-signal">
                   Vendor review
                 </p>
                 <h1 className="mt-3 font-heading text-3xl font-bold text-ink md:text-5xl">
@@ -120,7 +120,7 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
             <aside className="rounded-[var(--radius-card)] border border-rule bg-surface p-5 shadow-[var(--shadow-card)] md:sticky md:top-24">
               <dl className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <dt className="font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-ink">
+                  <dt className="font-heading text-[10px] font-semibold text-muted-ink">
                     Editor score
                   </dt>
                   <dd className="mt-1 font-heading text-4xl font-bold leading-none tabular-nums text-ink">
@@ -128,7 +128,7 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-ink">
+                  <dt className="font-heading text-[10px] font-semibold text-muted-ink">
                     Pricing
                   </dt>
                   <dd className="mt-1 font-heading text-base font-semibold text-ink">
@@ -136,7 +136,7 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-ink">
+                  <dt className="font-heading text-[10px] font-semibold text-muted-ink">
                     Setup
                   </dt>
                   <dd className="mt-1 text-ink-soft">
@@ -144,7 +144,7 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-ink">
+                  <dt className="font-heading text-[10px] font-semibold text-muted-ink">
                     HIPAA-friendly
                   </dt>
                   <dd className="mt-1 text-ink-soft">
@@ -164,13 +164,13 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
 
                 <Link
                   href="/quiz"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-4 py-2.5 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-ink transition-colors hover:border-signal hover:text-signal"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-4 py-2.5 font-heading text-[12px] font-semibold text-ink transition-colors hover:border-signal hover:text-signal"
                 >
                   Get matched in 5 questions
                 </Link>
                 <Link
                   href="/contact"
-                  className="block text-center font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-ink underline-offset-4 hover:text-signal hover:underline"
+                  className="block text-center font-heading text-[11px] font-semibold text-muted-ink underline-offset-4 hover:text-signal hover:underline"
                 >
                   Need help choosing?
                 </Link>
@@ -190,7 +190,7 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
 
           <div className="grid gap-4 md:grid-cols-[5fr_7fr] md:gap-12">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Scorecard
               </p>
               <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -214,7 +214,7 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
           {vendor.vendorFeatures.length ? (
             <div className="grid gap-4 md:grid-cols-[5fr_7fr] md:gap-12">
               <div>
-                <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+                <p className="font-heading text-[10px] font-semibold text-signal">
                   Features &amp; integrations
                 </p>
                 <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -242,7 +242,7 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
           {vendor.vendorVerticals.length ? (
             <div className="grid gap-4 md:grid-cols-[5fr_7fr] md:gap-12">
               <div>
-                <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+                <p className="font-heading text-[10px] font-semibold text-signal">
                   Industries served
                 </p>
                 <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -253,7 +253,7 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
                 {vendor.vendorVerticals.map((vv) => (
                   <span
                     key={vv.verticalId}
-                    className="rounded-[var(--radius-button)] border border-rule bg-paper-deep/60 px-3 py-1.5 font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-soft"
+                    className="rounded-[var(--radius-button)] border border-rule bg-paper-deep/60 px-3 py-1.5 font-heading text-[11px] font-semibold text-ink-soft"
                   >
                     {vv.vertical.name}
                   </span>
@@ -264,7 +264,7 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
 
           <div className="grid gap-4 md:grid-cols-[5fr_7fr] md:gap-12">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Alternatives
               </p>
               <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -272,7 +272,7 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
               </h2>
               <Link
                 href={`/compare?vendors=${vendor.slug}`}
-                className="mt-4 inline-flex items-center gap-2 font-heading text-[12px] font-semibold uppercase tracking-[0.12em] text-ink underline-offset-4 hover:text-signal hover:underline"
+                className="mt-4 inline-flex items-center gap-2 font-heading text-[12px] font-semibold text-ink underline-offset-4 hover:text-signal hover:underline"
               >
                 Build a side-by-side with {vendor.name}
                 <span aria-hidden>→</span>
@@ -284,7 +284,7 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
           {/* Related editorial guides (cross-cluster internal linking) */}
           {relatedGuides.length ? (
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Related guides
               </p>
               <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -298,14 +298,14 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
                       className="group flex h-full flex-col justify-between rounded-[var(--radius-card)] border border-rule bg-surface p-4 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)]"
                     >
                       <div>
-                        <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+                        <p className="font-heading text-[10px] font-semibold text-muted-ink">
                           {g.eyebrow}
                         </p>
                         <p className="mt-2 font-heading text-base font-semibold text-ink group-hover:text-signal">
                           {g.title}
                         </p>
                       </div>
-                      <p className="mt-3 font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-signal group-hover:underline">
+                      <p className="mt-3 font-heading text-[11px] font-semibold text-signal group-hover:underline">
                         Read the guide →
                       </p>
                     </Link>

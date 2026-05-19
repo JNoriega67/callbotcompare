@@ -34,7 +34,7 @@ export function FooterCTA() {
       <Container>
         <div className="flex flex-col items-start justify-between gap-3 md:flex-row md:items-end">
           <div>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               Pick your path
             </p>
             <h2 className="mt-2 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -53,7 +53,7 @@ export function FooterCTA() {
                   {p.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft">{p.body}</p>
-                <p className="mt-5 inline-flex items-center gap-1 font-heading text-[12px] font-semibold uppercase tracking-[0.14em] text-signal">
+                <p className="mt-5 inline-flex items-center gap-1 font-heading text-[12px] font-semibold text-signal">
                   {p.cta}
                   <span aria-hidden>→</span>
                 </p>

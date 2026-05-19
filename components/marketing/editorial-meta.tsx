@@ -75,7 +75,7 @@ export function EditorialMeta({
   return (
     <div
       className={
-        "flex flex-wrap items-center gap-x-3 gap-y-1 font-heading text-[11px] font-semibold uppercase tracking-[0.14em] " +
+        "flex flex-wrap items-center gap-x-3 gap-y-1 font-heading text-[11px] font-semibold " +
         baseClass +
         (className ? " " + className : "")
       }

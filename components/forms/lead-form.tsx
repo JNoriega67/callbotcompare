@@ -68,7 +68,7 @@ export function LeadForm({
         <button
           type="button"
           onClick={() => setSubmitted(false)}
-          className="mt-4 text-xs font-semibold uppercase tracking-wide text-signal hover:underline"
+          className="mt-4 text-xs font-semibold text-signal hover:underline"
         >
           Submit another
         </button>
@@ -136,7 +136,7 @@ function Field({
 }) {
   return (
     <div className="space-y-1.5">
-      <Label htmlFor={id} className="text-xs font-semibold uppercase tracking-wide text-muted-ink">
+      <Label htmlFor={id} className="text-xs font-semibold text-muted-ink">
         {label}
       </Label>
       {children}

@@ -211,7 +211,7 @@ export default async function Page() {
           />
           <div className="grid gap-10 md:grid-cols-[7fr_5fr] md:items-end md:gap-14">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Pricing · Buyer&apos;s Guide
               </p>
               <h1 className="mt-3 font-heading text-[2.25rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[3.5rem]">
@@ -235,13 +235,13 @@ export default async function Page() {
               <div className="flex flex-wrap items-center gap-3">
                 <Link
                   href="/quiz"
-                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-signal-ink transition-colors hover:bg-signal-hover"
+                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold text-signal-ink transition-colors hover:bg-signal-hover"
                 >
                   Get a price-fitted shortlist
                 </Link>
                 <Link
                   href="/vendors"
-                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-ink transition-colors hover:border-signal hover:text-signal"
+                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-5 py-3 font-heading text-[13px] font-semibold text-ink transition-colors hover:border-signal hover:text-signal"
                 >
                   See vendor pricing
                 </Link>
@@ -255,7 +255,7 @@ export default async function Page() {
       <Section tone="deep" className="py-14 md:py-20">
         <Container>
           <div className="max-w-3xl">
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               Pricing models
             </p>
             <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -275,13 +275,13 @@ export default async function Page() {
               >
                 <div className="flex items-baseline justify-between gap-3">
                   <h3 className="font-heading text-xl font-bold text-ink">{m.label}</h3>
-                  <span className="font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-signal">
+                  <span className="font-heading text-[11px] font-semibold text-signal">
                     {m.rangeShort}
                   </span>
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-ink-soft">{m.body}</p>
                 <p className="mt-4 border-t border-rule pt-3 text-sm text-ink-soft">
-                  <span className="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+                  <span className="font-heading text-[10px] font-semibold text-muted-ink">
                     Best for ·{" "}
                   </span>
                   {m.bestFor}
@@ -296,7 +296,7 @@ export default async function Page() {
       <Section tone="paper" className="py-14 md:py-20">
         <Container>
           <div className="max-w-3xl">
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               Real ranges by business size
             </p>
             <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -311,13 +311,13 @@ export default async function Page() {
                   <p className="mt-2 text-sm leading-relaxed text-ink-soft">{r.body}</p>
                 </div>
                 <div>
-                  <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+                  <p className="font-heading text-[10px] font-semibold text-muted-ink">
                     Typical range
                   </p>
                   <p className="mt-1 font-heading text-xl font-bold text-ink">{r.monthly}</p>
                 </div>
                 <div>
-                  <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+                  <p className="font-heading text-[10px] font-semibold text-muted-ink">
                     Watch for
                   </p>
                   <p className="mt-1 text-sm leading-relaxed text-ink-soft">{r.pitfall}</p>
@@ -335,7 +335,7 @@ export default async function Page() {
       <Section tone="paper" className="pt-14 pb-14 md:pt-16 md:pb-20">
         <Container className="grid gap-14 md:grid-cols-2 md:gap-16">
           <div>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               What drives cost up
             </p>
             <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -351,7 +351,7 @@ export default async function Page() {
             </ul>
           </div>
           <div>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               Line items that sneak in
             </p>
             <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -374,7 +374,7 @@ export default async function Page() {
         <Container>
           <div className="grid gap-3 md:grid-cols-[5fr_7fr] md:items-end md:gap-12">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Vendor pricing snapshot
               </p>
               <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -391,7 +391,7 @@ export default async function Page() {
           <div className="mt-8 overflow-hidden rounded-[var(--radius-card)] border border-rule bg-surface shadow-[var(--shadow-card)]">
             <table className="w-full text-left text-sm">
               <thead className="bg-paper-deep">
-                <tr className="border-b border-rule font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+                <tr className="border-b border-rule font-heading text-[11px] font-semibold text-muted-ink">
                   <th className="px-5 py-4 w-[28%]">Vendor</th>
                   <th className="px-5 py-4">Model</th>
                   <th className="px-5 py-4">From</th>
@@ -431,7 +431,7 @@ export default async function Page() {
         <Container>
           <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 ROI framework
               </p>
               <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -446,7 +446,7 @@ export default async function Page() {
             <div className="rounded-[var(--radius-card)] border border-rule bg-surface p-6 shadow-[var(--shadow-card)] md:p-8">
               <ol className="space-y-5">
                 <li>
-                  <p className="font-heading text-[11px] font-semibold uppercase tracking-[0.16em] text-signal">
+                  <p className="font-heading text-[11px] font-semibold text-signal">
                     Step 1 · Your missed-call rate
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-ink-soft">
@@ -455,7 +455,7 @@ export default async function Page() {
                   </p>
                 </li>
                 <li>
-                  <p className="font-heading text-[11px] font-semibold uppercase tracking-[0.16em] text-signal">
+                  <p className="font-heading text-[11px] font-semibold text-signal">
                     Step 2 · Average value of one captured call
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-ink-soft">
@@ -464,7 +464,7 @@ export default async function Page() {
                   </p>
                 </li>
                 <li>
-                  <p className="font-heading text-[11px] font-semibold uppercase tracking-[0.16em] text-signal">
+                  <p className="font-heading text-[11px] font-semibold text-signal">
                     Step 3 · Break-even
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-ink-soft">
@@ -473,7 +473,7 @@ export default async function Page() {
                   </p>
                 </li>
                 <li>
-                  <p className="font-heading text-[11px] font-semibold uppercase tracking-[0.16em] text-signal">
+                  <p className="font-heading text-[11px] font-semibold text-signal">
                     Step 4 · Quality gate
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-ink-soft">
@@ -492,7 +492,7 @@ export default async function Page() {
         <Container>
           <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 FAQ
               </p>
               <h2 className="mt-3 font-heading text-3xl font-bold text-ink md:text-4xl">

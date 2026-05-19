@@ -197,7 +197,7 @@ export default async function Page() {
       <Section tone="paper">
         <Container className="grid gap-10 md:grid-cols-[7fr_5fr] md:items-end md:gap-16">
           <div>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               AI vs Virtual · Buyer Decision
             </p>
             <h1 className="mt-3 font-heading text-[2.25rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[3.5rem]">
@@ -217,7 +217,7 @@ export default async function Page() {
             </p>
           </div>
           <aside className="rounded-[var(--radius-card)] border border-rule bg-surface p-6 shadow-[var(--shadow-card)]">
-            <p className="font-heading text-[11px] font-semibold uppercase tracking-[0.18em] text-signal">
+            <p className="font-heading text-[11px] font-semibold text-signal">
               Quick verdict
             </p>
             <p className="mt-3 text-base leading-relaxed text-ink-soft">
@@ -230,13 +230,13 @@ export default async function Page() {
             <div className="mt-5 flex flex-wrap gap-2">
               <Link
                 href="/quiz"
-                className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-4 py-2 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-signal-ink transition-colors hover:bg-signal-hover"
+                className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-4 py-2 font-heading text-[12px] font-semibold text-signal-ink transition-colors hover:bg-signal-hover"
               >
                 Take the 5-question quiz
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 px-4 py-2 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-ink transition-colors hover:border-signal hover:text-signal"
+                className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 px-4 py-2 font-heading text-[12px] font-semibold text-ink transition-colors hover:border-signal hover:text-signal"
               >
                 Get a personal recommendation
               </Link>
@@ -249,7 +249,7 @@ export default async function Page() {
       <Section tone="deep">
         <Container>
           <div className="max-w-3xl">
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               Head to head
             </p>
             <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -266,7 +266,7 @@ export default async function Page() {
           <div className="mt-10 hidden overflow-hidden rounded-[var(--radius-card)] border border-rule bg-surface shadow-[var(--shadow-card)] md:block">
             <table className="w-full text-left text-sm">
               <thead className="bg-paper-deep">
-                <tr className="border-b border-rule font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+                <tr className="border-b border-rule font-heading text-[11px] font-semibold text-muted-ink">
                   <th className="px-5 py-4 w-[28%]">Dimension</th>
                   <th className="px-5 py-4">AI receptionist</th>
                   <th className="px-5 py-4">Virtual receptionist</th>
@@ -305,13 +305,13 @@ export default async function Page() {
                 </div>
                 <dl className="mt-3 space-y-2 text-sm text-ink-soft">
                   <div>
-                    <dt className="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-signal">
+                    <dt className="font-heading text-[10px] font-semibold text-signal">
                       AI
                     </dt>
                     <dd>{row.ai}</dd>
                   </div>
                   <div>
-                    <dt className="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+                    <dt className="font-heading text-[10px] font-semibold text-muted-ink">
                       Virtual
                     </dt>
                     <dd>{row.virtual}</dd>
@@ -328,7 +328,7 @@ export default async function Page() {
         <Container>
           <div className="grid gap-10 md:grid-cols-2 md:gap-12">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 When AI wins
               </p>
               <h2 className="mt-3 font-heading text-2xl font-bold leading-[1.1] text-ink md:text-3xl">
@@ -347,14 +347,14 @@ export default async function Page() {
               <div className="mt-7">
                 <Link
                   href="/best-ai-receptionist-software"
-                  className="inline-flex items-center gap-2 font-heading text-[12px] font-semibold uppercase tracking-[0.12em] text-signal hover:text-signal-hover"
+                  className="inline-flex items-center gap-2 font-heading text-[12px] font-semibold text-signal hover:text-signal-hover"
                 >
                   See the top AI receptionists →
                 </Link>
               </div>
             </div>
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-ink">
+              <p className="font-heading text-[10px] font-semibold text-muted-ink">
                 When virtual still wins
               </p>
               <h2 className="mt-3 font-heading text-2xl font-bold leading-[1.1] text-ink md:text-3xl">
@@ -379,7 +379,7 @@ export default async function Page() {
       <Section tone="tint">
         <Container>
           <div className="max-w-3xl">
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               The third option
             </p>
             <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -418,7 +418,7 @@ export default async function Page() {
         <Container>
           <div className="grid gap-10 md:grid-cols-[4fr_6fr] md:gap-16">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Questions buyers actually ask
               </p>
               <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -446,20 +446,20 @@ export default async function Page() {
 function EdgePill({ edge }: { edge: Row["edge"] }) {
   if (edge === "tie") {
     return (
-      <span className="inline-flex items-center rounded-full bg-paper-deep px-2.5 py-0.5 font-heading text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-ink">
+      <span className="inline-flex items-center rounded-full bg-paper-deep px-2.5 py-0.5 font-heading text-[10px] font-semibold text-muted-ink">
         Tie
       </span>
     );
   }
   if (edge === "ai") {
     return (
-      <span className="inline-flex items-center rounded-full bg-signal-soft px-2.5 py-0.5 font-heading text-[10px] font-semibold uppercase tracking-[0.12em] text-signal-deep">
+      <span className="inline-flex items-center rounded-full bg-signal-soft px-2.5 py-0.5 font-heading text-[10px] font-semibold text-signal-deep">
         AI
       </span>
     );
   }
   return (
-    <span className="inline-flex items-center rounded-full border border-ink/15 bg-paper px-2.5 py-0.5 font-heading text-[10px] font-semibold uppercase tracking-[0.12em] text-ink">
+    <span className="inline-flex items-center rounded-full border border-ink/15 bg-paper px-2.5 py-0.5 font-heading text-[10px] font-semibold text-ink">
       Virtual
     </span>
   );

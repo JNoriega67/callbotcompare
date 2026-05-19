@@ -79,7 +79,7 @@ export function ComparePicker({ vendors, seededComparisons = [] }: ComparePicker
             Selection is shareable — the URL encodes which vendors you chose.
           </p>
         </div>
-        <p className="text-xs font-semibold uppercase tracking-wide text-muted-ink">
+        <p className="text-xs font-semibold text-muted-ink">
           {selected.length}/{MAX_SELECTION} selected
         </p>
       </header>

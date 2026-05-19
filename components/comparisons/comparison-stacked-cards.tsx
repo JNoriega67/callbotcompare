@@ -64,7 +64,7 @@ export function ComparisonStackedCards({ vendors }: { vendors: Vendor[] }) {
 function Row({ label, value }: { label: string; value: string }) {
   return (
     <>
-      <dt className="font-medium uppercase tracking-wide text-muted-ink">{label}</dt>
+      <dt className="font-medium text-muted-ink">{label}</dt>
       <dd className="text-ink-soft">{value}</dd>
     </>
   );

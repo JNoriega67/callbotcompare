@@ -27,7 +27,7 @@ export function RelatedBlock({ comparisons, vendors }: RelatedBlockProps) {
     <div className="grid gap-10 md:grid-cols-2 md:gap-12">
       {comparisons.length ? (
         <div>
-          <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+          <p className="font-heading text-[10px] font-semibold text-signal">
             Related comparisons
           </p>
           <h3 className="mt-2 font-heading text-xl font-bold text-ink">
@@ -45,7 +45,7 @@ export function RelatedBlock({ comparisons, vendors }: RelatedBlockProps) {
                       {c.title}
                     </p>
                     {c.vendors.length ? (
-                      <p className="mt-1 text-xs uppercase tracking-[0.12em] text-muted-ink">
+                      <p className="mt-1 text-xs text-muted-ink">
                         {c.vendors.map((v) => v.name).join(" vs ")}
                       </p>
                     ) : null}
@@ -65,7 +65,7 @@ export function RelatedBlock({ comparisons, vendors }: RelatedBlockProps) {
 
       {vendors.length ? (
         <div>
-          <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+          <p className="font-heading text-[10px] font-semibold text-signal">
             More vendors
           </p>
           <h3 className="mt-2 font-heading text-xl font-bold text-ink">

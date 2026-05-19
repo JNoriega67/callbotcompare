@@ -22,7 +22,7 @@ export function FeatureTiles() {
       <Container>
         <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
           <div>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               Browse by feature
             </p>
             <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">

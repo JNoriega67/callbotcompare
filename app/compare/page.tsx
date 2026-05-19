@@ -79,7 +79,7 @@ export default async function CompareHubPage({ searchParams }: CompareHubProps) 
           />
           <div className="grid gap-10 md:grid-cols-[7fr_5fr] md:items-end md:gap-14">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Side-by-side · Buyer tool
               </p>
               <h1 className="mt-3 font-heading text-[2.25rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[3.5rem]">
@@ -95,13 +95,13 @@ export default async function CompareHubPage({ searchParams }: CompareHubProps) 
               <div className="flex flex-wrap items-center gap-3">
                 <Link
                   href="/quiz"
-                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-4 py-2.5 font-heading text-[12px] font-semibold uppercase tracking-[0.1em] text-ink transition-colors hover:border-signal hover:text-signal"
+                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-4 py-2.5 font-heading text-[12px] font-semibold text-ink transition-colors hover:border-signal hover:text-signal"
                 >
                   Not sure who to compare? Take the quiz
                 </Link>
                 <Link
                   href="/methodology"
-                  className="font-heading text-[12px] font-semibold uppercase tracking-[0.14em] text-muted-ink underline-offset-4 hover:text-signal hover:underline"
+                  className="font-heading text-[12px] font-semibold text-muted-ink underline-offset-4 hover:text-signal hover:underline"
                 >
                   How we score →
                 </Link>

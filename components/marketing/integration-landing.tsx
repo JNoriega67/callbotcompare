@@ -111,7 +111,7 @@ export async function IntegrationLanding({ config }: IntegrationLandingProps) {
           />
           <div className="grid gap-10 md:grid-cols-[7fr_5fr] md:items-end md:gap-14">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 {config.eyebrow}
               </p>
               <h1 className="mt-3 font-heading text-[2.2rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[3.5rem]">
@@ -129,20 +129,20 @@ export async function IntegrationLanding({ config }: IntegrationLandingProps) {
               <div className="flex flex-wrap items-center gap-3">
                 <Link
                   href={directoryHref}
-                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-signal-ink transition-colors hover:bg-signal-hover"
+                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold text-signal-ink transition-colors hover:bg-signal-hover"
                 >
                   See {config.category === "calendar" ? "booking-capable" : "CRM-capable"} vendors
                   <span aria-hidden>→</span>
                 </Link>
                 <Link
                   href="/quiz"
-                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-ink transition-colors hover:border-signal hover:text-signal"
+                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-5 py-3 font-heading text-[13px] font-semibold text-ink transition-colors hover:border-signal hover:text-signal"
                 >
                   Take the quiz
                 </Link>
                 <Link
                   href="/services"
-                  className="font-heading text-[12px] font-semibold uppercase tracking-[0.14em] text-muted-ink underline-offset-4 hover:text-signal hover:underline"
+                  className="font-heading text-[12px] font-semibold text-muted-ink underline-offset-4 hover:text-signal hover:underline"
                 >
                   Need help wiring it? →
                 </Link>
@@ -157,7 +157,7 @@ export async function IntegrationLanding({ config }: IntegrationLandingProps) {
         <Container>
           <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Integration depth
               </p>
               <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -170,7 +170,7 @@ export async function IntegrationLanding({ config }: IntegrationLandingProps) {
               </p>
               <Link
                 href="/disclosure"
-                className="mt-5 inline-flex items-center gap-1 font-heading text-[12px] font-semibold uppercase tracking-[0.12em] text-ink underline-offset-4 hover:text-signal hover:underline"
+                className="mt-5 inline-flex items-center gap-1 font-heading text-[12px] font-semibold text-ink underline-offset-4 hover:text-signal hover:underline"
               >
                 How we score integrations →
               </Link>
@@ -187,7 +187,7 @@ export async function IntegrationLanding({ config }: IntegrationLandingProps) {
                     </span>
                     <span
                       className={
-                        "inline-flex items-center rounded-full px-2.5 py-0.5 font-heading text-[10px] font-semibold uppercase tracking-[0.12em] " +
+                        "inline-flex items-center rounded-full px-2.5 py-0.5 font-heading text-[10px] font-semibold " +
                         DEPTH_PILL_CLASS[row.level]
                       }
                     >
@@ -216,7 +216,7 @@ export async function IntegrationLanding({ config }: IntegrationLandingProps) {
         <Container>
           <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Top picks
               </p>
               <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -232,7 +232,7 @@ export async function IntegrationLanding({ config }: IntegrationLandingProps) {
               </p>
               <Link
                 href={directoryHref}
-                className="mt-5 inline-flex items-center gap-1 font-heading text-[12px] font-semibold uppercase tracking-[0.12em] text-ink underline-offset-4 hover:text-signal hover:underline"
+                className="mt-5 inline-flex items-center gap-1 font-heading text-[12px] font-semibold text-ink underline-offset-4 hover:text-signal hover:underline"
               >
                 See all {vendors.length} candidates →
               </Link>
@@ -256,7 +256,7 @@ export async function IntegrationLanding({ config }: IntegrationLandingProps) {
                     {v.tagline ? (
                       <p className="mt-1 truncate text-sm text-ink-soft">{v.tagline}</p>
                     ) : null}
-                    <p className="mt-2 font-heading text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-ink">
+                    <p className="mt-2 font-heading text-[10px] font-semibold text-muted-ink">
                       {formatPricing(v.pricingFromUsd, v.pricingModel)}
                     </p>
                   </div>
@@ -266,7 +266,7 @@ export async function IntegrationLanding({ config }: IntegrationLandingProps) {
                     </p>
                     <Link
                       href={`/vendors/${v.slug}`}
-                      className="mt-2 inline-block font-heading text-[10px] font-semibold uppercase tracking-[0.16em] text-signal underline-offset-4 hover:underline"
+                      className="mt-2 inline-block font-heading text-[10px] font-semibold text-signal underline-offset-4 hover:underline"
                     >
                       Read review →
                     </Link>
@@ -289,7 +289,7 @@ export async function IntegrationLanding({ config }: IntegrationLandingProps) {
       <Section tone="tint" className="pt-6 pb-14 md:pt-10 md:pb-20">
         <Container className="grid gap-14 md:grid-cols-2 md:gap-16">
           <div>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               What &quot;good&quot; looks like
             </p>
             <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -313,7 +313,7 @@ export async function IntegrationLanding({ config }: IntegrationLandingProps) {
             </dl>
           </div>
           <div>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               Buyer notes
             </p>
             <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -336,7 +336,7 @@ export async function IntegrationLanding({ config }: IntegrationLandingProps) {
         <Container>
           <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 FAQ
               </p>
               <h2 className="mt-3 font-heading text-3xl font-bold text-ink md:text-4xl">
@@ -361,7 +361,7 @@ export async function IntegrationLanding({ config }: IntegrationLandingProps) {
       {related.length ? (
         <Section tone="paper" className="border-t border-rule pt-12 pb-16 md:pt-16 md:pb-20">
           <Container>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               Related integrations
             </p>
             <h2 className="mt-2 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -414,7 +414,7 @@ export async function IntegrationLanding({ config }: IntegrationLandingProps) {
       {relatedCommercial.length ? (
         <Section tone="deep" className="border-t border-rule py-12 md:py-16">
           <Container>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               For buyers in these segments
             </p>
             <h2 className="mt-2 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -428,14 +428,14 @@ export async function IntegrationLanding({ config }: IntegrationLandingProps) {
                     className="group flex h-full flex-col justify-between rounded-[var(--radius-card)] border border-rule bg-surface p-5 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)] md:p-6"
                   >
                     <div>
-                      <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+                      <p className="font-heading text-[10px] font-semibold text-muted-ink">
                         {r.eyebrow}
                       </p>
                       <p className="mt-2 font-heading text-lg font-semibold text-ink group-hover:text-signal md:text-xl">
                         {r.headlineLead} {r.headlineAccent ?? ""}
                       </p>
                     </div>
-                    <p className="mt-4 font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-signal group-hover:underline">
+                    <p className="mt-4 font-heading text-[11px] font-semibold text-signal group-hover:underline">
                       Read the segment guide →
                     </p>
                   </Link>

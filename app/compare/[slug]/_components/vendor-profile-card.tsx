@@ -53,7 +53,7 @@ export function VendorProfileCard({ vendor, pickIf }: VendorProfileCardProps) {
           <p className="font-heading text-3xl font-bold leading-none tabular-nums text-ink">
             {formatScore(vendor.overallScore)}
           </p>
-          <p className="mt-1 font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-ink">
+          <p className="mt-1 font-heading text-[10px] font-semibold text-muted-ink">
             Editor score
           </p>
         </div>
@@ -61,7 +61,7 @@ export function VendorProfileCard({ vendor, pickIf }: VendorProfileCardProps) {
 
       {pickIf ? (
         <div className="rounded-[var(--radius-button)] bg-signal-soft/70 px-4 py-3 text-sm text-ink">
-          <span className="font-heading text-[10px] font-semibold uppercase tracking-[0.16em] text-signal">
+          <span className="font-heading text-[10px] font-semibold text-signal">
             Pick {vendor.name} if ·
           </span>{" "}
           {pickIf}
@@ -74,7 +74,7 @@ export function VendorProfileCard({ vendor, pickIf }: VendorProfileCardProps) {
 
       <dl className="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-rule pt-4 text-sm">
         <div>
-          <dt className="font-heading text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-ink">
+          <dt className="font-heading text-[10px] font-semibold text-muted-ink">
             Pricing
           </dt>
           <dd className="mt-1 text-ink-soft">
@@ -82,7 +82,7 @@ export function VendorProfileCard({ vendor, pickIf }: VendorProfileCardProps) {
           </dd>
         </div>
         <div>
-          <dt className="font-heading text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-ink">
+          <dt className="font-heading text-[10px] font-semibold text-muted-ink">
             Setup
           </dt>
           <dd className="mt-1 text-ink-soft">{formatSetupComplexity(vendor.setupComplexity)}</dd>
@@ -95,7 +95,7 @@ export function VendorProfileCard({ vendor, pickIf }: VendorProfileCardProps) {
         <OutboundVendorCTA vendor={vendor} variant="stacked" />
         <Link
           href={`/vendors/${vendor.slug}`}
-          className="block text-center font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-ink underline-offset-4 hover:text-signal hover:underline"
+          className="block text-center font-heading text-[11px] font-semibold text-muted-ink underline-offset-4 hover:text-signal hover:underline"
         >
           Read the full {vendor.name} review →
         </Link>

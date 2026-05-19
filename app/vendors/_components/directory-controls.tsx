@@ -79,7 +79,7 @@ export function DirectoryControls({
       {/* Search + sort */}
       <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-end md:gap-6">
         <label className="block">
-          <span className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+          <span className="font-heading text-[10px] font-semibold text-signal">
             Search the directory
           </span>
           <div className="mt-2 flex items-center gap-3 rounded-[var(--radius-input)] border border-rule bg-surface px-4 py-3 focus-within:border-signal focus-within:ring-3 focus-within:ring-ring/30">
@@ -107,13 +107,13 @@ export function DirectoryControls({
           </div>
         </label>
         <div>
-          <span className="block font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-ink">
+          <span className="block font-heading text-[10px] font-semibold text-muted-ink">
             Sort by
           </span>
           <select
             value={filters.sort}
             onChange={(e) => setSort(e.target.value as SortKey)}
-            className="mt-2 h-12 w-full rounded-[var(--radius-input)] border border-rule bg-surface px-3 font-heading text-sm font-semibold uppercase tracking-[0.08em] text-ink focus-visible:border-signal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/30 md:min-w-[12rem]"
+            className="mt-2 h-12 w-full rounded-[var(--radius-input)] border border-rule bg-surface px-3 font-heading text-sm font-semibold text-ink focus-visible:border-signal focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/30 md:min-w-[12rem]"
           >
             {SORT_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -126,7 +126,7 @@ export function DirectoryControls({
 
       {/* Result count + active chips */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-y border-rule py-3">
-        <p className="font-heading text-[12px] font-semibold uppercase tracking-[0.12em] text-ink">
+        <p className="font-heading text-[12px] font-semibold text-ink">
           {resultCount} {resultCount === 1 ? "result" : "results"}
           {active ? <span className="text-muted-ink"> · filtered</span> : null}
           {pending ? <span className="ml-2 text-muted-ink">updating…</span> : null}
@@ -163,7 +163,7 @@ export function DirectoryControls({
             <button
               type="button"
               onClick={() => router.replace(pathname, { scroll: false })}
-              className="font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-signal underline-offset-4 hover:underline"
+              className="font-heading text-[11px] font-semibold text-signal underline-offset-4 hover:underline"
             >
               Clear all
             </button>
@@ -187,13 +187,13 @@ function Chip({
     <button
       type="button"
       onClick={onRemove}
-      className="group inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-rule bg-paper-deep/60 px-2.5 py-1 font-heading text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-soft transition-colors hover:border-signal hover:text-signal"
+      className="group inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-rule bg-paper-deep/60 px-2.5 py-1 font-heading text-[11px] font-semibold text-ink-soft transition-colors hover:border-signal hover:text-signal"
       aria-label={`Remove ${eyebrow} filter: ${label}`}
     >
-      <span className="tracking-[0.16em] text-muted-ink/80 group-hover:text-signal">
+      <span className="text-muted-ink/80 group-hover:text-signal">
         {eyebrow}
       </span>
-      <span className="normal-case">{label}</span>
+      <span>{label}</span>
       <span aria-hidden className="text-base leading-none">
         ×
       </span>

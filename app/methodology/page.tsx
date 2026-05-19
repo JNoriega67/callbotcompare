@@ -180,7 +180,7 @@ export default function Page() {
           />
           <div className="grid gap-10 md:grid-cols-[7fr_5fr] md:items-end md:gap-14">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Methodology · How we score
               </p>
               <h1 className="mt-3 font-heading text-[2.25rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[3.5rem]">
@@ -206,13 +206,13 @@ export default function Page() {
               <div className="flex flex-wrap items-center gap-3">
                 <Link
                   href="/vendors"
-                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-signal-ink transition-colors hover:bg-signal-hover"
+                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold text-signal-ink transition-colors hover:bg-signal-hover"
                 >
                   See the scored directory
                 </Link>
                 <Link
                   href="/disclosure"
-                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-ink transition-colors hover:border-signal hover:text-signal"
+                  className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-5 py-3 font-heading text-[13px] font-semibold text-ink transition-colors hover:border-signal hover:text-signal"
                 >
                   Editorial disclosure
                 </Link>
@@ -226,7 +226,7 @@ export default function Page() {
       <Section tone="deep" className="py-14 md:py-20">
         <Container>
           <div className="max-w-3xl">
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               The rubric
             </p>
             <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -242,7 +242,7 @@ export default function Page() {
           <div className="mt-10 overflow-hidden rounded-[var(--radius-card)] border border-rule bg-surface shadow-[var(--shadow-card)]">
             <table className="w-full text-left text-sm">
               <thead className="bg-paper-deep">
-                <tr className="border-b border-rule font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+                <tr className="border-b border-rule font-heading text-[11px] font-semibold text-muted-ink">
                   <th className="px-5 py-4 w-[20%]">Dimension</th>
                   <th className="px-5 py-4 w-[8%] text-right">Weight</th>
                   <th className="px-5 py-4">What it means</th>
@@ -264,7 +264,7 @@ export default function Page() {
                 ))}
               </tbody>
               <tfoot className="bg-paper-deep">
-                <tr className="border-t border-rule font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+                <tr className="border-t border-rule font-heading text-[11px] font-semibold text-muted-ink">
                   <th className="px-5 py-3 text-left">Total</th>
                   <td className="px-5 py-3 text-right">
                     <span className="font-heading text-base font-bold tabular-nums text-ink">
@@ -283,7 +283,7 @@ export default function Page() {
       <Section tone="tint" className="py-14 md:py-20">
         <Container className="grid gap-14 md:grid-cols-[5fr_7fr] md:gap-16">
           <div>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               What we refuse to do
             </p>
             <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -291,7 +291,7 @@ export default function Page() {
             </h2>
             <Link
               href="/disclosure"
-              className="mt-5 inline-flex items-center gap-1 font-heading text-[12px] font-semibold uppercase tracking-[0.12em] text-ink underline-offset-4 hover:text-signal hover:underline"
+              className="mt-5 inline-flex items-center gap-1 font-heading text-[12px] font-semibold text-ink underline-offset-4 hover:text-signal hover:underline"
             >
               Read the full editorial disclosure →
             </Link>
@@ -311,7 +311,7 @@ export default function Page() {
       <Section tone="deep" className="py-14 md:py-20">
         <Container className="grid gap-14 md:grid-cols-[5fr_7fr] md:gap-16">
           <div>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               How we gather data
             </p>
             <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -347,7 +347,7 @@ export default function Page() {
       <Section tone="paper" className="py-14 md:py-20">
         <Container className="grid gap-14 md:grid-cols-[5fr_7fr] md:gap-16">
           <div>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               How we update
             </p>
             <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -369,7 +369,7 @@ export default function Page() {
       <Section tone="deep" className="py-14 md:py-20">
         <Container>
           <div className="rounded-[var(--radius-card)] border border-rule bg-surface p-8 shadow-[var(--shadow-card)] md:p-10">
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               Editorial
             </p>
             <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">

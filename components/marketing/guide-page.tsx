@@ -76,7 +76,7 @@ function renderBlock(block: GuideBlock, idx: number) {
             CALLOUT_TONE_CLASS[block.tone]
           }
         >
-          <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-signal">
+          <p className="font-heading text-[10px] font-semibold text-signal">
             {block.title ?? CALLOUT_TONE_LABEL[block.tone]}
           </p>
           <p className="mt-2 text-[15px] leading-[1.6] text-ink-soft">{block.body}</p>
@@ -142,7 +142,7 @@ export function GuidePage({ guide }: GuidePageProps) {
             ]}
           />
           <div className="space-y-5">
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               {guide.eyebrow} · {guide.readingTime}
             </p>
             <h1 className="font-heading text-[2.25rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[3.25rem]">
@@ -173,7 +173,7 @@ export function GuidePage({ guide }: GuidePageProps) {
                   id="checklist"
                   className="scroll-mt-24 border-t border-rule pt-10 md:pt-12"
                 >
-                  <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+                  <p className="font-heading text-[10px] font-semibold text-signal">
                     Checklist
                   </p>
                   <h2 className="mt-2 font-heading text-2xl font-bold leading-[1.15] text-ink md:text-3xl">
@@ -206,7 +206,7 @@ export function GuidePage({ guide }: GuidePageProps) {
 
             {/* TOC sidebar */}
             <aside className="md:sticky md:top-24 md:self-start">
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 On this page
               </p>
               <nav className="mt-3 border-l border-rule">
@@ -242,7 +242,7 @@ export function GuidePage({ guide }: GuidePageProps) {
 
               {/* Sidebar CTA */}
               <div className="mt-8 rounded-[var(--radius-card)] border border-rule bg-surface p-5 shadow-[var(--shadow-card)]">
-                <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-signal">
+                <p className="font-heading text-[10px] font-semibold text-signal">
                   Want this done for you?
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft">
@@ -251,7 +251,7 @@ export function GuidePage({ guide }: GuidePageProps) {
                 </p>
                 <Link
                   href="/services"
-                  className="mt-4 inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-4 py-2 font-heading text-[11px] font-semibold uppercase tracking-[0.1em] text-signal-ink transition-colors hover:bg-signal-hover"
+                  className="mt-4 inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-4 py-2 font-heading text-[11px] font-semibold text-signal-ink transition-colors hover:bg-signal-hover"
                 >
                   See implementation services →
                 </Link>
@@ -268,7 +268,7 @@ export function GuidePage({ guide }: GuidePageProps) {
       {relatedGuides.length ? (
         <Section tone="tint" className="border-t border-rule pt-12 pb-12 md:pt-16 md:pb-16">
           <Container>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               Continue reading
             </p>
             <h2 className="mt-2 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -282,7 +282,7 @@ export function GuidePage({ guide }: GuidePageProps) {
                     className="group flex h-full flex-col justify-between rounded-[var(--radius-card)] border border-rule bg-surface p-5 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)] md:p-6"
                   >
                     <div>
-                      <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+                      <p className="font-heading text-[10px] font-semibold text-muted-ink">
                         {g.eyebrow} · {g.readingTime}
                       </p>
                       <p className="mt-2 font-heading text-lg font-semibold text-ink group-hover:text-signal">
@@ -290,7 +290,7 @@ export function GuidePage({ guide }: GuidePageProps) {
                       </p>
                       <p className="mt-2 text-sm leading-relaxed text-ink-soft">{g.tagline}</p>
                     </div>
-                    <p className="mt-4 font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-signal group-hover:underline">
+                    <p className="mt-4 font-heading text-[11px] font-semibold text-signal group-hover:underline">
                       Read the guide →
                     </p>
                   </Link>
@@ -305,7 +305,7 @@ export function GuidePage({ guide }: GuidePageProps) {
       {relatedIntegrations.length + relatedCommercial.length + relatedServices.length > 0 ? (
         <Section tone="deep" className="border-t border-rule py-12 md:py-16">
           <Container>
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+            <p className="font-heading text-[10px] font-semibold text-signal">
               Also helpful
             </p>
             <h2 className="mt-2 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -319,7 +319,7 @@ export function GuidePage({ guide }: GuidePageProps) {
                     className="group flex h-full items-baseline justify-between gap-4 rounded-[var(--radius-card)] border border-rule bg-surface p-4 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)]"
                   >
                     <div>
-                      <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+                      <p className="font-heading text-[10px] font-semibold text-muted-ink">
                         {r.eyebrow}
                       </p>
                       <p className="mt-1 font-heading text-base font-semibold text-ink group-hover:text-signal">
@@ -342,7 +342,7 @@ export function GuidePage({ guide }: GuidePageProps) {
                     className="group flex h-full items-baseline justify-between gap-4 rounded-[var(--radius-card)] border border-rule bg-surface p-4 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)]"
                   >
                     <div>
-                      <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+                      <p className="font-heading text-[10px] font-semibold text-muted-ink">
                         {r.eyebrow}
                       </p>
                       <p className="mt-1 font-heading text-base font-semibold text-ink group-hover:text-signal">
@@ -365,7 +365,7 @@ export function GuidePage({ guide }: GuidePageProps) {
                     className="group flex h-full items-baseline justify-between gap-4 rounded-[var(--radius-card)] border border-rule bg-surface p-4 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)]"
                   >
                     <div>
-                      <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+                      <p className="font-heading text-[10px] font-semibold text-muted-ink">
                         {r.eyebrow}
                       </p>
                       <p className="mt-1 font-heading text-base font-semibold text-ink group-hover:text-signal">

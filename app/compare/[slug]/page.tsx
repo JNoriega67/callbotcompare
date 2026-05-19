@@ -152,7 +152,7 @@ export default async function ComparisonDetailPage({ params }: { params: Params 
           />
           <div className="grid gap-10 md:grid-cols-[7fr_5fr] md:items-end md:gap-14">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Head to head · {vendors.length} vendors
               </p>
               <h1 className="mt-3 font-heading text-[2.2rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[3.5rem]">
@@ -167,18 +167,18 @@ export default async function ComparisonDetailPage({ params }: { params: Params 
             {a && b ? (
               <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 border-y border-rule py-5">
                 <div className="text-center">
-                  <p className="font-heading text-xs font-semibold uppercase tracking-[0.16em] text-muted-ink">
+                  <p className="font-heading text-xs font-semibold text-muted-ink">
                     {a.name}
                   </p>
                   <p className="mt-1 font-heading text-4xl font-bold tabular-nums text-ink">
                     {formatScore(a.overallScore)}
                   </p>
                 </div>
-                <div className="font-heading text-xs font-semibold uppercase tracking-[0.18em] text-muted-ink">
+                <div className="font-heading text-xs font-semibold text-muted-ink">
                   vs
                 </div>
                 <div className="text-center">
-                  <p className="font-heading text-xs font-semibold uppercase tracking-[0.16em] text-muted-ink">
+                  <p className="font-heading text-xs font-semibold text-muted-ink">
                     {b.name}
                   </p>
                   <p className="mt-1 font-heading text-4xl font-bold tabular-nums text-ink">
@@ -192,20 +192,20 @@ export default async function ComparisonDetailPage({ params }: { params: Params 
           <div className="flex flex-wrap items-center gap-3 pt-2">
             <Link
               href="/quiz"
-              className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-signal-ink transition-colors hover:bg-signal-hover"
+              className="inline-flex items-center gap-2 rounded-[var(--radius-button)] bg-signal px-5 py-3 font-heading text-[13px] font-semibold text-signal-ink transition-colors hover:bg-signal-hover"
             >
               Get matched in 5 questions
               <span aria-hidden>→</span>
             </Link>
             <Link
               href={`/compare?vendors=${vendors.map((v) => v.slug).join(",")}`}
-              className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-5 py-3 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-ink transition-colors hover:border-signal hover:text-signal"
+              className="inline-flex items-center gap-2 rounded-[var(--radius-button)] border border-ink/15 bg-surface px-5 py-3 font-heading text-[13px] font-semibold text-ink transition-colors hover:border-signal hover:text-signal"
             >
               Build a custom side-by-side
             </Link>
             <Link
               href="/services"
-              className="font-heading text-[12px] font-semibold uppercase tracking-[0.14em] text-muted-ink underline-offset-4 hover:text-signal hover:underline"
+              className="font-heading text-[12px] font-semibold text-muted-ink underline-offset-4 hover:text-signal hover:underline"
             >
               Need help launching it? →
             </Link>
@@ -225,7 +225,7 @@ export default async function ComparisonDetailPage({ params }: { params: Params 
         <Container>
           <div className="mb-6 grid gap-4 md:grid-cols-[5fr_7fr] md:items-end md:gap-12">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Feature table
               </p>
               <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
@@ -252,7 +252,7 @@ export default async function ComparisonDetailPage({ params }: { params: Params 
         <Container>
           <div className="mb-8 grid gap-4 md:grid-cols-[5fr_7fr] md:items-end md:gap-12">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Who each is for
               </p>
               <h2 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">

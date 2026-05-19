@@ -28,7 +28,7 @@ export function VendorBadgeRow({ vendor, limit = 3 }: VendorBadgeRowProps) {
   if (!enabled.length) return null;
 
   return (
-    <ul className="flex flex-wrap gap-1.5 font-heading text-[10px] font-semibold uppercase tracking-[0.14em]">
+    <ul className="flex flex-wrap gap-1.5 font-heading text-[10px] font-semibold ">
       {enabled.map((c) => (
         <li
           key={c.label}

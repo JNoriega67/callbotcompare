@@ -38,7 +38,7 @@ export default function GuidesHub() {
           />
           <div className="grid gap-10 md:grid-cols-[7fr_5fr] md:items-end md:gap-14">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Implementation library
               </p>
               <h1 className="mt-3 font-heading text-[2.25rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[3.5rem]">
@@ -71,7 +71,7 @@ export default function GuidesHub() {
                   className="group flex h-full flex-col justify-between rounded-[var(--radius-card)] border border-rule bg-surface p-7 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)] md:p-8"
                 >
                   <div>
-                    <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-signal">
+                    <p className="font-heading text-[10px] font-semibold text-signal">
                       {g.eyebrow} · {g.readingTime}
                     </p>
                     <h2 className="mt-2 font-heading text-2xl font-bold text-ink group-hover:text-signal md:text-3xl">
@@ -82,11 +82,11 @@ export default function GuidesHub() {
                     </p>
                   </div>
                   <div className="mt-6 flex items-baseline justify-between gap-3 border-t border-rule pt-4">
-                    <span className="font-heading text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-ink">
+                    <span className="font-heading text-[11px] font-semibold text-muted-ink">
                       {g.sections.length} sections
                       {g.checklist?.length ? ` · ${g.checklist.length}-item checklist` : ""}
                     </span>
-                    <span className="font-heading text-[12px] font-semibold uppercase tracking-[0.14em] text-signal group-hover:underline">
+                    <span className="font-heading text-[12px] font-semibold text-signal group-hover:underline">
                       Read the guide →
                     </span>
                   </div>
@@ -102,7 +102,7 @@ export default function GuidesHub() {
         <Container>
           <div className="grid gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
             <div>
-              <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-signal">
+              <p className="font-heading text-[10px] font-semibold text-signal">
                 Suggested reading path
               </p>
               <h2 className="mt-3 font-heading text-3xl font-bold leading-[1.1] text-ink md:text-4xl">
@@ -173,13 +173,13 @@ function PathStep({
     <div className="grid grid-cols-[3rem_1fr] gap-4 border-b border-rule pb-5 last:border-b-0 last:pb-0">
       <span className="font-heading text-2xl font-bold tabular-nums text-muted-ink">{step}</span>
       <div>
-        <p className="font-heading text-[11px] font-semibold uppercase tracking-[0.16em] text-signal">
+        <p className="font-heading text-[11px] font-semibold text-signal">
           {label}
         </p>
         <p className="mt-1.5 text-base leading-relaxed text-ink-soft md:text-[17px]">{body}</p>
         <Link
           href={href}
-          className="mt-3 inline-flex items-center font-heading text-[12px] font-semibold uppercase tracking-[0.12em] text-ink underline-offset-4 hover:text-signal hover:underline"
+          className="mt-3 inline-flex items-center font-heading text-[12px] font-semibold text-ink underline-offset-4 hover:text-signal hover:underline"
         >
           {cta}
         </Link>

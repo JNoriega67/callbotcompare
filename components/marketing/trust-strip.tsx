@@ -58,7 +58,7 @@ export function TrustStrip({ items, variant = "light", className }: TrustStripPr
           <>
             <p
               className={
-                "font-heading text-[10px] font-semibold uppercase tracking-[0.18em] " + labelClass
+                "font-heading text-[10px] font-semibold " + labelClass
               }
             >
               {item.label}
@@ -88,7 +88,7 @@ export function TrustStrip({ items, variant = "light", className }: TrustStripPr
                 <span
                   aria-hidden
                   className={
-                    "mt-2 inline-block font-heading text-[10px] font-semibold uppercase tracking-[0.14em] underline-offset-4 group-hover:underline " +
+                    "mt-2 inline-block font-heading text-[10px] font-semibold underline-offset-4 group-hover:underline " +
                     (isDark ? "text-signal-soft" : "text-signal")
                   }
                 >
