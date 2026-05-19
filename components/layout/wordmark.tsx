@@ -29,8 +29,8 @@ export function Wordmark({ className, invert = false }: WordmarkProps) {
       <Image
         src="/calltreo-logo.png"
         alt="CallTreo"
-        width={1340}
-        height={540}
+        width={1380}
+        height={580}
         priority
         className={cn(
           "h-14 w-auto md:h-16",
