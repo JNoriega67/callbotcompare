@@ -126,12 +126,25 @@ export async function GuidePage({ guide }: GuidePageProps) {
   // Resolve vendor slugs against the live directory. Unpublished or
   // missing slugs are silently dropped so authors can't accidentally
   // surface a draft vendor by forgetting to publish it.
-  const relatedVendors = guide.relatedVendorSlugs?.length
-    ? await prisma.vendor.findMany({
+  // Try/catch protects build-time SSG: guide pages prerender, but the
+  // build image uses a stub DATABASE_URL with no live DB. Failures
+  // collapse the block silently; runtime renders correctly.
+  let relatedVendors: Array<{
+    slug: string;
+    name: string;
+    tagline: string | null;
+    overallScore: number | null;
+  }> = [];
+  if (guide.relatedVendorSlugs?.length) {
+    try {
+      relatedVendors = await prisma.vendor.findMany({
         where: { isPublished: true, slug: { in: [...guide.relatedVendorSlugs] } },
         select: { slug: true, name: true, tagline: true, overallScore: true },
-      })
-    : [];
+      });
+    } catch {
+      relatedVendors = [];
+    }
+  }
   // Preserve the author-specified order rather than DB query order.
   const orderedVendors = guide.relatedVendorSlugs
     ? guide.relatedVendorSlugs

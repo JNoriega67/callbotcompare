@@ -12,6 +12,9 @@ export async function generateStaticParams() {
 }
 
 export const dynamicParams = false;
+// Revalidate hourly so the vendor block (queried at render via Prisma)
+// reflects current published vendors without requiring a full rebuild.
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { slug } = await params;
