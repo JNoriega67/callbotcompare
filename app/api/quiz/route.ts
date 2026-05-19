@@ -6,13 +6,27 @@ import {
   recommendVendorsForQuiz,
   QuizSchema,
 } from "@/lib/leads";
+import { clientIp, take } from "@/lib/rate-limit";
 
 export async function POST(request: Request) {
+  if (!take({ key: `quiz:${clientIp(request)}`, max: 5, windowMs: 10 * 60_000 })) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
+
   let payload: unknown;
   try {
     payload = await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
+  }
+
+  if (
+    typeof payload === "object" &&
+    payload !== null &&
+    typeof (payload as { website?: unknown }).website === "string" &&
+    ((payload as { website: string }).website).trim().length > 0
+  ) {
+    return NextResponse.json({ ok: true }, { status: 200 });
   }
 
   const parsed = QuizSchema.safeParse(payload);

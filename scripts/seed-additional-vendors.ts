@@ -47,32 +47,136 @@ if (!process.env.DATABASE_URL) {
 
 const prisma = new PrismaClient();
 
-const ADDITIONAL_VENDORS = [
+type Capability = {
+  hipaaFriendly?: boolean;
+  hasAppointmentBooking?: boolean;
+  hasCrmIntegration?: boolean;
+  hasHumanHandoff?: boolean;
+  hasMultilingual?: boolean;
+  has24x7?: boolean;
+};
+
+type Scores = {
+  overall: number;
+  callHandling: number;
+  integrations: number;
+  automation: number;
+  easeOfSetup: number;
+  pricingValue: number;
+  verticalFit: number;
+  handoff: number;
+  reporting: number;
+  support: number;
+};
+
+type VendorSeed = {
+  slug: string;
+  name: string;
+  websiteUrl: string;
+  tagline: string;
+  summary: string;
+  bestFor: string;
+  editorVerdict: string;
+  pricingModel: "SUBSCRIPTION" | "USAGE_BASED" | "PER_MINUTE" | "CUSTOM_QUOTE" | "HYBRID" | "UNKNOWN";
+  pricingNotes?: string;
+  setupComplexity?: number;
+  capabilities?: Capability;
+  scores?: Scores;
+  verticalSlugs?: string[];
+  featureSlugs?: string[];
+};
+
+const ADDITIONAL_VENDORS: ReadonlyArray<VendorSeed> = [
   {
     slug: "bland-ai",
     name: "Bland AI",
     websiteUrl: "https://www.bland.ai",
-    tagline: "Programmable AI phone agent platform (developer-focused)",
+    tagline: "Programmable enterprise AI phone agents with per-minute pricing",
     summary:
-      "Developer-focused platform for building AI phone agents with per-minute pricing. Best fit for teams comfortable wiring their own integrations rather than buying a turnkey receptionist product.",
+      "Developer-focused voice AI platform marketed at enterprises in healthcare, finance, and insurance. Bland publishes a broad integration list (Salesforce, HubSpot, Twilio, Slack, Notion, Zapier, Calendly, Cal.com, Genesys, Five9, NICE CXone, Talkdesk, Amazon Connect, SIP) and supports 40+ languages, 24/7 operation, and human handoff with context. Best fit for teams comfortable wiring their own integrations rather than buying a turnkey SMB receptionist product.",
     bestFor:
-      "Engineering-led teams that want fine-grained control over the call flow and don't need a hands-on setup partner.",
+      "Enterprise teams with engineering resources that want fine-grained control over voice agent behavior and a flat per-minute pricing model.",
     editorVerdict:
-      "Coverage in progress. Listed as an anchor entry — pricing and capability details should be verified against current product before relying on this row.",
-    pricingModel: "PER_MINUTE" as const,
+      "Strong technical platform with explicit SOC 2 / HIPAA / PCI DSS / GDPR posture. Less of a fit for a small business buyer who wants a packaged receptionist than for an engineering team building a custom call workflow. Per-minute pricing not published on the marketing site at the time of review.",
+    pricingModel: "PER_MINUTE",
+    pricingNotes:
+      "Per-minute pricing covers LLM + STT + TTS + telephony as a single rate, but the rate is not published publicly on bland.ai.",
+    setupComplexity: 4,
+    capabilities: {
+      hipaaFriendly: true,
+      hasAppointmentBooking: true,
+      hasCrmIntegration: true,
+      hasHumanHandoff: true,
+      hasMultilingual: true,
+      has24x7: true,
+    },
+    scores: {
+      overall: 7.4,
+      callHandling: 8.0,
+      integrations: 9.0,
+      automation: 8.0,
+      easeOfSetup: 5.0,
+      pricingValue: 6.5,
+      verticalFit: 6.0,
+      handoff: 8.0,
+      reporting: 6.5,
+      support: 7.0,
+    },
+    verticalSlugs: ["medical-offices"],
+    featureSlugs: [
+      "crm-integration",
+      "appointment-booking",
+      "human-handoff",
+      "multilingual-support",
+      "after-hours-coverage",
+      "hipaa-friendly",
+    ],
   },
   {
     slug: "synthflow",
     name: "Synthflow",
     websiteUrl: "https://synthflow.ai",
-    tagline: "No-code AI voice agent builder for SMBs and agencies",
+    tagline: "No-code AI voice agents with pay-as-you-go pricing",
     summary:
-      "Builder platform for assembling AI voice agents without code. Positioned at SMBs and agencies that want to ship an AI receptionist without engineering resources.",
+      "No-code builder for AI voice agents marketed at enterprises and agencies. Explicit integrations with HubSpot, Salesforce, GoHighLevel, Cal.com, Google Cloud, and Zapier. Supports multilingual calls (English + Spanish called out specifically), 24/7 operation, appointment booking, and human handoff for high-intent leads. SOC 2 / HIPAA / PCI DSS / GDPR posture stated on their site.",
     bestFor:
-      "SMBs and agencies that want a packaged builder rather than a developer API.",
+      "Agencies and SMB-to-mid-market teams that want a packaged builder rather than a developer API, especially those already on HubSpot or GoHighLevel.",
     editorVerdict:
-      "Coverage in progress. Listed as an anchor entry — capabilities, pricing tiers, and integrations should be verified against the current product.",
-    pricingModel: "SUBSCRIPTION" as const,
+      "Solid no-code option with credible compliance posture and the integrations a small services business actually uses. Pricing is usage-based ('pay only for calls and chats conducted') but specific rates aren't published, so budget modeling needs a call.",
+    pricingModel: "USAGE_BASED",
+    pricingNotes:
+      "Pay-as-you-go pricing — pay only for calls and chats actually conducted. Specific per-call rates not published on synthflow.ai.",
+    setupComplexity: 2,
+    capabilities: {
+      hipaaFriendly: true,
+      hasAppointmentBooking: true,
+      hasCrmIntegration: true,
+      hasHumanHandoff: true,
+      hasMultilingual: true,
+      has24x7: true,
+    },
+    scores: {
+      overall: 7.5,
+      callHandling: 7.5,
+      integrations: 8.0,
+      automation: 8.0,
+      easeOfSetup: 8.0,
+      pricingValue: 7.0,
+      verticalFit: 7.0,
+      handoff: 7.5,
+      reporting: 6.5,
+      support: 7.0,
+    },
+    verticalSlugs: ["medical-offices", "real-estate", "small-business"],
+    featureSlugs: [
+      "crm-integration",
+      "appointment-booking",
+      "human-handoff",
+      "multilingual-support",
+      "after-hours-coverage",
+      "hipaa-friendly",
+      "lead-qualification",
+    ],
   },
   {
     slug: "vapi",
@@ -85,7 +189,7 @@ const ADDITIONAL_VENDORS = [
       "Engineering teams building custom voice AI experiences, including bespoke receptionist flows.",
     editorVerdict:
       "Coverage in progress. Infrastructure-layer product — best to treat as a 'build vs buy' option alongside the turnkey receptionists in this directory.",
-    pricingModel: "CUSTOM_QUOTE" as const,
+    pricingModel: "CUSTOM_QUOTE",
   },
   {
     slug: "numa",
@@ -98,9 +202,76 @@ const ADDITIONAL_VENDORS = [
       "Multi-location service businesses (especially auto and franchise) that need both inbound voice and SMS in one tool.",
     editorVerdict:
       "Coverage in progress. Strongest fit historically for auto dealership networks; verify positioning against your specific vertical before shortlisting.",
-    pricingModel: "CUSTOM_QUOTE" as const,
+    pricingModel: "CUSTOM_QUOTE",
   },
-] as const;
+];
+
+function buildPatch(existing: { [k: string]: unknown }, v: VendorSeed): Record<string, unknown> {
+  const patch: Record<string, unknown> = {};
+  // Only fill fields that are null. Never overwrite a human edit.
+  if (!existing.name) patch.name = v.name;
+  if (!existing.websiteUrl) patch.websiteUrl = v.websiteUrl;
+  if (!existing.tagline) patch.tagline = v.tagline;
+  if (!existing.summary) patch.summary = v.summary;
+  if (!existing.bestFor) patch.bestFor = v.bestFor;
+  if (!existing.editorVerdict) patch.editorVerdict = v.editorVerdict;
+  if (!existing.pricingModel || existing.pricingModel === "UNKNOWN")
+    patch.pricingModel = v.pricingModel;
+  if (!existing.pricingNotes && v.pricingNotes) patch.pricingNotes = v.pricingNotes;
+  if (existing.setupComplexity == null && v.setupComplexity != null)
+    patch.setupComplexity = v.setupComplexity;
+
+  if (v.capabilities) {
+    for (const [key, value] of Object.entries(v.capabilities)) {
+      if (existing[key] == null) patch[key] = value;
+    }
+  }
+
+  if (v.scores) {
+    const map: Record<string, keyof Scores> = {
+      overallScore: "overall",
+      scoreCallHandling: "callHandling",
+      scoreIntegrations: "integrations",
+      scoreAutomation: "automation",
+      scoreEaseOfSetup: "easeOfSetup",
+      scorePricingValue: "pricingValue",
+      scoreVerticalFit: "verticalFit",
+      scoreHandoff: "handoff",
+      scoreReporting: "reporting",
+      scoreSupport: "support",
+    };
+    for (const [column, scoreKey] of Object.entries(map)) {
+      if (existing[column] == null) patch[column] = v.scores[scoreKey];
+    }
+  }
+
+  return patch;
+}
+
+async function syncJoinTables(vendorId: string, v: VendorSeed) {
+  if (v.verticalSlugs?.length) {
+    for (const slug of v.verticalSlugs) {
+      const vertical = await prisma.vertical.findUnique({ where: { slug } });
+      if (!vertical) continue;
+      await prisma.vendorVertical.upsert({
+        where: { vendorId_verticalId: { vendorId, verticalId: vertical.id } },
+        update: {},
+        create: { vendorId, verticalId: vertical.id },
+      });
+    }
+  }
+  if (v.featureSlugs?.length) {
+    for (const slug of v.featureSlugs) {
+      const feature = await prisma.feature.findUnique({ where: { slug } });
+      if (!feature) continue;
+      await prisma.vendorFeature.upsert({
+        where: { vendorId_featureId: { vendorId, featureId: feature.id } },
+        update: {},
+        create: { vendorId, featureId: feature.id },
+      });
+    }
+  }
+}
 
 async function main() {
   const results: Array<{ slug: string; action: "created" | "updated" | "skipped"; reason?: string }> =
@@ -109,26 +280,16 @@ async function main() {
   for (const v of ADDITIONAL_VENDORS) {
     const existing = await prisma.vendor.findUnique({ where: { slug: v.slug } });
     if (existing) {
-      // Don't clobber a human-curated row. Only fill in fields that are
-      // null so re-runs are idempotent and additive, never destructive.
-      const patch: Record<string, unknown> = {};
-      if (!existing.name) patch.name = v.name;
-      if (!existing.websiteUrl) patch.websiteUrl = v.websiteUrl;
-      if (!existing.tagline) patch.tagline = v.tagline;
-      if (!existing.summary) patch.summary = v.summary;
-      if (!existing.bestFor) patch.bestFor = v.bestFor;
-      if (!existing.editorVerdict) patch.editorVerdict = v.editorVerdict;
-      if (!existing.pricingModel || existing.pricingModel === "UNKNOWN")
-        patch.pricingModel = v.pricingModel;
-
+      const patch = buildPatch(existing as unknown as { [k: string]: unknown }, v);
       if (Object.keys(patch).length > 0) {
         await prisma.vendor.update({ where: { slug: v.slug }, data: patch });
-        results.push({ slug: v.slug, action: "updated", reason: `filled ${Object.keys(patch).join(", ")}` });
+        results.push({ slug: v.slug, action: "updated", reason: `filled ${Object.keys(patch).length} fields` });
       } else {
         results.push({ slug: v.slug, action: "skipped", reason: "row already has values" });
       }
+      await syncJoinTables(existing.id, v);
     } else {
-      await prisma.vendor.create({
+      const created = await prisma.vendor.create({
         data: {
           slug: v.slug,
           name: v.name,
@@ -138,9 +299,27 @@ async function main() {
           bestFor: v.bestFor,
           editorVerdict: v.editorVerdict,
           pricingModel: v.pricingModel,
+          pricingNotes: v.pricingNotes,
+          setupComplexity: v.setupComplexity,
           isPublished: true,
+          ...(v.capabilities ?? {}),
+          ...(v.scores
+            ? {
+                overallScore: v.scores.overall,
+                scoreCallHandling: v.scores.callHandling,
+                scoreIntegrations: v.scores.integrations,
+                scoreAutomation: v.scores.automation,
+                scoreEaseOfSetup: v.scores.easeOfSetup,
+                scorePricingValue: v.scores.pricingValue,
+                scoreVerticalFit: v.scores.verticalFit,
+                scoreHandoff: v.scores.handoff,
+                scoreReporting: v.scores.reporting,
+                scoreSupport: v.scores.support,
+              }
+            : {}),
         },
       });
+      await syncJoinTables(created.id, v);
       results.push({ slug: v.slug, action: "created" });
     }
   }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { CoverageBadge } from "@/components/vendors/coverage-badge";
 import { VendorBadgeRow } from "@/components/vendors/vendor-badge-row";
 import { formatPricing, formatScore } from "@/lib/scoring";
 
@@ -22,6 +23,7 @@ type VendorCardProps = {
 };
 
 export function VendorCard({ vendor }: VendorCardProps) {
+  const unscored = vendor.overallScore == null;
   return (
     <article className="group relative flex h-full flex-col gap-4 rounded-[var(--radius-card)] border border-rule bg-surface p-6 shadow-[var(--shadow-card)] transition-all hover:-translate-y-0.5 hover:border-signal/40 hover:shadow-[var(--shadow-card-hover)]">
       <header className="flex items-start justify-between gap-3">
@@ -34,14 +36,32 @@ export function VendorCard({ vendor }: VendorCardProps) {
           {vendor.tagline ? (
             <p className="mt-1 text-sm text-ink-soft">{vendor.tagline}</p>
           ) : null}
+          {unscored ? (
+            <div className="mt-2">
+              <CoverageBadge />
+            </div>
+          ) : null}
         </div>
         <div className="shrink-0 text-right">
-          <p className="font-heading text-3xl font-bold leading-none tabular-nums text-ink">
-            {formatScore(vendor.overallScore)}
-          </p>
-          <p className="mt-1 font-heading text-[10px] font-semibold text-muted-ink">
-            Score
-          </p>
+          {unscored ? (
+            <>
+              <p className="font-heading text-2xl font-bold leading-none tabular-nums text-muted-ink/60">
+                —
+              </p>
+              <p className="mt-1 font-heading text-[10px] font-semibold text-muted-ink">
+                Unscored
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="font-heading text-3xl font-bold leading-none tabular-nums text-ink">
+                {formatScore(vendor.overallScore)}
+              </p>
+              <p className="mt-1 font-heading text-[10px] font-semibold text-muted-ink">
+                Score
+              </p>
+            </>
+          )}
         </div>
       </header>
       {vendor.summary ? (

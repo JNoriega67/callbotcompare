@@ -7,8 +7,10 @@ import { CtaBanner } from "@/components/marketing/cta-banner";
 import { EditorialMeta } from "@/components/marketing/editorial-meta";
 import { JsonLd } from "@/components/marketing/json-ld";
 import { COMMERCIAL_PAGES, type CommercialPageConfig } from "@/lib/commercial-pages";
+import { prisma } from "@/lib/db";
 import { GUIDES, type GuideBlock, type GuideConfig, type GuideSection } from "@/lib/guides";
 import { INTEGRATION_PAGES, type IntegrationPageConfig } from "@/lib/integration-pages";
+import { formatScore } from "@/lib/scoring";
 import { SERVICE_PACKAGES, type ServicePackage } from "@/lib/services";
 import { breadcrumbJsonLd } from "@/lib/seo";
 
@@ -104,7 +106,7 @@ type GuidePageProps = {
   guide: GuideConfig;
 };
 
-export function GuidePage({ guide }: GuidePageProps) {
+export async function GuidePage({ guide }: GuidePageProps) {
   const relatedGuides: ReadonlyArray<GuideConfig> =
     guide.relatedGuideSlugs?.map((slug) => GUIDES[slug]).filter((g): g is GuideConfig => Boolean(g)) ??
     [];
@@ -120,6 +122,22 @@ export function GuidePage({ guide }: GuidePageProps) {
     guide.relatedServiceSlugs
       ?.map((slug) => SERVICE_PACKAGES[slug])
       .filter((s): s is ServicePackage => Boolean(s)) ?? [];
+
+  // Resolve vendor slugs against the live directory. Unpublished or
+  // missing slugs are silently dropped so authors can't accidentally
+  // surface a draft vendor by forgetting to publish it.
+  const relatedVendors = guide.relatedVendorSlugs?.length
+    ? await prisma.vendor.findMany({
+        where: { isPublished: true, slug: { in: [...guide.relatedVendorSlugs] } },
+        select: { slug: true, name: true, tagline: true, overallScore: true },
+      })
+    : [];
+  // Preserve the author-specified order rather than DB query order.
+  const orderedVendors = guide.relatedVendorSlugs
+    ? guide.relatedVendorSlugs
+        .map((slug) => relatedVendors.find((v) => v.slug === slug))
+        .filter((v): v is (typeof relatedVendors)[number] => Boolean(v))
+    : [];
 
   return (
     <>
@@ -260,6 +278,56 @@ export function GuidePage({ guide }: GuidePageProps) {
           </div>
         </Container>
       </Section>
+
+      {/* VENDORS MENTIONED — surfaces the specific products this guide refs */}
+      {orderedVendors.length ? (
+        <Section tone="paper" className="border-t border-rule pt-12 pb-10 md:pt-16 md:pb-12">
+          <Container>
+            <p className="font-heading text-[10px] font-semibold text-signal">
+              Vendors mentioned
+            </p>
+            <h2 className="mt-2 font-heading text-2xl font-bold text-ink md:text-3xl">
+              Tools this guide draws from.
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm text-ink-soft">
+              Cross-reference the directory before you commit. Each vendor links to the full
+              scorecard, where editor-verified capabilities and pricing live.
+            </p>
+            <ul className="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+              {orderedVendors.map((v) => (
+                <li key={v.slug}>
+                  <Link
+                    href={`/vendors/${v.slug}`}
+                    className="group flex h-full items-start justify-between gap-4 rounded-[var(--radius-card)] border border-rule bg-surface p-4 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)]"
+                  >
+                    <div className="min-w-0">
+                      <p className="font-heading text-base font-semibold text-ink group-hover:text-signal">
+                        {v.name}
+                      </p>
+                      {v.tagline ? (
+                        <p className="mt-1 line-clamp-2 text-sm text-ink-soft">{v.tagline}</p>
+                      ) : null}
+                    </div>
+                    <div className="shrink-0 text-right">
+                      <p
+                        className={
+                          "font-heading text-lg font-bold leading-none tabular-nums " +
+                          (v.overallScore == null ? "text-muted-ink/60" : "text-ink")
+                        }
+                      >
+                        {v.overallScore == null ? "—" : formatScore(v.overallScore)}
+                      </p>
+                      <p className="mt-1 font-heading text-[9px] font-semibold text-muted-ink">
+                        {v.overallScore == null ? "Unscored" : "Score"}
+                      </p>
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Container>
+        </Section>
+      ) : null}
 
       {/* MATCHED CTA */}
       <CtaBanner variant="matched" />

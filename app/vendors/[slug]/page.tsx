@@ -15,6 +15,7 @@ import { VendorBadgeRow } from "@/components/vendors/vendor-badge-row";
 import { Alternatives } from "@/app/vendors/[slug]/_components/alternatives";
 import { ProsCons } from "@/app/vendors/[slug]/_components/pros-cons";
 import { ScoreBreakdown } from "@/app/vendors/[slug]/_components/score-breakdown";
+import { CoverageBadge, CoverageNotice } from "@/components/vendors/coverage-badge";
 import { prisma } from "@/lib/db";
 import { relatedGuidesForVendor } from "@/lib/related-for-vendor";
 import { formatPricing, formatScore, formatSetupComplexity } from "@/lib/scoring";
@@ -111,6 +112,11 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
                 <h1 className="mt-3 font-heading text-3xl font-bold text-ink md:text-5xl">
                   {vendor.name}
                 </h1>
+                {vendor.overallScore == null ? (
+                  <div className="mt-3">
+                    <CoverageBadge size="md" />
+                  </div>
+                ) : null}
                 <div className="mt-4">
                   <EditorialMeta
                     updated={vendor.updatedAt}
@@ -195,6 +201,8 @@ export default async function VendorDetailPage({ params }: { params: Params }) {
       {/* BODY */}
       <Section tone="paper" className="pt-0 pb-16 md:pb-20">
         <Container className="space-y-14">
+          {vendor.overallScore == null ? <CoverageNotice vendorName={vendor.name} /> : null}
+
           <ProsCons vendor={vendor} />
 
           {/* Mid-page conversion: get matched. Trust-first framing. */}

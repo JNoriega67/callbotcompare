@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -22,6 +22,13 @@ import {
  */
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  // Two bot defenses, both invisible to humans:
+  //  1. Honeypot: a hidden text field a real user can't see; bots fill every
+  //     visible-looking input, so a non-empty value here means automated.
+  //  2. Min-time gate: humans take >2s to fill even a short form. Bots
+  //     submit instantly. Reject anything that fires <2s after mount.
+  const mountedAtRef = useRef<number>(Date.now());
+  const honeypotRef = useRef<HTMLInputElement>(null);
   const {
     register,
     handleSubmit,
@@ -42,6 +49,18 @@ export function ContactForm() {
   const showSupport = intent === "support";
 
   const onSubmit: SubmitHandler<LeadInput> = async (values) => {
+    // Honeypot tripped — pretend success so bots don't probe.
+    if (honeypotRef.current?.value) {
+      toast.success("Got it — we'll be in touch shortly.");
+      reset();
+      setSubmitted(true);
+      return;
+    }
+    // Min-time gate.
+    if (Date.now() - mountedAtRef.current < 2000) {
+      toast.error("That was a little too fast — please try again.");
+      return;
+    }
     try {
       const response = await fetch(`/api/leads?source=contact`, {
         method: "POST",
@@ -85,6 +104,20 @@ export function ContactForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="space-y-6 rounded-[var(--radius-card)] border border-rule bg-surface p-6 md:p-8"
     >
+      {/* Honeypot — hidden from humans (sighted + screen readers). Bots
+          submit every input; a non-empty value here means automated. */}
+      <div aria-hidden className="pointer-events-none absolute -left-[10000px] h-0 w-0 overflow-hidden">
+        <label htmlFor="cf-website">Website</label>
+        <input
+          ref={honeypotRef}
+          id="cf-website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          name="website"
+        />
+      </div>
+
       {/* Intent — visible selector that gates the rest */}
       <fieldset className="space-y-3">
         <legend className="font-heading text-sm font-semibold text-ink">

@@ -52,6 +52,13 @@ export type GuideConfig = {
   relatedIntegrationSlugs?: ReadonlyArray<string>;
   relatedServiceSlugs?: ReadonlyArray<string>;
   /**
+   * Vendor slugs that exemplify or are directly referenced by this guide.
+   * Renders as a "Vendors mentioned" block in the guide template. Skipped
+   * silently if a slug points at an unpublished vendor or a vendor that
+   * was removed.
+   */
+  relatedVendorSlugs?: ReadonlyArray<string>;
+  /**
    * Year-month the page was last editorially reviewed (e.g. "2026-05").
    * Surfaces as "Updated May 2026" via <EditorialMeta />. Defaults to
    * "2026-05" in the template if not set.
@@ -290,6 +297,7 @@ export const GUIDE_SETUP: GuideConfig = {
   relatedGuideSlugs: ["crm-and-booking-integration-guide", "call-flow-design-guide", "ai-receptionist-launch-checklist"],
   relatedCommercialSlugs: ["best-ai-receptionist-software"],
   relatedServiceSlugs: ["setup", "call-flow"],
+  relatedVendorSlugs: ["smith-ai", "goodcall", "synthflow"],
 };
 
 export const GUIDE_INTEGRATION: GuideConfig = {
@@ -483,6 +491,7 @@ export const GUIDE_INTEGRATION: GuideConfig = {
     { label: "Runbook documented for ops team" },
   ],
   relatedGuideSlugs: ["ai-receptionist-setup-guide", "call-flow-design-guide"],
+  relatedVendorSlugs: ["smith-ai", "synthflow", "bland-ai"],
   relatedIntegrationSlugs: [
     "ai-receptionist-with-hubspot",
     "ai-receptionist-with-salesforce",
@@ -674,6 +683,7 @@ export const GUIDE_CALL_FLOW: GuideConfig = {
   relatedGuideSlugs: ["ai-receptionist-setup-guide", "crm-and-booking-integration-guide"],
   relatedCommercialSlugs: ["best-ai-receptionist-software"],
   relatedServiceSlugs: ["call-flow", "setup"],
+  relatedVendorSlugs: ["smith-ai", "goodcall", "synthflow"],
 };
 
 export const GUIDE_LAUNCH_CHECKLIST: GuideConfig = {
@@ -809,6 +819,7 @@ export const GUIDE_LAUNCH_CHECKLIST: GuideConfig = {
   ],
   relatedGuideSlugs: ["ai-receptionist-setup-guide", "post-launch-optimization-guide"],
   relatedServiceSlugs: ["setup"],
+  relatedVendorSlugs: ["smith-ai", "goodcall", "dialzara"],
 };
 
 export const GUIDE_POST_LAUNCH: GuideConfig = {
@@ -964,6 +975,7 @@ export const GUIDE_POST_LAUNCH: GuideConfig = {
   ],
   relatedGuideSlugs: ["ai-receptionist-launch-checklist", "ai-receptionist-setup-guide"],
   relatedServiceSlugs: ["setup", "call-flow"],
+  relatedVendorSlugs: ["smith-ai", "goodcall", "abby-connect"],
 };
 
 /* ------------------------------------------------------------------ */
