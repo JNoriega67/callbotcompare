@@ -18,18 +18,28 @@
     "hasHumanHandoff": true,
     "hasMultilingual": null,
     "has24x7": true,
-    "overallScore": 8.8,
-    "scoreCallHandling": 9.0,
+    "overallScore": 8.6,
+    "scoreCallHandling": 9,
     "scoreIntegrations": 8.5,
     "scoreAutomation": 8.5,
-    "scoreEaseOfSetup": 8.0,
+    "scoreEaseOfSetup": 8,
     "scorePricingValue": 7.5,
-    "scoreVerticalFit": 9.0,
+    "scoreVerticalFit": 9,
     "scoreHandoff": 9.5,
-    "scoreReporting": 8.0,
-    "scoreSupport": 9.0,
-    "verticals": ["law-firms", "small-business", "home-services"],
-    "features": ["crm-integration", "appointment-booking", "human-handoff", "after-hours-coverage", "lead-qualification"]
+    "scoreReporting": 8.5,
+    "scoreSupport": 9,
+    "verticals": [
+      "law-firms",
+      "small-business",
+      "home-services"
+    ],
+    "features": [
+      "crm-integration",
+      "appointment-booking",
+      "human-handoff",
+      "after-hours-coverage",
+      "lead-qualification"
+    ]
   },
   {
     "slug": "goodcall",
@@ -50,18 +60,27 @@
     "hasHumanHandoff": true,
     "hasMultilingual": null,
     "has24x7": true,
-    "overallScore": 8.1,
-    "scoreCallHandling": 8.0,
-    "scoreIntegrations": 8.0,
+    "overallScore": 8,
+    "scoreCallHandling": 8,
+    "scoreIntegrations": 8,
     "scoreAutomation": 8.5,
     "scoreEaseOfSetup": 8.5,
     "scorePricingValue": 7.5,
     "scoreVerticalFit": 7.5,
-    "scoreHandoff": 8.0,
+    "scoreHandoff": 8,
     "scoreReporting": 7.5,
     "scoreSupport": 7.5,
-    "verticals": ["small-business", "home-services", "real-estate"],
-    "features": ["crm-integration", "appointment-booking", "human-handoff", "after-hours-coverage"]
+    "verticals": [
+      "small-business",
+      "home-services",
+      "real-estate"
+    ],
+    "features": [
+      "crm-integration",
+      "appointment-booking",
+      "human-handoff",
+      "after-hours-coverage"
+    ]
   },
   {
     "slug": "dialzara",
@@ -82,18 +101,27 @@
     "hasHumanHandoff": null,
     "hasMultilingual": null,
     "has24x7": true,
-    "overallScore": 8.3,
+    "overallScore": 8.1,
     "scoreCallHandling": 8.5,
     "scoreIntegrations": 7.5,
     "scoreAutomation": 8.5,
     "scoreEaseOfSetup": 8.5,
     "scorePricingValue": 8.5,
-    "scoreVerticalFit": 8.0,
-    "scoreHandoff": 7.0,
+    "scoreVerticalFit": 8,
+    "scoreHandoff": 7,
     "scoreReporting": 7.5,
-    "scoreSupport": 8.0,
-    "verticals": ["small-business", "home-services", "contractors"],
-    "features": ["crm-integration", "appointment-booking", "after-hours-coverage", "lead-qualification"]
+    "scoreSupport": 8,
+    "verticals": [
+      "small-business",
+      "home-services",
+      "contractors"
+    ],
+    "features": [
+      "crm-integration",
+      "appointment-booking",
+      "after-hours-coverage",
+      "lead-qualification"
+    ]
   },
   {
     "slug": "abby-connect",
@@ -114,18 +142,26 @@
     "hasHumanHandoff": true,
     "hasMultilingual": null,
     "has24x7": true,
-    "overallScore": 7.8,
+    "overallScore": 7.7,
     "scoreCallHandling": 8.5,
     "scoreIntegrations": 6.5,
     "scoreAutomation": 6.5,
-    "scoreEaseOfSetup": 8.0,
-    "scorePricingValue": 7.0,
-    "scoreVerticalFit": 8.0,
-    "scoreHandoff": 9.0,
-    "scoreReporting": 6.5,
+    "scoreEaseOfSetup": 8,
+    "scorePricingValue": 7,
+    "scoreVerticalFit": 8,
+    "scoreHandoff": 9,
+    "scoreReporting": 8,
     "scoreSupport": 8.5,
-    "verticals": ["law-firms", "small-business", "medical-offices"],
-    "features": ["appointment-booking", "human-handoff", "after-hours-coverage"]
+    "verticals": [
+      "law-firms",
+      "small-business",
+      "medical-offices"
+    ],
+    "features": [
+      "appointment-booking",
+      "human-handoff",
+      "after-hours-coverage"
+    ]
   },
   {
     "slug": "answerconnect",
@@ -146,18 +182,27 @@
     "hasHumanHandoff": true,
     "hasMultilingual": true,
     "has24x7": true,
-    "overallScore": 7.6,
-    "scoreCallHandling": 8.0,
+    "overallScore": 7.4,
+    "scoreCallHandling": 8,
     "scoreIntegrations": 6.5,
-    "scoreAutomation": 6.0,
-    "scoreEaseOfSetup": 8.0,
-    "scorePricingValue": 7.0,
+    "scoreAutomation": 6,
+    "scoreEaseOfSetup": 8,
+    "scorePricingValue": 7,
     "scoreVerticalFit": 7.5,
-    "scoreHandoff": 9.0,
+    "scoreHandoff": 9,
     "scoreReporting": 6.5,
-    "scoreSupport": 8.0,
-    "verticals": ["small-business", "home-services", "medical-offices"],
-    "features": ["appointment-booking", "human-handoff", "multilingual-support", "after-hours-coverage"]
+    "scoreSupport": 8,
+    "verticals": [
+      "small-business",
+      "home-services",
+      "medical-offices"
+    ],
+    "features": [
+      "appointment-booking",
+      "human-handoff",
+      "multilingual-support",
+      "after-hours-coverage"
+    ]
   },
   {
     "slug": "dialpad-ai-reception",
@@ -178,18 +223,27 @@
     "hasHumanHandoff": true,
     "hasMultilingual": null,
     "has24x7": true,
-    "overallScore": 7.9,
-    "scoreCallHandling": 8.0,
-    "scoreIntegrations": 9.0,
-    "scoreAutomation": 8.0,
+    "overallScore": 7.8,
+    "scoreCallHandling": 8,
+    "scoreIntegrations": 9,
+    "scoreAutomation": 8,
     "scoreEaseOfSetup": 6.5,
-    "scorePricingValue": 7.0,
-    "scoreVerticalFit": 7.0,
+    "scorePricingValue": 7,
+    "scoreVerticalFit": 7,
     "scoreHandoff": 8.5,
-    "scoreReporting": 8.0,
+    "scoreReporting": 8,
     "scoreSupport": 7.5,
-    "verticals": ["small-business", "msp-agency", "real-estate"],
-    "features": ["crm-integration", "human-handoff", "after-hours-coverage", "analytics-dashboard"]
+    "verticals": [
+      "small-business",
+      "msp-agency",
+      "real-estate"
+    ],
+    "features": [
+      "crm-integration",
+      "human-handoff",
+      "after-hours-coverage",
+      "analytics-dashboard"
+    ]
   },
   {
     "slug": "retell-builders",
@@ -210,18 +264,29 @@
     "hasHumanHandoff": true,
     "hasMultilingual": true,
     "has24x7": true,
-    "overallScore": 8.0,
-    "scoreCallHandling": 8.0,
-    "scoreIntegrations": 9.0,
-    "scoreAutomation": 9.0,
+    "overallScore": 8,
+    "scoreCallHandling": 8,
+    "scoreIntegrations": 9,
+    "scoreAutomation": 9,
     "scoreEaseOfSetup": 5.5,
-    "scorePricingValue": 7.0,
-    "scoreVerticalFit": 8.0,
+    "scorePricingValue": 7,
+    "scoreVerticalFit": 8,
     "scoreHandoff": 8.5,
-    "scoreReporting": 8.0,
-    "scoreSupport": 7.0,
-    "verticals": ["msp-agency", "medical-offices", "contractors"],
-    "features": ["crm-integration", "appointment-booking", "human-handoff", "multilingual-support", "analytics-dashboard", "lead-qualification"]
+    "scoreReporting": 8,
+    "scoreSupport": 7,
+    "verticals": [
+      "msp-agency",
+      "medical-offices",
+      "contractors"
+    ],
+    "features": [
+      "crm-integration",
+      "appointment-booking",
+      "human-handoff",
+      "multilingual-support",
+      "analytics-dashboard",
+      "lead-qualification"
+    ]
   },
   {
     "slug": "voiceflow-agency-builders",
@@ -244,16 +309,27 @@
     "has24x7": true,
     "overallScore": 7.8,
     "scoreCallHandling": 7.5,
-    "scoreIntegrations": 9.0,
-    "scoreAutomation": 9.0,
-    "scoreEaseOfSetup": 5.0,
-    "scorePricingValue": 7.0,
-    "scoreVerticalFit": 8.0,
-    "scoreHandoff": 8.0,
-    "scoreReporting": 7.5,
-    "scoreSupport": 7.0,
-    "verticals": ["msp-agency", "contractors", "home-services"],
-    "features": ["crm-integration", "appointment-booking", "human-handoff", "multilingual-support", "analytics-dashboard", "lead-qualification"]
+    "scoreIntegrations": 9,
+    "scoreAutomation": 9,
+    "scoreEaseOfSetup": 5,
+    "scorePricingValue": 7,
+    "scoreVerticalFit": 8,
+    "scoreHandoff": 8,
+    "scoreReporting": 8.5,
+    "scoreSupport": 7,
+    "verticals": [
+      "msp-agency",
+      "contractors",
+      "home-services"
+    ],
+    "features": [
+      "crm-integration",
+      "appointment-booking",
+      "human-handoff",
+      "multilingual-support",
+      "analytics-dashboard",
+      "lead-qualification"
+    ]
   },
   {
     "slug": "bland-ai",
@@ -275,16 +351,18 @@
     "hasMultilingual": true,
     "has24x7": true,
     "overallScore": 7.4,
-    "scoreCallHandling": 8.0,
-    "scoreIntegrations": 9.0,
-    "scoreAutomation": 8.0,
-    "scoreEaseOfSetup": 5.0,
+    "scoreCallHandling": 8,
+    "scoreIntegrations": 9,
+    "scoreAutomation": 8,
+    "scoreEaseOfSetup": 5,
     "scorePricingValue": 6.5,
-    "scoreVerticalFit": 6.0,
-    "scoreHandoff": 8.0,
+    "scoreVerticalFit": 6,
+    "scoreHandoff": 8,
     "scoreReporting": 6.5,
-    "scoreSupport": 7.0,
-    "verticals": ["medical-offices"],
+    "scoreSupport": 7.5,
+    "verticals": [
+      "medical-offices"
+    ],
     "features": [
       "crm-integration",
       "appointment-booking",
@@ -313,17 +391,21 @@
     "hasHumanHandoff": true,
     "hasMultilingual": true,
     "has24x7": true,
-    "overallScore": 7.5,
+    "overallScore": 7.6,
     "scoreCallHandling": 7.5,
-    "scoreIntegrations": 8.0,
-    "scoreAutomation": 8.0,
-    "scoreEaseOfSetup": 8.0,
-    "scorePricingValue": 7.0,
-    "scoreVerticalFit": 7.0,
+    "scoreIntegrations": 8,
+    "scoreAutomation": 8,
+    "scoreEaseOfSetup": 8,
+    "scorePricingValue": 7,
+    "scoreVerticalFit": 7,
     "scoreHandoff": 7.5,
-    "scoreReporting": 6.5,
-    "scoreSupport": 7.0,
-    "verticals": ["medical-offices", "real-estate", "small-business"],
+    "scoreReporting": 7.5,
+    "scoreSupport": 7,
+    "verticals": [
+      "medical-offices",
+      "real-estate",
+      "small-business"
+    ],
     "features": [
       "crm-integration",
       "appointment-booking",
@@ -357,11 +439,11 @@
     "scoreCallHandling": 7.5,
     "scoreIntegrations": 7.5,
     "scoreAutomation": 8.5,
-    "scoreEaseOfSetup": 4.0,
+    "scoreEaseOfSetup": 4,
     "scorePricingValue": 6.5,
     "scoreVerticalFit": 5.5,
     "scoreHandoff": 5.5,
-    "scoreReporting": 6.5,
+    "scoreReporting": 8,
     "scoreSupport": 7.5,
     "verticals": [],
     "features": [
@@ -391,15 +473,17 @@
     "has24x7": true,
     "overallScore": 7.3,
     "scoreCallHandling": 7.5,
-    "scoreIntegrations": 9.0,
+    "scoreIntegrations": 9,
     "scoreAutomation": 7.5,
-    "scoreEaseOfSetup": 7.0,
+    "scoreEaseOfSetup": 7,
     "scorePricingValue": 6.5,
-    "scoreVerticalFit": 6.0,
-    "scoreHandoff": 7.0,
-    "scoreReporting": 7.0,
-    "scoreSupport": 7.0,
-    "verticals": ["auto-dealers"],
+    "scoreVerticalFit": 6,
+    "scoreHandoff": 7,
+    "scoreReporting": 7,
+    "scoreSupport": 7,
+    "verticals": [
+      "auto-dealers"
+    ],
     "features": [
       "crm-integration",
       "appointment-booking",
