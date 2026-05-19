@@ -207,6 +207,9 @@ model Lead {
   timeline             String?
   notes                String?
   recommendedVendors   String?
+  intent               String?
+  routing              String?
+  isUrgent             Boolean?
   createdAt            DateTime   @default(now())
   updatedAt            DateTime   @updatedAt
 

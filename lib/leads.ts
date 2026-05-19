@@ -7,7 +7,53 @@ import { SITE_URL } from "@/lib/constants";
 
 const NON_EMPTY = z.string().trim().min(1);
 
+/**
+ * What the visitor said they need. Drives which conditional fields are
+ * shown in the form and which routing bucket the lead lands in.
+ */
+export const INTENT_VALUES = [
+  "comparing",
+  "implementation",
+  "support",
+  "other",
+] as const;
+export type LeadIntent = (typeof INTENT_VALUES)[number];
+
+export const INTENT_LABELS: Record<LeadIntent, string> = {
+  comparing: "I'm comparing options",
+  implementation: "I need setup or implementation help",
+  support: "I need support with an existing setup",
+  other: "Something else",
+};
+
+/**
+ * Internal routing bucket derived from intent. Kept separate from intent
+ * so we can tighten the mapping later without breaking what visitors saw.
+ */
+export const ROUTING_VALUES = [
+  "referral_only",
+  "service_only",
+  "support",
+  "triage",
+] as const;
+export type LeadRouting = (typeof ROUTING_VALUES)[number];
+
+export function deriveRouting(intent: LeadIntent): LeadRouting {
+  switch (intent) {
+    case "comparing":
+      return "referral_only";
+    case "implementation":
+      return "service_only";
+    case "support":
+      return "support";
+    case "other":
+      return "triage";
+  }
+}
+
 export const LeadSchema = z.object({
+  intent: z.enum(INTENT_VALUES).optional(),
+  isUrgent: z.boolean().optional(),
   name: NON_EMPTY.max(200),
   email: z.string().trim().email().max(320),
   company: z.string().trim().max(200).optional().or(z.literal("").transform(() => undefined)),
@@ -70,10 +116,14 @@ export async function persistLead(input: PersistLeadInput, source: LeadSource) {
   const recommended = input.recommendedVendors?.length
     ? input.recommendedVendors.join(",")
     : null;
+  const routing = input.intent ? deriveRouting(input.intent) : null;
 
   return prisma.lead.create({
     data: {
       source,
+      intent: input.intent ?? null,
+      routing,
+      isUrgent: input.isUrgent ?? null,
       name: input.name,
       email: input.email,
       company: input.company ?? null,
@@ -123,11 +173,17 @@ function escapeHtml(value: string): string {
 }
 
 function renderLeadEmail(lead: Lead) {
-  const sourceLabel = (lead.source ?? "unknown").toUpperCase();
-  const subject = `[CallTreo] New ${sourceLabel} lead — ${lead.name}`;
+  const intentLabel = lead.intent && (INTENT_LABELS as Record<string, string>)[lead.intent];
+  const headerLabel = intentLabel ?? (lead.source ?? "unknown");
+  const urgentPrefix = lead.isUrgent ? "[URGENT] " : "";
+  const routingTag = lead.routing ? ` [${lead.routing}]` : "";
+  const subject = `${urgentPrefix}[CallTreo] ${headerLabel}${routingTag} — ${lead.name}`;
 
   const rows: Array<[string, string | null]> = [
-    ["Source", lead.source ?? null],
+    ["Intent", intentLabel ?? null],
+    ["Routing", lead.routing],
+    ["Urgent", lead.isUrgent ? "Yes" : null],
+    ["Source channel", lead.source ?? null],
     ["Name", lead.name],
     ["Email", lead.email],
     ["Company", lead.company],
@@ -157,9 +213,9 @@ function renderLeadEmail(lead: Lead) {
   const html = `<!doctype html>
 <html><body style="margin:0;padding:24px;background:#F4F6F8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#1F2933;">
   <div style="max-width:640px;margin:0 auto;background:#FFFFFF;border:1px solid #D6DEE6;border-radius:12px;overflow:hidden;">
-    <div style="padding:20px 24px;background:#2F4F70;color:#F4F6F8;">
-      <div style="font-size:12px;text-transform:uppercase;letter-spacing:0.18em;opacity:0.85;">CallTreo · New lead</div>
-      <div style="margin-top:6px;font-size:20px;font-weight:700;">${escapeHtml(sourceLabel)} · ${escapeHtml(lead.name)}</div>
+    <div style="padding:20px 24px;background:${lead.isUrgent ? "#A8590F" : "#2F4F70"};color:#F4F6F8;">
+      <div style="font-size:12px;text-transform:uppercase;letter-spacing:0.18em;opacity:0.85;">CallTreo · ${lead.isUrgent ? "URGENT lead" : "New lead"}</div>
+      <div style="margin-top:6px;font-size:20px;font-weight:700;">${escapeHtml(headerLabel)} · ${escapeHtml(lead.name)}</div>
     </div>
     <table style="width:100%;border-collapse:collapse;padding:24px;">
       ${rowsHtml}
@@ -176,7 +232,7 @@ function renderLeadEmail(lead: Lead) {
     .map(([label, value]) => `${label}: ${value}`)
     .join("\n");
 
-  return { subject, html, text: `New ${sourceLabel} lead — ${lead.name}\n\n${text}` };
+  return { subject, html, text: `${headerLabel} — ${lead.name}\n\n${text}` };
 }
 
 /**

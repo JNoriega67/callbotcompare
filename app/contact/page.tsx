@@ -3,55 +3,93 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Breadcrumbs } from "@/components/marketing/breadcrumbs";
-import { LeadForm } from "@/components/forms/lead-form";
+import { ContactForm } from "@/components/forms/contact-form";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Talk to us",
+  title: "Tell us what you need",
   description:
-    "Tell us a bit about your business and we'll point you to the strongest AI receptionist options for your industry, call volume, and workflow.",
+    "Get help choosing the right AI receptionist platform, planning implementation, or resolving an issue with an existing setup.",
   path: "/contact",
 });
 
 export default function ContactPage() {
   return (
     <>
-      <Section tone="paper" className="pt-10 pb-8 md:pt-14 md:pb-10">
-        <Container className="space-y-4">
+      <Section tone="paper" className="pt-10 pb-6 md:pt-14 md:pb-8">
+        <Container className="space-y-5">
           <Breadcrumbs
             trail={[
               { label: "Home", href: "/" },
               { label: "Contact", href: "/contact" },
             ]}
           />
-          <h1 className="font-heading text-3xl font-bold text-ink md:text-4xl">
-            Need help choosing?
+          <h1 className="font-heading text-[2.25rem] font-bold leading-[1.05] tracking-tight text-ink md:text-[3.25rem]">
+            Tell us what you need
           </h1>
-          <p className="max-w-2xl text-ink-soft">
-            Tell us a little about your business and we&apos;ll point you to the strongest AI receptionist
-            options for your industry, call volume, and workflow. No sales calls — just a short
-            email back with a shortlist and the reasons behind it.
+          <p className="max-w-2xl text-lg leading-relaxed text-ink-soft md:text-xl">
+            Get help choosing the right AI receptionist platform, planning implementation, or
+            resolving an issue with an existing setup. Pick what fits — we&apos;ll route from
+            there.
           </p>
         </Container>
       </Section>
 
-      <Section tone="paper">
-        <Container className="grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-start">
-          <LeadForm hidden={{ source: "contact" }} submitLabel="Send my details" />
-          <aside className="space-y-4 text-sm text-ink-soft">
-            <h2 className="font-heading text-lg font-semibold text-ink">What happens next</h2>
-            <ul className="space-y-2">
-              <li>1. We read your context (usually within a business day).</li>
-              <li>2. You get an email with 2–3 vendor suggestions and the reasons.</li>
-              <li>3. If implementation help would be useful, we&apos;ll mention it — never the lead.</li>
-            </ul>
-            <p className="rounded-[var(--radius-card)] border border-rule bg-signal-soft/60 p-4 text-xs text-ink-soft">
-              Prefer to self-serve? Take{" "}
-              <a href="/quiz" className="text-signal underline-offset-2 hover:underline">
-                the quiz
-              </a>{" "}
-              for an automated shortlist.
-            </p>
+      <Section tone="paper" className="pb-16 md:pb-24">
+        <Container className="grid gap-10 md:grid-cols-[1.5fr_1fr] md:items-start md:gap-14">
+          <ContactForm />
+          <aside className="space-y-6 text-sm text-ink-soft">
+            <div>
+              <h2 className="font-heading text-lg font-semibold text-ink">What happens next</h2>
+              <ul className="mt-3 space-y-2">
+                <li>1. We read your message — usually within a business day.</li>
+                <li>2. You get a reply tailored to what you asked for, not a generic intake.</li>
+                <li>
+                  3. If you flagged it urgent and you&apos;re an existing setup, expect a same-day
+                  response.
+                </li>
+              </ul>
+            </div>
+            <div className="rounded-[var(--radius-card)] border border-rule bg-signal-soft/50 p-4 text-xs leading-relaxed text-ink-soft">
+              <p className="font-heading text-xs font-semibold text-ink">
+                Prefer to self-serve?
+              </p>
+              <p className="mt-2">
+                Take{" "}
+                <a href="/quiz" className="text-signal underline-offset-2 hover:underline">
+                  the quiz
+                </a>{" "}
+                for an automated shortlist, browse the{" "}
+                <a href="/vendors" className="text-signal underline-offset-2 hover:underline">
+                  vendor directory
+                </a>
+                , or read the{" "}
+                <a href="/guides" className="text-signal underline-offset-2 hover:underline">
+                  implementation guides
+                </a>
+                .
+              </p>
+            </div>
+            <div className="border-t border-rule pt-5 text-xs leading-relaxed text-muted-ink">
+              <p>
+                Our{" "}
+                <a
+                  href="/methodology"
+                  className="text-ink underline underline-offset-2 hover:text-signal"
+                >
+                  methodology
+                </a>{" "}
+                and{" "}
+                <a
+                  href="/disclosure"
+                  className="text-ink underline underline-offset-2 hover:text-signal"
+                >
+                  referral disclosure
+                </a>{" "}
+                are public. We don&apos;t take retainers and won&apos;t recommend a tool we
+                wouldn&apos;t use ourselves.
+              </p>
+            </div>
           </aside>
         </Container>
       </Section>
